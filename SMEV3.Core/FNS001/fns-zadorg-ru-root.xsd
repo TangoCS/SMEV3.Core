@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by VI (GNIVC FNS RF) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://x-artefacts-fns-zadorg/root/548-04/4.0.4" xmlns:fns="urn://x-artefacts-fns/commons/4.0.0" targetNamespace="urn://x-artefacts-fns-zadorg/root/548-04/4.0.4" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="urn://x-artefacts-fns/commons/4.0.0" schemaLocation="./commons/fns-zadorg-types.xsd"/>
+	<xs:element name="ZadorgRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос в ФНС о наличии (отсутствии) задолженности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="СвЮЛ">
+					<xs:annotation>
+						<xs:documentation>Сведения о юридическом лице (органе государственной власти, ином государственном органе, суде, органе государственных внебюджетных фондов, органе местного самоуправления), осуществляющем запрос</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="НаимЮЛ" type="fns:string-1000" use="required">
+							<xs:annotation>
+								<xs:documentation>Наименование юридического лица</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ИННЮЛ" type="fns:LegalPersonINNType" use="required">
+							<xs:annotation>
+								<xs:documentation>ИНН юридического лица</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ОГРН" type="fns:OGRNCompanyType" use="required">
+							<xs:annotation>
+								<xs:documentation>Основной государственный регистрационный номер юридического лица</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ЗапросНП">
+					<xs:annotation>
+						<xs:documentation>Сведения о налогоплательщике, в отношении которого осуществляется запрос</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="ИННЮЛ" type="fns:LegalPersonINNType">
+								<xs:annotation>
+									<xs:documentation>ИНН организации</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ИННФЛ" type="fns:PhysicalPersonINNType">
+								<xs:annotation>
+									<xs:documentation>ИНН физического лица</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="ДатаЗапрСв" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation>Дата, на которую запрашиваются сведения</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ИдЗапрос" type="fns:IDRequestType" use="required">
+				<xs:annotation>
+					<xs:documentation>Идентификатор запроса, сформированный запрашивающей стороной</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ZadorgResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ ФНС на запрос о наличии (отсутствии) задолженности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="СвЗадолж">
+					<xs:annotation>
+						<xs:documentation>Сведения о задолженности</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice>
+								<xs:element name="ИННЮЛ" type="fns:LegalPersonINNType">
+									<xs:annotation>
+										<xs:documentation>ИНН организации</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="ИННФЛ" type="fns:PhysicalPersonINNType">
+									<xs:annotation>
+										<xs:documentation>ИНН физического лица</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="ПеречНО" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Перечень территориальных налоговых органов, в которых имеется неисполненная  обязанность  по  уплате  налогов,  сборов,  пеней, процентов за пользование бюджетными средствами,  штрафов, подлежащих уплате в соответствии с законодательством о налогах и сборах Российской Федерации</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="КодИФНС" type="fns:SONOType" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Код инспекции ФНС России</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ДатаСостСв" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation>Дата, по состоянию на которую сформированы сведения</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ПрЗадолж" use="required">
+							<xs:annotation>
+								<xs:documentation>Признак наличия (отсутствия) задолженности</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="fns:string-1">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="КодОбраб">
+					<xs:annotation>
+						<xs:documentation>Код обработки</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="fns:digits-2"/>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="ИдЗапрос" type="fns:IDRequestType" use="required">
+				<xs:annotation>
+					<xs:documentation>Идентификатор запроса, сформированный запрашивающей стороной</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

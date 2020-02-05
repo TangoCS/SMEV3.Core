@@ -1,0 +1,1527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://x-artefacts-it-ru/dob/state-services/cult/commons/1.0" xmlns:hints="urn://x-artefacts-it-ru/dob/xml-editor/rendering-hints/1.0" xmlns:prim="urn://x-artefacts-it-ru/dob/xml-schema-extensions" targetNamespace="urn://x-artefacts-it-ru/dob/state-services/cult/commons/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--=============================  Заготовки для структурированных типов  =====================-->
+	<xs:group name="PhysicalPersonQualifiedName-ModelGroup">
+		<xs:annotation>
+			<xs:documentation>ФИО физического лица.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="tns:RussianWord-100-Type" hints:rus="Фамилия" hints:userHint="Только русские буквы, до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванов"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="tns:RussianWord-100-Type" hints:rus="Имя" hints:userHint="Только русские буквы, до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иван"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Patronymic" type="tns:RussianWord-100-Type" minOccurs="0" hints:rus="Отчество" hints:userHint="Только русские буквы, до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванович"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="PhysicalPersonQualifiedName-AnyCharacters">
+		<xs:annotation>
+			<xs:documentation>ФИО физического лица.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="tns:string-100" hints:rus="Фамилия" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванов"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="tns:string-100" hints:rus="Имя" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иван"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Patronymic" type="tns:string-100" minOccurs="0" hints:rus="Отчество" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванович"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="PhysicalPersonQualifiedName-ModelGroup_256">
+		<xs:annotation>
+			<xs:documentation>ФИО физического лица.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="tns:string-256" hints:rus="Фамилия" hints:userHint="Может содержать до 100 символов"/>
+			<xs:element name="FirstName" type="tns:string-256" hints:rus="Имя" hints:userHint="Может содержать до 100 символов"/>
+			<xs:element name="Patronymic" type="tns:string-256" minOccurs="0" hints:rus="Отчество" hints:userHint="Может содержать до 100 символов"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="PhysicalPersonQualifiedName-LatinCharacters">
+		<xs:annotation>
+			<xs:documentation>ФИО физического лица в транслитерации.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="tns:LatinWord-100-Type" hints:rus="Фамилия" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Ivanov"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="tns:LatinWord-100-Type" hints:rus="Имя" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Ivan"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Patronymic" type="tns:LatinWord-100-Type" minOccurs="0" hints:rus="Отчество" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Ivanovich"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ApplicantPhysicalPersonQualifiedName-ModelGroup">
+		<xs:annotation>
+			<xs:documentation>ФИО заявителя - физического лица.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="tns:RussianWord-100-Type" hints:businessMeaning="userFamilyName" hints:rus="Фамилия" hints:userHint="Только русские буквы, до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванов"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="tns:RussianWord-100-Type" hints:businessMeaning="userFirstName" hints:rus="Имя" hints:userHint="Только русские буквы, до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иван"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Patronymic" type="tns:RussianWord-100-Type" minOccurs="0" hints:businessMeaning="userPatronymic" hints:rus="Отчество" hints:userHint="Только русские буквы, до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванович"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ApplicantPhysicalPersonQualifiedName-AnyCharacters">
+		<xs:annotation>
+			<xs:documentation>ФИО заявителя - физического лица.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="tns:string-100" hints:businessMeaning="userFamilyName" hints:rus="Фамилия" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванов"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="tns:string-100" hints:businessMeaning="userFirstName" hints:rus="Имя" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иван"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Patronymic" type="tns:string-100" minOccurs="0" hints:businessMeaning="userPatronymic" hints:rus="Отчество" hints:userHint="Может содержать до 100 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванович"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ApplicantPhysicalPersonQualifiedName-ModelGroup_250">
+		<xs:annotation>
+			<xs:documentation>ФИО заявителя - физического лица.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="tns:string-250" hints:businessMeaning="userFamilyName" hints:rus="Фамилия" hints:userHint="Может содержать, до 250 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванов"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="tns:string-250" hints:businessMeaning="userFirstName" hints:rus="Имя" hints:userHint="Может содержать, до 250 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иван"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Patronymic" type="tns:string-250" minOccurs="0" hints:businessMeaning="userPatronymic" hints:rus="Отчество" hints:userHint="Может содержать, до 250 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванович"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ApplicantPhysicalPersonQualifiedName-ModelGroup_256">
+		<xs:annotation>
+			<xs:documentation>ФИО заявителя - физического лица.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="tns:string-256" hints:businessMeaning="userFamilyName" hints:rus="Фамилия" hints:userHint="Может содержать, до 250 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванов"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="tns:string-256" hints:businessMeaning="userFirstName" hints:rus="Имя" hints:userHint="Может содержать, до 250 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иван"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Patronymic" type="tns:string-256" minOccurs="0" hints:businessMeaning="userPatronymic" hints:rus="Отчество" hints:userHint="Может содержать, до 250 символов">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Иванович"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="PhysicalPersonIdentificationInformation-ModelGroup">
+		<xs:annotation>
+			<xs:documentation>Установочные данные физического лица: ФИО + дата и место рождения.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="tns:PhysicalPersonQualifiedName-ModelGroup"/>
+			<xs:element name="BirthDate" type="xs:date" hints:rus="Дата рождения" hints:dateRestriction="past" hints:userHint="Дата должна быть не более текущей">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="1999-09-10"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BirthPlace" type="tns:string-500" hints:rus="Место рождения" hints:widgetTtpe="textArea" hints:userHint="Место рождения. Пример: город Богородск, Нижегородская область">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="город Богородск, Нижегородская область"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<!--==========================================  Структурированные типы  ==========================================-->
+	<xs:complexType name="RequiredIndexAddress-Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Адрес с обязательным почтовым индексом</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PostalCode" type="tns:SixDigitString-Type" hints:rus="Индекс" hints:userHint="6 цифр. Пример: 450098">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="450098"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Region" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:classifierName="subjectRF" hints:rus="Регион" hints:userHint="Пример: Московская область"/>
+			<xs:element name="District" type="tns:string-250" minOccurs="0" hints:rus="Район" hints:userHint="Пример: Октябрьский">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Октябрьский"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="City" type="tns:string-250" hints:rus="Город/Населенный пункт" hints:userHint="Город. Пример: Москва">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="Кызыл"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StreetText" type="tns:string-250" minOccurs="0" hints:rus="Улица" hints:userHint="Пример: улица Ленина">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="улица Ленина"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ApartmentBlock" type="tns:string-5" minOccurs="0" hints:rus="Дом" hints:userHint="Пример: 15">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="15"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Building" type="tns:string-5" minOccurs="0" hints:rus="Корпус" hints:userHint="Пример: 2А">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="2А"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Housing" type="tns:string-5" minOccurs="0" hints:rus="Строение" hints:userHint="Пример: 2А">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="2А"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Apartment" type="tns:string-5" minOccurs="0" hints:rus="Квартира/Офис" hints:userHint="Пример: 121">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="121"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- этот тип адреса сейчас используется в схемах по 14 услугам-->
+	<xs:complexType name="OptionalIndexAddress-Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Адрес с необязательным почтовым индексом</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PostalCode" type="tns:SixDigitString-Type" minOccurs="0" hints:rus="Индекс" hints:userHint="6 цифр. Пример: 450098"/>
+			<xs:element name="Region" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:classifierName="RFRegions" hints:rus="Регион" hints:userHint="Пример: Республика Тыва"/>
+			<xs:element name="District" type="tns:string-200" minOccurs="0" hints:rus="Район" hints:userHint="Пример: Усть-каменский"/>
+			<xs:element name="CityLocality" type="tns:string-200" hints:rus="Город/Населенный пункт" hints:userHint="Город или населенный пункт. Пример: Кызыл"/>
+			<xs:element name="StreetText" type="tns:string-100" minOccurs="0" hints:rus="Улица" hints:userHint="Пример: Осенний бульвар"/>
+			<xs:element name="ApartmentBlock" type="tns:string-10" minOccurs="0" hints:rus="Номер дома" hints:userHint="Пример: 15"/>
+			<xs:element name="Building" type="tns:string-10" minOccurs="0" hints:rus="Корпус/Строение" hints:userHint="Пример: 2А"/>
+			<xs:element name="Apartment" type="tns:string-10" minOccurs="0" hints:rus="Квартира/Офис" hints:userHint="Пример: 121"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- этот тип не используется в схемах по 14 услугам-->
+	<xs:complexType name="AddressRF-Type">
+		<xs:annotation>
+			<xs:documentation>Адрес РФ, с почтовым индексом.     </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PostalCode" type="tns:SixDigitString-Type" minOccurs="0" hints:rus="Почтовый индекс"/>
+			<xs:element name="Region" type="tns:string-200" hints:rus="Регион"/>
+			<xs:element name="District" type="tns:string-200" minOccurs="0" hints:rus="Район"/>
+			<xs:element name="CityLocality" type="tns:string-200" hints:rus="Город/Населенный пункт"/>
+			<xs:element name="Street" type="tns:string-200" hints:rus="Улица"/>
+			<xs:element name="ApartmentBlock" type="tns:string-10" hints:rus="Дом"/>
+			<xs:element name="Building" type="tns:string-10" minOccurs="0" hints:rus="Корпус"/>
+			<xs:element name="Housing" type="tns:string-10" minOccurs="0" hints:rus="Строение"/>
+			<xs:element name="Apartment" type="tns:string-10" minOccurs="0" hints:rus="Квартира"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="dRegionsRF">
+		<xs:annotation>
+			<xs:documentation>Субъекты РФ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>Республика Адыгея (Адыгея)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="02">
+				<xs:annotation>
+					<xs:documentation>Республика Башкортостан</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="03">
+				<xs:annotation>
+					<xs:documentation>Республика Бурятия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>Республика Алтай</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="05">
+				<xs:annotation>
+					<xs:documentation>Республика Дагестан</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="06">
+				<xs:annotation>
+					<xs:documentation>Республика Ингушетия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="07">
+				<xs:annotation>
+					<xs:documentation>Кабардино-Балкарская Республика</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="08">
+				<xs:annotation>
+					<xs:documentation>Республика Калмыкия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="09">
+				<xs:annotation>
+					<xs:documentation>Карачаево-Черкесская Республика</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Республика Карелия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Республика Коми</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Республика Марий Эл</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Республика Мордовия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Республика Саха (Якутия)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Республика Северная Осетия-Алания</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Республика Татарстан (Татарстан)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Республика Тыва</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Удмуртская Республика</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Республика Хакасия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Чеченская Республика</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Чувашская Республика-Чувашия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Алтайский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Краснодарский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Красноярский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Приморский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Ставропольский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Хабаровский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Амурская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Архангельская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Астраханская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Белгородская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>Брянская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Владимирская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Волгоградская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Вологодская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>Воронежская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>Ивановская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="38">
+				<xs:annotation>
+					<xs:documentation>Иркутская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="39">
+				<xs:annotation>
+					<xs:documentation>Калининградская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>Калужская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>Камчатский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="42">
+				<xs:annotation>
+					<xs:documentation>Кемеровская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="43">
+				<xs:annotation>
+					<xs:documentation>Кировская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Костромская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Курганская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>Курская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="47">
+				<xs:annotation>
+					<xs:documentation>Ленинградская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="48">
+				<xs:annotation>
+					<xs:documentation>Липецкая область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="49">
+				<xs:annotation>
+					<xs:documentation>Магаданская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="50">
+				<xs:annotation>
+					<xs:documentation>Московская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="51">
+				<xs:annotation>
+					<xs:documentation>Мурманская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Нижегородская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="53">
+				<xs:annotation>
+					<xs:documentation>Новгородская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="54">
+				<xs:annotation>
+					<xs:documentation>Новосибирская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="55">
+				<xs:annotation>
+					<xs:documentation>Омская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="56">
+				<xs:annotation>
+					<xs:documentation>Оренбургская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="57">
+				<xs:annotation>
+					<xs:documentation>Орловская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="58">
+				<xs:annotation>
+					<xs:documentation>Пензенская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="59">
+				<xs:annotation>
+					<xs:documentation>Пермский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="60">
+				<xs:annotation>
+					<xs:documentation>Псковская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>Ростовская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="62">
+				<xs:annotation>
+					<xs:documentation>Рязанская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="63">
+				<xs:annotation>
+					<xs:documentation>Самарская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="64">
+				<xs:annotation>
+					<xs:documentation>Саратовская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="65">
+				<xs:annotation>
+					<xs:documentation>Сахалинская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="66">
+				<xs:annotation>
+					<xs:documentation>Свердловская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="67">
+				<xs:annotation>
+					<xs:documentation>Смоленская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="68">
+				<xs:annotation>
+					<xs:documentation>Тамбовская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="69">
+				<xs:annotation>
+					<xs:documentation>Тверская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="70">
+				<xs:annotation>
+					<xs:documentation>Томская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="71">
+				<xs:annotation>
+					<xs:documentation>Тульская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="72">
+				<xs:annotation>
+					<xs:documentation>Тюменская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="73">
+				<xs:annotation>
+					<xs:documentation>Ульяновская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="74">
+				<xs:annotation>
+					<xs:documentation>Челябинская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="75">
+				<xs:annotation>
+					<xs:documentation>Забайкальский край</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="76">
+				<xs:annotation>
+					<xs:documentation>Ярославская область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="77">
+				<xs:annotation>
+					<xs:documentation>Москва</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="78">
+				<xs:annotation>
+					<xs:documentation>Санкт-Петербург</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="79">
+				<xs:annotation>
+					<xs:documentation>Еврейская автономная область</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="83">
+				<xs:annotation>
+					<xs:documentation>Ненецкий автономный округ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="86">
+				<xs:annotation>
+					<xs:documentation>Ханты-Мансийский автономный округ - Югра</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="87">
+				<xs:annotation>
+					<xs:documentation>Чукотский автономный округ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="89">
+				<xs:annotation>
+					<xs:documentation>Ямало-Ненецкий автономный округ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Неопределено</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Значение отсутствует</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="LocationRosReestr-Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Адрес объекта недвижимости для Росреестра</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CodeOKATO" form="qualified" hints:rus="ОКАТО" hints:userHint="Пример: 93000000000">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="11"/>
+						<xs:minLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PostalCode" type="tns:SixDigitString-Type" minOccurs="0" hints:rus="Почтовый индекс" hints:userHint="6 цифр. Пример: 105122"/>
+			<xs:element name="Region" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:classifierName="RFRegions" hints:rus="Регион" hints:userHint="Пример: Республика Тыва"/>
+			<xs:sequence minOccurs="0" hints:rus="Район">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Район" doNotCreateText="Не указан" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="AreaName" type="tns:string-255" hints:rus="Наименование" hints:userHint="Пример: Усть-каменский"/>
+				<xs:element name="TypeArea" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:classifierName="dDistrict" hints:rus="Тип" hints:userHint="Пример: Район"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Город">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Муниципальное образование" doNotCreateText="Не указан" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="CityName" type="tns:string-255" hints:rus="Наименование" hints:userHint="Пример: Москва"/>
+				<xs:element name="TypeCity" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: город" hints:classifierName="dCity"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Городской район">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Городской район" doNotCreateText="Не указан" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="CityDistrictName" type="tns:string-255" hints:rus="Наименование" hints:userHint="Пример: 5й"/>
+				<xs:element name="TypeCityDistrict" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: район" hints:classifierName="dUrbanDistrict"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Сельсовет">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Сельсовет" doNotCreateText="Не указан" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="SovietVillageName" type="tns:string-255" hints:rus="Наименование" hints:userHint="Пример: Красного октября"/>
+				<xs:element name="TypeSovietVillage" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: Сельсовет" hints:classifierName="dSovietVillage"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Населенный пункт">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Населенный пункт" doNotCreateText="Не указан" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="NasPunktName" type="tns:string-255" hints:rus="Наименование" hints:userHint="Пример: Быково"/>
+				<xs:element name="TypeNasPunkt" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: Аал" hints:classifierName="dInhabitedLocalities"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Улица">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Улица" doNotCreateText="Не указана" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="StreetName" type="tns:string-255" hints:rus="Наименование" hints:userHint="Пример: Осенний"/>
+				<xs:element name="TypeStreet" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: Бульвар" hints:classifierName="dStreets"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Дом">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Дом" doNotCreateText="Не указана" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="House" type="tns:string-255" hints:rus="Номер" hints:userHint="Пример: 15"/>
+				<xs:element name="TypeHouse" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: Дом" hints:classifierName="dLocationLevel1Type"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Корпус">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Корпус" doNotCreateText="Не указана" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="Building" type="tns:string-255" hints:rus="Номер" hints:userHint="Пример: 2"/>
+				<xs:element name="TypeBuilding" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: Корпус" hints:classifierName="dLocationLevel2Type"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Строение">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Строение" doNotCreateText="Не указана" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="Structure" type="tns:string-255" hints:rus="Номер" hints:userHint="Пример: 1"/>
+				<xs:element name="TypeStructure" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: Строение" hints:classifierName="dLocationLevel3Type"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" hints:rus="Номер квартиры">
+				<xs:annotation>
+					<xs:appinfo>
+						<hints:OptionalElementHandling header="Номер квартиры" doNotCreateText="Не указана" createText="Указать"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="Apartment" type="tns:string-100" hints:rus="Номер" hints:userHint="Пример: 121"/>
+				<xs:element name="TypeApartment" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:rus="Тип" hints:userHint="Пример: Квартира" hints:classifierName="dApartmentType"/>
+			</xs:sequence>
+			<xs:element name="Note" type="tns:string-2500" form="qualified" minOccurs="0" hints:widgetType="textArea" hints:rus="Неформализованное описание" hints:userHint="Пример: 250 метров на северо-запад от деревни Алешкино Нудольского р-на Московской области"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ClassifierRegion-Type">
+		<xs:sequence>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="RegionName" type="tns:string-500" hints:speciallyTreatedDataItem="classifierCode"/>
+				<xs:element name="RegionCode" type="tns:string-10" hints:speciallyTreatedDataItem="classifierDisplayText"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LocationRosReestr-Type2">
+		<xs:annotation>
+			<xs:documentation>				Тип: Адрес объекта недвижимости
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PostalCode" type="tns:SixDigitString-Type" form="qualified" minOccurs="0" hints:rus="Индекс" hints:userHint="6 цифр. Пример: 105122"/>
+			<xs:element name="Region" type="tns:TimelineUnawareClassifierValue-Type" form="qualified" hints:classifierName="RFRegions" hints:rus="Регион" hints:userHint="Пример: Республика Тыва"/>
+			<xs:element name="AreaName" type="tns:string-250" form="qualified" minOccurs="0" hints:rus="Район" hints:userHint="Пример: Усть-каменский"/>
+			<xs:element name="CityName" type="tns:string-250" form="qualified" minOccurs="0" hints:rus="Город" hints:userHint="Пример: Москва"/>
+			<xs:element name="CityDistrictName" type="tns:string-250" form="qualified" minOccurs="0" hints:rus="Городской район" hints:userHint="Пример: 5й квартал"/>
+			<xs:element name="SovietVillageName" type="tns:string-250" form="qualified" minOccurs="0" hints:rus="Сельсовет" hints:userHint="Пример: Садовое товарищество Красного октября"/>
+			<xs:element name="NasPunktName" type="tns:string-250" form="qualified" minOccurs="0" hints:rus="Населенный пункт" hints:userHint="Пример: Быково"/>
+			<xs:element name="StreetName" type="tns:string-250" form="qualified" minOccurs="0" hints:rus="Улица" hints:userHint="Пример: Осенний бульвар"/>
+			<xs:element name="House" type="tns:string-10" form="qualified" minOccurs="0" hints:rus="Номер дома" hints:userHint="Пример: 15"/>
+			<xs:element name="Building" type="tns:string-10" form="qualified" minOccurs="0" hints:rus="Корпус" hints:userHint="Пример: 2"/>
+			<xs:element name="Structure" type="tns:string-10" form="qualified" minOccurs="0" hints:rus="Строение" hints:userHint="Пример: 1"/>
+			<xs:element name="Apartment" type="tns:string-10" form="qualified" minOccurs="0" hints:rus="Номер квартиры" hints:userHint="Пример: 121"/>
+			<xs:element name="Note" type="tns:string-500" form="qualified" minOccurs="0" hints:widgetType="textArea" hints:rus="Неформализованное описание" hints:userHint="Пример: 250 метров на северо-запад от деревни Алешкино Нудольского р-на Московской области"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TimelineAwareClassifierValue-Type">
+		<xs:annotation>
+			<xs:documentation>				Справочное значение для справочников, зависящих от времени. 
+				Зависимость от времени может выражаться в следующем:
+				1. Текст, соответствующий коду справочного значения, меняется со временем, 
+				   и эти изменения юридически значимы, т.е. при показе документа нужно показать
+				   текст, соответствующий конкретному моменту времени.
+				2. Справочное значение может быть объявлено устаревшим, а его код передан 
+				   другому справочному значению. Пример - КЛАДР.
+				   
+				N.B. У элемента этого типа должен быть задан атрибут hints:classifierName.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="relevanceDate" type="xs:date" hints:speciallyTreatedDataItem="classifierValueRelevanceDate"/>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="code" type="tns:string-50" hints:speciallyTreatedDataItem="classifierCode"/>
+				<xs:element name="displayText" type="tns:string-500" hints:speciallyTreatedDataItem="classifierDisplayText"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TimelineUnawareClassifierValue-Type">
+		<xs:annotation>
+			<xs:documentation>				Справочное значение для справочников, не зависящих от времени. 
+				   
+				N.B. У элемента этого типа должен быть задан атрибут hints:classifierName.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="code" type="tns:string-50" hints:speciallyTreatedDataItem="classifierCode"/>
+				<xs:element name="displayText" type="tns:string-500" hints:speciallyTreatedDataItem="classifierDisplayText"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Document-Type" hints:rus="Документ, удостоверяющий личность">
+		<xs:annotation>
+			<xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice hints:rus="Тип документа, удостоверяющего личность" hints:default="PassportRF">
+				<xs:element name="PassportRF" type="tns:PassportRFDocument" hints:rus="Паспорт (Россия)" hints:userHint="Паспорт гражданина РФ, действующий на территории РФ с 1 октября 1997 года"/>
+				<xs:element name="ResidencePermit" type="tns:NotRestrictedDocument" hints:rus="Вид на жительство" hints:userHint="Вид на жительство в РФ"/>
+				<xs:element name="DriverLicense" type="tns:DriverLicenseDocument" hints:rus="Водительское удостоверение"/>
+				<xs:element name="MilitaryTicket" type="tns:MilitaryTicketDocument" hints:rus="Военный билет" hints:userHint="Военный билет для солдат, матросов, сержантов и старшин, проходящих военную службу по призыву или контракту, а также для офицеров запаса"/>
+				<xs:element name="DiplomatPassport" type="tns:AbroadPassportDocument" hints:rus="Дипломатический паспорт" hints:userHint="Дипломатический паспорт для граждан Российской Федерации"/>
+				<xs:element name="AbroadPassport" type="tns:AbroadPassportDocument" hints:rus="Загранпаспорт" hints:userHint="Паспорт, удостоверяющий личность гражданина РФ за пределами РФ, образца 1997 года"/>
+				<xs:element name="ForeignPassport" type="tns:NotRestrictedDocument" hints:rus="Паспорт иностранного гражданина" hints:userHint="Заграничный паспорт для постоянно проживающих за границей граждан, которые временно находятся на территории РФ"/>
+				<xs:element name="SailorTicket" type="tns:MilitaryTicketDocument" hints:rus="Паспорт моряка" hints:userHint="Паспорт моряка (удостоверение личности гражданина, работающего на судах заграничного плавания или на иностранных судах) образца 1997 г."/>
+				<xs:element name="BirthCertificate" type="tns:BirthCertificateDocument" hints:rus="Свидетельство о рождении" hints:userHint="Для лиц, не достигших 16-летнего (с 01.10.97 г. -14-летнего) возраста"/>
+				<xs:element name="ReleaseCertificate" type="tns:NotRestrictedDocument" hints:rus="Справка об освобождении" hints:userHint="Для лиц, освободившихся из мест лишения свободы"/>
+				<xs:element name="LossPassportCertificate" type="tns:NotRestrictedDocument" hints:rus="Справка об утере паспорта" hints:userHint="Справка об утере паспорта по форме 24П"/>
+				<xs:element name="Form9Certificate" type="tns:NotRestrictedDocument" hints:rus="Свидетельство о регистрации по месту жительства" hints:userHint="Справка о регистрации"/>
+				<xs:element name="IdentityCard" type="tns:NotRestrictedDocument" hints:rus="Удостоверение личности" hints:userHint="Временное удостоверение личности гражданина РФ по форме 2П"/>
+				<xs:element name="SoldierIdentityCard" type="tns:SoldierIdentityCardDocument" hints:rus="Удостоверение личности военнослужащего Российской Федерации" hints:userHint="Заменяет с 2004 года удостоверение личности офицера (прапорщика,  мичмана) в соответствии с Постановлением Правительства Российской Федерации от 12.02.2003 N 91"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NotRestrictedDocument">
+		<xs:annotation>
+			<xs:documentation>Документ с нерегламентированными серией и номером</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" type="tns:string-20" minOccurs="0" hints:rus="Серия" hints:userHint="Серия документа"/>
+			<xs:element name="Number" hints:rus="Номер" hints:businessMeaning="userIdentityDocumentNumber" hints:userHint="Не более 25 символов (может содержать любые буквы и цифры). Пример: 647880. ">
+				<xs:simpleType hints:userHint="Любые буквы и цифры, до 25 символов">
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9а-яА-ЯA-Za-zЁё]{1,25}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date" hints:dateRestriction="past" hints:rus="Дата выдачи" hints:businessMeaning="userIdentityDocumentIssueDate" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="Issuer" type="tns:string-200" hints:rus="Кем выдан" hints:businessMeaning="userIdentityDocumentIssuer" hints:userHint="Орган, выдавший документ. Пример: ОВД Раменки г. Москвы"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DriverLicenseDocument">
+		<xs:annotation>
+			<xs:documentation>Водительское удостоверение</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" hints:rus="Серия" hints:businessMeaning="userIdentityDocumentSeries" hints:userHint="Две цифры и две русские заглавные буквы для водительского удостоверения, полученного до 1 марта 2011 г., или четыре цифры для водительского удостоверения, полученного после 1 марта 2011 г. Пример: 44АА или 4403">
+				<xs:simpleType hints:userHint="Две цифры и две русские заглавные буквы для водительского удостоверения, полученного до 1 марта 2011 г., или четыре цифры для водительского удостоверения, полученного после 1 марта 2011 г. Пример: 44АА или 4403">
+					<xs:restriction base="xs:string">
+						<xs:length value="4"/>
+						<xs:pattern value="[0-9]{2}(([0-9]{2})|([А-Я]{2}))"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Number" type="tns:SixDigitString-Type" hints:rus="Номер" hints:businessMeaning="userIdentityDocumentNumber" hints:userHint="Шесть цифр. Пример: 647880"/>
+			<xs:element name="IssueDate" type="xs:date" hints:dateRestriction="past" hints:rus="Дата выдачи" hints:businessMeaning="userIdentityDocumentIssueDate" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="Issuer" type="tns:string-200" hints:rus="Кем выдан" hints:businessMeaning="userIdentityDocumentIssuer" hints:userHint="Орган, выдавший документ. Пример: ОВД Раменки г. Москвы"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MilitaryTicketDocument">
+		<xs:annotation>
+			<xs:documentation>Военный билет, паспорт моряка</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" hints:rus="Серия" hints:businessMeaning="userIdentityDocumentSeries" hints:inputMask="[R][R]" hints:userHint="Две русские заглавные буквы. Пример: АА">
+				<xs:simpleType hints:userHint="Две русские заглавные буквы. Пример: АА">
+					<xs:restriction base="xs:string">
+						<xs:length value="2"/>
+						<xs:pattern value="[А-Я]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Number" hints:rus="Номер" hints:businessMeaning="userIdentityDocumentNumber" hints:userHint="Шесть или семь цифр. Пример: 6478801">
+				<xs:simpleType hints:userHint="Шесть или семь цифр. Пример: 6478801">
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{6,7}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date" hints:dateRestriction="past" hints:rus="Дата выдачи" hints:businessMeaning="userIdentityDocumentIssueDate" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="Issuer" type="tns:string-200" hints:rus="Кем выдан" hints:businessMeaning="userIdentityDocumentIssuer" hints:userHint="Орган, выдавший документ. Пример: ОВД Раменки г. Москвы"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AbroadPassportDocument">
+		<xs:annotation>
+			<xs:documentation>Загранпаспорт, дипломатический паспорт</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" hints:businessMeaning="userIdentityDocumentSeries" hints:rus="Серия" hints:inputMask="[N][N]" hints:userHint="Две цифры. Пример: 45">
+				<xs:simpleType hints:userHint="Две цифры. Пример: 45">
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Number" hints:businessMeaning="userIdentityDocumentNumber" hints:rus="Номер" hints:inputMask="[N][N][N][N][N][N][N]" hints:userHint="Семь цифр. Пример: 6478801">
+				<xs:simpleType hints:userHint="Семь цифр. Пример: 6478801">
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{7}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date" hints:dateRestriction="past" hints:businessMeaning="userIdentityDocumentIssueDate" hints:rus="Дата выдачи" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="Issuer" type="tns:string-200" hints:businessMeaning="userIdentityDocumentIssuer" hints:rus="Кем выдан" hints:userHint="Орган, выдавший документ. Пример: ОВД Раменки г. Москвы"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PassportRFDocument">
+		<xs:annotation>
+			<xs:documentation>Паспорт РФ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" type="tns:FourDigitString-Type" hints:businessMeaning="userIdentityDocumentSeries" hints:rus="Серия" hints:userHint="Четыре цифры. Пример: 7900" hints:inputMask="[N][N][N][N]">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="7900"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Number" type="tns:SixDigitString-Type" hints:businessMeaning="userIdentityDocumentNumber" hints:rus="Номер" hints:userHint="Шесть цифр. Пример: 647880" hints:inputMask="[N][N][N][N][N][N]">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="647880"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date" hints:dateRestriction="past" hints:businessMeaning="userIdentityDocumentIssueDate" hints:rus="Дата выдачи" hints:userHint="Дата должна быть не более текущей">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="2011-11-11"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Issuer" type="tns:string-200" hints:businessMeaning="userIdentityDocumentIssuer" hints:rus="Кем выдан" hints:userHint="Орган, выдавший документ. Пример: ОВД Раменки г. Москвы">
+				<xs:annotation>
+					<xs:appinfo>
+						<prim:exampleValues>
+							<prim:example value="ОВД Раменки г. Москвы"/>
+						</prim:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BirthCertificateDocument">
+		<xs:annotation>
+			<xs:documentation>Свидетельство о рождении</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" type="tns:SovietStyleDocumentSeries-Type" hints:businessMeaning="userIdentityDocumentSeries" hints:rus="Серия" hints:userHint="Римское число, тире и две заглавные русские буквы. Пример: IV-ЮС"/>
+			<xs:element name="Number" type="tns:SixDigitString-Type" hints:businessMeaning="userIdentityDocumentNumber" hints:rus="Номер" hints:userHint="Шесть цифр. Пример: 647880"/>
+			<xs:element name="IssueDate" type="xs:date" hints:dateRestriction="past" hints:businessMeaning="userIdentityDocumentIssueDate" hints:rus="Дата выдачи" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="Issuer" type="tns:string-200" hints:businessMeaning="userIdentityDocumentIssuer" hints:rus="Кем выдан" hints:userHint="Орган, выдавший документ. Пример: отдел ЗАГС Советского района г.Москвы"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SoldierIdentityCardDocument">
+		<xs:annotation>
+			<xs:documentation>Удостоверение личности военнослужащего</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" hints:rus="Серия" hints:businessMeaning="userIdentityDocumentSeries" hints:inputMask="[R][R]" hints:userHint="Две русские заглавные буквы. Пример: АА">
+				<xs:simpleType hints:userHint="Две русские заглавные буквы. Пример: АА">
+					<xs:restriction base="xs:string">
+						<xs:length value="2"/>
+						<xs:pattern value="[А-Я]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Number" hints:rus="Номер" hints:businessMeaning="userIdentityDocumentNumber" hints:inputMask="[N][N][N][N][N][N][N]" hints:userHint="Семь цифр. Пример: 6478801">
+				<xs:simpleType hints:userHint="Семь цифр. Пример: 6478801">
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{7}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Date" type="xs:date" hints:dateRestriction="past" hints:rus="Дата выдачи" hints:businessMeaning="userIdentityDocumentIssueDate" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="IssueOrgan" type="tns:string-200" hints:rus="Кем выдан" hints:businessMeaning="userIdentityDocumentIssuer" hints:userHint="Орган, выдавший документ. Пример: ОВД Раменки г. Москвы"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BirthCertificateRFKrsk-Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Данные свидетельства о рождении, выданного на территории Красноярского края</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" type="tns:SovietStyleDocumentSeries-Type" hints:rus="Серия (Пример: IV-ЮС)"/>
+			<xs:element name="Number" type="tns:SixDigitString-Type" hints:rus="Номер"/>
+			<xs:element name="IssueDate" type="xs:date" hints:rus="Дата выдачи" hints:dateRestriction="past" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="ZAGSKrskK" type="tns:string-200" hints:rus="Укажите орган, выдавший свидетельство о рождении"/>
+			<xs:element name="NumberOfRegister" type="tns:string-100" hints:rus="Номер актовой записи" hints:userHint="Номер свидетельства об актовой записи ЗАГСа. Пример: 1128"/>
+			<xs:element name="DateOfRegister" type="xs:date" hints:rus="Дата актовой записи" hints:dateRestriction="past" hints:userHint="Дата должна быть не более текущей"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BirthCertificateRFNotKrsk-Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Данные свидетельства о рождении, выданного не на территории Оренбургской области</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" type="tns:SovietStyleDocumentSeries-Type" hints:rus="Серия (Пример: IV-ЮС)"/>
+			<xs:element name="Number" type="tns:SixDigitString-Type" hints:rus="Номер"/>
+			<xs:element name="IssueDate" type="xs:date" hints:rus="Дата выдачи" hints:dateRestriction="past" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="AlienZAGS" type="tns:string-200" hints:rus="Укажите орган, выдавший свидетельство о рождении" hints:userHint="Орган, выдавший документ. Пример: Отдел ЗАГС по Октябрьскому району г.Уфы Министерства юстиции Республики Башкортостан"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ForeignBirthCertificate-Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Данные свидетельства о рождении, выданного в иностранном государстве.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Series" type="tns:string-10" minOccurs="0" hints:rus="Серия" hints:userHint="Пример: 61"/>
+			<xs:element name="Number" type="tns:string-20" hints:rus="Номер" hints:userHint="Пример: 10641"/>
+			<xs:element name="IssueDate" type="xs:date" hints:rus="Дата выдачи" hints:dateRestriction="past" hints:userHint="Дата должна быть не более текущей"/>
+			<xs:element name="Issuer" type="tns:string-200" hints:rus="Кем выдан" hints:userHint="Орган, выдавший документ. Пример: Department of Health, State of Hawaii"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Bank-Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Банк</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Bank_Info" type="tns:string-300" hints:rus="Наименование банка получателя платежа" hints:userHint="Пример: Красноярский филиал ОАО «Банк Москвы»"/>
+			<xs:element name="TransactionalAccount" hints:rus="Номер счета получателя платежа" hints:inputMask="[N][N][N][N][N][N][N][N][N][N][N][N][N][N][N][N][N][N][N][N]" hints:userHint="20 цифр. Пример: 12301230000000000123">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{20,25}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Director-Type">
+		<xs:annotation>
+			<xs:documentation>Данные руководителя организации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Position" type="tns:string-200" hints:rus="Должность" hints:businessMeaning="userLegalPersonCEOPositionName" hints:userHint="Пример: Исполнительный директор"/>
+			<xs:element name="ChiefLastName" type="tns:RussianWord-100-Type" hints:rus="Фамилия" hints:businessMeaning="userLegalPersonCEOFamilyName" hints:userHint="Только русские буквы, до 100 символов"/>
+			<xs:element name="ChiefFirstName" type="tns:RussianWord-100-Type" hints:rus="Имя" hints:businessMeaning="userLegalPersonCEOFirstName" hints:userHint="Только русские буквы, до 100 символов"/>
+			<xs:element name="ChiefMiddleName" type="tns:RussianWord-100-Type" minOccurs="0" hints:rus="Отчество" hints:businessMeaning="userLegalPersonCEOPatronymic" hints:userHint="Только русские буквы, до 100 символов"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Director-TypeAnyCharacters">
+		<xs:annotation>
+			<xs:documentation>Данные руководителя организации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Position" type="tns:string-200" hints:rus="Должность" hints:businessMeaning="userLegalPersonCEOPositionName" hints:userHint="Пример: Исполнительный директор"/>
+			<xs:element name="ChiefLastName" type="tns:string-100" hints:rus="Фамилия" hints:businessMeaning="userLegalPersonCEOFamilyName" hints:userHint="Только русские буквы, до 100 символов"/>
+			<xs:element name="ChiefFirstName" type="tns:string-100" hints:rus="Имя" hints:businessMeaning="userLegalPersonCEOFirstName" hints:userHint="Только русские буквы, до 100 символов"/>
+			<xs:element name="ChiefMiddleName" type="tns:string-100" minOccurs="0" hints:rus="Отчество" hints:businessMeaning="userLegalPersonCEOPatronymic" hints:userHint="Только русские буквы, до 100 символов"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--==========================================  Простые типы  ==========================================-->
+	<xs:simpleType name="YesNo-Type">
+		<xs:annotation>
+			<xs:documentation>Аналог типа boolean.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Да"/>
+			<xs:enumeration value="Нет"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Gender-Type" hints:default="Женский">
+		<xs:annotation>
+			<xs:documentation>Пол.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Мужской"/>
+			<xs:enumeration value="Женский"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RussianWord-200-Type" hints:userHint="Только русские буквы, до 200 символов">
+		<xs:annotation>
+			<xs:documentation>Русский текст, длиной до 200 символов. Например, имя или фамилия.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RussianWord-100-Type" hints:userHint="Только русские буквы, до 100 символов">
+		<xs:annotation>
+			<xs:documentation>Русский текст, длиной до 100 символов. Например, имя или фамилия.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+			<xs:pattern value="[а-яА-ЯёЁ\-\s]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LatinWord-100-Type" hints:userHint="Латинские буквы, тире, пробел до 100 символов">
+		<xs:annotation>
+			<xs:documentation>Текст латинскими буквами, длиной до 100 символов. Например, имя или фамилия.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+			<xs:pattern value="[a-zA-Z\-\s]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneNumberRF-Type" hints:userHint="Номер телефона. Пример: +7 391 1234567">
+		<xs:annotation>
+			<xs:documentation>Номер телефона в РФ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Email-Type" hints:userHint="Адрес электронной почты. Пример: test@mail.ru">
+		<xs:annotation>
+			<xs:documentation>Адрес электронной почты</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+			<xs:pattern value="[0-9a-zA-Z_.\-]{2,50}[@]{1}[0-9a-zA-Z_./-]{2,50}[.]{1}[a-zA-Z]{2,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Skype-Type" hints:userHint="Логин Skype. Пример: Ivanov_AE">
+		<xs:annotation>
+			<xs:documentation>логин Skype</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="tns:string-20">
+			<xs:pattern value="[0-9a-zA-Z_.\-]{2,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ICQ-Type" hints:userHint="Номер ICQ. Можно использовать цифры и знак «-». Пример: 123-456-789">
+		<xs:annotation>
+			<xs:documentation>Номер ICQ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="tns:string-20">
+			<xs:pattern value="[0-9-]{2,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FourDigitString-Type" hints:userHint="Четыре цифры" hints:inputMask="[N][N][N][N]">
+		<xs:annotation>
+			<xs:documentation>Строка, состоящая из четырёх цифр. Например серия паспорта РФ.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="4"/>
+			<xs:pattern value="\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SovietStyleDocumentSeries-Type" hints:userHint="Две латинские цифры, тире и две русские буквы. Пример: IV-ЮС.">
+		<xs:annotation>
+			<xs:documentation>Серии документов, таких как свидетельства о рождении, советские паспорта, и т.д.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[IVXLCDM]{1,6}[\-][А-Я]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SixDigitString-Type" hints:userHint="Шесть цифр" hints:inputMask="[N][N][N][N][N][N]">
+		<xs:annotation>
+			<xs:documentation>Строка, состоящая из шести цифр. Например номер паспорта РФ.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="6"/>
+			<xs:pattern value="\d{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SNILS-Type" hints:userHint="Должно содержать только цифры, длина строго 11 цифр" hints:inputMask="[N][N][N]-[N][N][N]-[N][N][N] [N][N]">
+		<xs:annotation>
+			<xs:documentation>СНИЛС</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegalPersonINN-Type" hints:userHint="Должно содержать только цифры, длина строго 10 цифр" hints:inputMask="[N][N][N][N][N][N][N][N][N][N]">
+		<xs:annotation>
+			<xs:documentation>ИНН юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PhysicalPersonINN-Type" hints:userHint="Должно содержать только цифры, длина строго 12 цифр" hints:inputMask="[N][N][N][N][N][N][N][N][N][N][N][N]">
+		<xs:annotation>
+			<xs:documentation>ИНН физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+			<xs:pattern value="\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KPP-Type" hints:userHint="Должно содержать только цифры, длина строго 9 цифр" hints:inputMask="[N][N][N][N][N][N][N][N][N]">
+		<xs:annotation>
+			<xs:documentation>КПП</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OGRN-Type" hints:userHint="Тринадцать цифр. Первая цифра - 1, 2 или 5" hints:inputMask="[N][N][N][N][N][N][N][N][N][N][N][N][N]">
+		<xs:annotation>
+			<xs:documentation>ОГРН юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[125]{1}\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OGRNIP-Type" hints:userHint="Пятнадцать цифр. Первая цифра - 3" hints:inputMask="[N][N][N][N][N][N][N][N][N][N][N][N][N][N][N]">
+		<xs:annotation>
+			<xs:documentation>ОГРН индивидуального предпринимателя</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[3]{1}\d{14}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CadastralNumber-Type" hints:userHint="Только цифры и разделитель «:». До первого разделителя (двоеточия) должны стоять две или три цифры. Пример: 61:6:10104:12">
+		<xs:annotation>
+			<xs:documentation>Кадастровый номер земельного участка</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="tns:string-40">
+			<xs:pattern value="[0-9]{2,3}[/:][0-9/:]{1,40}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-2500">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-2000">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-1000">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-500">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-300">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="300"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-256">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-250">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-200">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-100">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-40">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-20">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-15">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-13">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-12">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-11">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-10">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-6">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-5">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-4">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digits-2">
+		<xs:annotation>
+			<xs:documentation>Строка, Строка, состоящая из 2 цифр.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:pattern value="\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://minpromtorg.smev.ru/medicines/licenseinfo/types/1.0.0" targetNamespace="http://minpromtorg.smev.ru/medicines/licenseinfo/types/1.0.0" elementFormDefault="qualified">
+	<xs:simpleType name="LegalPersonINNType">
+		<xs:annotation>
+			<xs:documentation>ИНН юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PhysicalPersonINNType">
+		<xs:annotation>
+			<xs:documentation>ИНН физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+			<xs:pattern value="\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INNType">
+		<xs:annotation>
+			<xs:documentation>ИНН физического или юридического  лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+			<xs:pattern value="\d{10}|\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KPPType">
+		<xs:annotation>
+			<xs:documentation>КПП юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="9"/>
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OGRNCompanyType">
+		<xs:annotation>
+			<xs:documentation>ОГРН юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="13"/>
+			<xs:pattern value="[125]{1}\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s10">
+		<xs:annotation>
+			<xs:documentation>текст длиной до 10 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s11">
+		<xs:annotation>
+			<xs:documentation>текст длиной до 11 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s100">
+		<xs:annotation>
+			<xs:documentation>текст длиной до 100 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s20">
+		<xs:annotation>
+			<xs:documentation>текст длиной до 20 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s32">
+		<xs:annotation>
+			<xs:documentation>текст длиной до 32 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s500">
+		<xs:annotation>
+			<xs:documentation>текст длиной до 500 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s4000">
+		<xs:annotation>
+			<xs:documentation>текст длиной до 4000 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s1000">
+		<xs:annotation>
+			<xs:documentation>текст длиной до 1000 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="d3">
+		<xs:annotation>
+			<xs:documentation>число с ограничением длины до 3 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="d2">
+		<xs:annotation>
+			<xs:documentation>число с ограничением длины до 2 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="d1">
+		<xs:annotation>
+			<xs:documentation>число с ограничением длины до 1 цифры</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

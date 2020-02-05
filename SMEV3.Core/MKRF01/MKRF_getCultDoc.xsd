@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://x-artefacts-it-ru/MKRFCultDoc/1.0.1" xmlns:commons="urn://x-artefacts-it-ru/dob/state-services/cult/commons/1.0" targetNamespace="urn://x-artefacts-it-ru/MKRFCultDoc/1.0.1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="urn://x-artefacts-it-ru/dob/state-services/cult/commons/1.0" schemaLocation="state-services-cult-commons-1.0.xsd"/>
+	<xs:element name="SendCultRequest">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="SendRequestImport" type="tns:RequestImportType">
+					<xs:annotation>
+						<xs:documentation>Запрос на предоставление сведений из реестра ввозимых культурных ценностей </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SendRequestExport" type="tns:RequestExportType">
+					<xs:annotation>
+						<xs:documentation>Запрос на предоставление сведений из реестра вывозимых культурных ценностей</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SendCultResponse">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="SendResponseImport" type="tns:ResponseImportType">
+					<xs:annotation>
+						<xs:documentation>Ответ на запрос на предоставление документа из реестра ввозимых культурных ценностей</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SendResponseExport" type="tns:ResponseExportType">
+					<xs:annotation>
+						<xs:documentation>Ответ на запрос на предоставление документа из реестра вывозимых культурных ценностей</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="RequestImportType">
+		<xs:annotation>
+			<xs:documentation>Запрос на предоставление сведений из реестра ввозимых и вывозимых культурных ценностей для ввоза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocNumber" type="commons:string-50">
+				<xs:annotation>
+					<xs:documentation>Номер письма - подтверждения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи письма - подтверждения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RequestExportType">
+		<xs:annotation>
+			<xs:documentation>Запрос на предоставление сведений из реестра ввозимых и вывозимых культурных ценностей для вывоза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocNumber" type="commons:string-50">
+				<xs:annotation>
+					<xs:documentation>Номер заключения </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата заключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponseExportType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос на предоставление сведений из реестра ввозимых и вывозимых культурных ценностей для ввоза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="LegalPerson" type="tns:LegalPersonType">
+					<xs:annotation>
+						<xs:documentation>Сведения о  ЮЛ</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="PhysicalPerson" type="tns:PhysicalPersonType">
+					<xs:annotation>
+						<xs:documentation>Сведения о ФЛ</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="DocNumber" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Номер разрешительного документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата разрешительного документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuedByOrg" type="commons:string-500">
+				<xs:annotation>
+					<xs:documentation>Наименование органа МК РФ, выдавшего разрешительный документ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuedByPerson" type="commons:string-100">
+				<xs:annotation>
+					<xs:documentation>Уполномоченное должностное лицо, подписавшее заключение - ФИО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuedByPosition" type="commons:string-100">
+				<xs:annotation>
+					<xs:documentation>Уполномоченное должностное лицо, подписавшее заключение - должность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsTemporary" type="commons:string-50">
+				<xs:annotation>
+					<xs:documentation>Режим вывоза</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PurposeExport" type="commons:string-100">
+				<xs:annotation>
+					<xs:documentation>Цель вывоза</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="commons:string-500">
+				<xs:annotation>
+					<xs:documentation>Страна</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="From" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Время начала</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="To" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Время окончания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="commons:string-1000">
+				<xs:annotation>
+					<xs:documentation>Наименование культурной ценности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Category" type="commons:string-500">
+				<xs:annotation>
+					<xs:documentation>Категория культурных ценностей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="commons:string-10">
+				<xs:annotation>
+					<xs:documentation>Количество культурных ценностей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureUnit" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Единица измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Owner" type="commons:string-100">
+				<xs:annotation>
+					<xs:documentation>Владелец культурной ценности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Conclusion" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Номер заключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateConclusion" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Дата заключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponseImportType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос на предоставление сведений из реестра ввозимых и вывозимых культурных ценностей для ввоза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocNumber" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Номер письма-подтверждения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата письма-подтверждения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuedByOrg" type="commons:string-500">
+				<xs:annotation>
+					<xs:documentation>Наименование органа МК РФ, выдавшего разрешительный документ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuedByPerson" type="commons:string-100">
+				<xs:annotation>
+					<xs:documentation>Уполномоченное должностное лицо, подписавшее заключение - ФИО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuedByPosition" type="commons:string-100">
+				<xs:annotation>
+					<xs:documentation>Уполномоченное должностное лицо, подписавшее заключение - должность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PurposeImport" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Цель ввоза</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="commons:string-500">
+				<xs:annotation>
+					<xs:documentation>Страна вывоза</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Owner" type="commons:string-100">
+				<xs:annotation>
+					<xs:documentation>Владелец</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocOwnerName" type="commons:string-500">
+				<xs:annotation>
+					<xs:documentation>Держатель подтверждения (наименование/ФИО)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocOwnerAddress" type="commons:string-500" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес Держателя подтверждения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocOwnerAddressUI" type="commons:AddressRF-Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Юридический адрес держателя подтверждения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomsOffice" type="commons:string-500" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Таможенный пункт</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Items" type="tns:ArrayOfItem" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание культурных ценностей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfItem">
+		<xs:annotation>
+			<xs:documentation>Сведения по культурным ценностям</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Description" type="commons:string-1000">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Category" type="commons:string-500">
+				<xs:annotation>
+					<xs:documentation>Категория культурной ценности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="commons:string-10">
+				<xs:annotation>
+					<xs:documentation>Количество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureUnit" type="commons:string-50">
+				<xs:annotation>
+					<xs:documentation>Единица измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PhysicalPersonType">
+		<xs:annotation>
+			<xs:documentation>Физическое лицо</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FamilyName" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Patronymic" type="commons:string-20">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LegalPersonType">
+		<xs:annotation>
+			<xs:documentation>Юридическое лицо</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocOwnerName" type="commons:string-200">
+				<xs:annotation>
+					<xs:documentation>Название организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocOwnerAddress" type="commons:string-500" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес регистрации ЮЛ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PatronFIO" type="commons:string-100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ФИО руководителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

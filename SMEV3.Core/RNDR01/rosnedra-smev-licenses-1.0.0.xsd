@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+           targetNamespace="urn://x-artefacts-rosnedra-gov-ru/smev-interaction/licenses/1.0.0"
+           xmlns:tns="urn://x-artefacts-rosnedra-gov-ru/smev-interaction/licenses/1.0.0"
+           xmlns:smev="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1">
+  <xs:annotation>
+    <xs:documentation>
+      Сведения из реестра лицензий на пользование недрами
+    </xs:documentation>
+  </xs:annotation>
+  <xs:import namespace="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" schemaLocation="import\smev-supplementary-commons-1.0.1.xsd"/>
+
+  <!--==========================================  Элементы запроса и ответа  ==========================================-->
+  <xs:element name="LicenseRequest">
+    <xs:annotation>
+      <xs:documentation>
+        Запрос сведений о лицензии
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="StateRegistrationNumber" type="tns:StateRegistrationNumberType">
+          <xs:annotation>
+            <xs:documentation>Государственный регистрационный номер лицензии</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LicenseResponse">
+    <xs:annotation>
+      <xs:documentation>
+        Ответ на запрос сведений о лицензии
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="LicenseInfo" type="tns:LicenseInfoType">
+          <xs:annotation>
+            <xs:documentation>
+              Сведения о лицензии
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--==========================================  Структурированные типы  ==========================================-->
+  <xs:complexType name="LicenseInfoType">
+    <xs:annotation>
+      <xs:documentation>
+        Сведения о лицензии
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:element name="StateRegistrationNumber" type="tns:StateRegistrationNumberType">
+        <xs:annotation>
+          <xs:documentation>Государственный регистрационный номер лицензии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="Status" type="tns:StatusType">
+        <xs:annotation>
+          <xs:documentation>Статус лицензии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="RegistrationDate" minOccurs="0" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата регистрации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="ExpiryDate" minOccurs="0" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Срок действия лицензии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="Company" minOccurs="0" type="tns:string-1024">
+        <xs:annotation>
+          <xs:documentation>Наименование недропользователя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="Goals" minOccurs="0" type="tns:string-1024">
+        <xs:annotation>
+          <xs:documentation>Целевое назначение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="FederalSubject" minOccurs="0" type="tns:string-1024">
+        <xs:annotation>
+          <xs:documentation>Субъект РФ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="District" minOccurs="0" type="tns:string-1024">
+        <xs:annotation>
+          <xs:documentation>Район расположения участка работ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="Deposit" minOccurs="0" type="tns:string-1024">
+        <xs:annotation>
+          <xs:documentation>Наименование объекта недропользования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="Polisks" minOccurs="0" type="tns:string-1024">
+        <xs:annotation>
+          <xs:documentation>Полезные ископаемые</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StateRegistrationNumberType">
+    <xs:annotation>
+      <xs:documentation>Государственный регистрационный номер лицензии</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="series" type="tns:SeriesType" use="required">
+      <xs:annotation>
+        <xs:documentation>Серия</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="number" type="tns:NumberType" use="required">
+      <xs:annotation>
+        <xs:documentation>Номер</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="type" type="tns:TypeType" use="required">
+      <xs:annotation>
+        <xs:documentation>Вид</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!--==========================================  Простые типы  ==========================================-->
+  <xs:simpleType name="SeriesType">
+    <xs:annotation>
+      <xs:documentation>
+        Серия лицензии
+        Серия регистрационного номера представляет собой аббревиатуру наименования субъекта Российской Федерации, на территории которого находится переданный в
+        пользование участок недр, в соответствии с аббревиатурами, принятыми для обозначения серий (приложение 6 к настоящему Административному регламенту).
+        Для участков недр, расположенных в пределах внутренних морских вод, территориального моря и континентального шельфа Российской Федерации, серия
+        регистрационного номера состоит из буквы "Ш" и двух букв, соответствующих названию моря.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="smev:rus">
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="NumberType">
+    <xs:annotation>
+      <xs:documentation>
+        Номер лицензии
+        Номер лицензии представляет собой пятизначное число, обозначающее порядковый номер лицензии в едином государственном реестре.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="5"/>
+      <xs:pattern value="\d{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TypeType">
+    <xs:annotation>
+      <xs:documentation>
+        Вид лицензии
+        Вид лицензии определяется двумя буквами.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="smev:rus">
+      <xs:maxLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="StatusType">
+    <xs:annotation>
+      <xs:documentation>
+        Статус лицензии
+        Может принимать значения:
+        Действующая
+        Аннулирована
+        Приостановлена
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="smev:string-20">
+      <xs:enumeration value="Действующая"/>
+      <xs:enumeration value="Аннулирована"/>
+      <xs:enumeration value="Приостановлена"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--==========================================  Базовые типы  ==========================================-->
+  <xs:simpleType name="string-1024">
+    <xs:annotation>
+      <xs:documentation>
+        Произвольный текст длиной до 1024 символов
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1024"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

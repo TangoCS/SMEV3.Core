@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://x-artefacts-ftsCooperationListMovedGoods/root/1.0.3"
+           xmlns:clt_ru="urn:customs.ru:CommonLeafTypes/1.0.3"
+           xmlns:commons="urn:customs.ru:Information:SQDocuments:CooperationListMovedGoods/1.0.3" elementFormDefault="qualified">
+    <xs:import namespace="urn:customs.ru:Information:SQDocuments:CooperationListMovedGoods/1.0.3" schemaLocation="commons/ftsCooperationListMovedGoods-commons.xsd"/>
+    <xs:import namespace="urn:customs.ru:CommonLeafTypes/1.0.3" schemaLocation="commons/CommonLeafTypesCust.xsd"/>
+    <xs:element name="FtsCooperationListMovedGoodsRequest">
+        <xs:annotation>
+            <xs:documentation>Запрос</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="date" type="clt_ru:DateCustType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="FtsCooperationListMovedGoodsResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CooperationListMovedGoods" type="commons:CooperationListMovedGoods" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

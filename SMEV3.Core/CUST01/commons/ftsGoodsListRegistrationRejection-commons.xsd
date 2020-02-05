@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:clt_ru="urn:customs.ru:CommonLeafTypes/1.0.3"
+           xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes/1.0.3"
+           xmlns:glrr="urn:customs.ru:Information:SQDocuments:GoodsListRegistrationRejection/1.0.3"
+           targetNamespace="urn:customs.ru:Information:SQDocuments:GoodsListRegistrationRejection/1.0.3" elementFormDefault="qualified"
+           version="5.12.1.0">
+    <xs:import namespace="urn:customs.ru:CommonLeafTypes/1.0.3" schemaLocation="CommonLeafTypesCust.xsd"/>
+    <xs:import namespace="urn:customs.ru:CommonAggregateTypes/1.0.3" schemaLocation="CommonAggregateTypesCust.xsd"/>
+    <xs:annotation>
+        <xs:documentation>Сведения об отказе регистрации перечня (списка)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType name="GoodsListRegistrationRejection">
+        <xs:annotation>
+            <xs:documentation>Сведения об отказе регистрации перечня (списка)</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:BaseDocType">
+                <xs:sequence>
+                    <xs:element name="RegNumber" type="clt_ru:DocumentNumberType">
+                        <xs:annotation>
+                            <xs:documentation>Внутренний номер перечня Минпромторга</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RejectionDecisionInfo" type="cat_ru:DocumentBaseType">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о решении об отказе в регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RejectionReason" type="glrr:RejectionReasonType">
+                        <xs:annotation>
+                            <xs:documentation>Причина отказа в регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="AuthorizedPerson" type="cat_ru:PersonBaseType">
+                        <xs:annotation>
+                            <xs:documentation>Уполномоченное лицо со стороны ФТС</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="LastChangeDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Информация о дате и времени последнего изменения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1009199E">
+                    <xs:annotation>
+                        <xs:documentation>Идентификатор вида документа</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:annotation>
+        <xs:documentation>Локальные прикладные типы</xs:documentation>
+    </xs:annotation>
+    <xs:complexType name="RejectionReasonType">
+        <xs:annotation>
+            <xs:documentation>Причина отказа в регистрации</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="RejectionSign" type="clt_ru:Numeric1Type">
+                <xs:annotation>
+                    <xs:documentation>Признак отказа в регистрации</xs:documentation>
+                    <xs:documentation>1 - Неверно указано наименование таможенного органа</xs:documentation>
+                    <xs:documentation>2 - Отсутствие указанного таможенного органа</xs:documentation>
+                    <xs:documentation>3 - Неверно указана информация о товаре</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RejectedGoodNum" type="clt_ru:CodeVariable5Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер позиции товара в перечне</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OtherReasons" type="clt_ru:FreeText500Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Другие причины</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

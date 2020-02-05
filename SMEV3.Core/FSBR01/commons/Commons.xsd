@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://fsb/commons/1.0.3" xmlns:smev-request="http://smev.gosuslugi.ru/request/rev111111" targetNamespace="urn://fsb/commons/1.0.3" elementFormDefault="qualified">
+	<xs:simpleType name="string-10">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="string-100">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-200">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-250">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-500">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-1000">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-5000">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReqType">
+		<xs:annotation>
+			<xs:documentation>Тип запрашиваемых сведений</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+			<xs:enumeration value="ImportExport"/>
+			<xs:enumeration value="OperatingLicense"/>
+			<xs:enumeration value="CryptographicMeans"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Date">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="float">
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="integer">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:complexType name="RequestType">
+		<xs:sequence>
+			<xs:element name="RequestId" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ReqImportExport" type="tns:ReqImportExportType">
+					<xs:annotation>
+						<xs:documentation>Запрос сведений по заключению о возможности ввоза/вывоза</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ReqOperatingLicense" type="tns:ReqOperatingLicenseType">
+					<xs:annotation>
+						<xs:documentation>Запрос сведений по лицензии на деятельность</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ReqCryptographicMeans" type="tns:ReqCryptographicMeansType">
+					<xs:annotation>
+						<xs:documentation>Запрос сведений  по нотификации шифровальных средств</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReqImportExportType">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений по заключению о возможности ввоза/вывоза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ConclusionName">
+				<xs:annotation>
+					<xs:documentation>Наименование заключения</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="tns:string-1000">
+						<xs:enumeration value="Заключение о возможности ввоза/вывоза шифровальных (криптографических) средств"/>
+						<xs:enumeration value="Заключение о возможности ввоза/вывоза специальных технических средств, предназначенных для негласного получения информации"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ConclusionNumber" type="tns:string-100">
+				<xs:annotation>
+					<xs:documentation>Номер заключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConclusionDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата заключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReqOperatingLicenseType">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений по лицензии на деятельность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LicenseName">
+				<xs:annotation>
+					<xs:documentation>Наименование  документа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="tns:string-1000">
+						<xs:enumeration value="Копия лицензии на вид деятельности по разработке, производству, распространению шифровальных (криптографических) средств, информационных систем и телекоммуникационных систем, защищенных с использованием шифровальных (криптографических) средств, выполнению работ, оказанию услуг в области шифрования информации, техническому обслуживанию шифровальных (криптографических) средств, информационных систем и телекоммуникационных систем, защищенных с использованием шифровальных (криптографических) средств"/>
+						<xs:enumeration value="Копия лицензии на вид деятельности на разработку, производство, реализацию и приобретение в целях продажи специальных технических средств, предназначенных для негласного получения информации"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LicenseNumber" type="tns:string-100">
+				<xs:annotation>
+					<xs:documentation>Номер лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseDate" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Дата лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReqCryptographicMeansType">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений  по нотификации шифровальных средств</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocName" default="Сведения о нотификации шифровальных (криптографических) средств">
+				<xs:annotation>
+					<xs:documentation>Наименование  документа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="tns:string-1000"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DocNumber" type="tns:string-100">
+				<xs:annotation>
+					<xs:documentation>Номер нотификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="stat">
+		<xs:annotation>
+			<xs:documentation>Статус заключения/нотификации</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:group ref="tns:StatusAnnulir"/>
+			<xs:group ref="tns:StatusChange"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="StatusAnnulir">
+		<xs:annotation>
+			<xs:documentation>Параметры для статуса "Аннулировано"</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StatusAn" default="Аннулировано">
+				<xs:annotation>
+					<xs:documentation>Статус заключения/ нотификации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="tns:string-100"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DateStatusAnnulir" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Дата аннулирования заключения/ нотификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="StatusChange">
+		<xs:annotation>
+			<xs:documentation>Параметры для других статусов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Status">
+				<xs:annotation>
+					<xs:documentation>Статус заключения/ нотификации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="tns:string-100">
+						<xs:enumeration value="Действует"/>
+						<xs:enumeration value="Срок действия закончен"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DateStatusChange" type="tns:Date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата смены статуса </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="ResponseType">
+		<xs:sequence>
+			<xs:element name="RequestId" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ResImportExport" type="tns:ResImportExportType">
+					<xs:annotation>
+						<xs:documentation>Ответ на запрос  сведений по заключению о возможности ввоза/вывоза </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ResOperatingLicense" type="tns:ResOperatingLicenseType">
+					<xs:annotation>
+						<xs:documentation>Ответ на запрос сведений по лицензии на деятельность</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ResCryptographicMeans" type="tns:ResCryptographicMeansType">
+					<xs:annotation>
+						<xs:documentation>Ответ на запрос  сведений по нотификации шифровальных средств</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProductType">
+		<xs:annotation>
+			<xs:documentation>Товар</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TNCode" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Код ТН ВЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SectionListProduct" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Раздел Единого перечня товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProductName" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Наименование товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="tns:float">
+				<xs:annotation>
+					<xs:documentation>Количество товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Unit" type="tns:string-10">
+				<xs:annotation>
+					<xs:documentation>Единица измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProductPositionType">
+		<xs:annotation>
+			<xs:documentation>Подпозиция товара</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TNCode" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Код ТН ВЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SectionListProduct" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Раздел Единого перечня товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProductName" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Наименование товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="tns:float">
+				<xs:annotation>
+					<xs:documentation>Количество товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Unit" type="tns:string-10">
+				<xs:annotation>
+					<xs:documentation>Единица измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResImportExportType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений по заключения о возможности ввоза/вывоза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ConclusionNumber" type="tns:string-500">
+				<xs:annotation>
+					<xs:documentation>Номер заключения (из запроса)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConclusionDate" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Дата заключения (из запроса)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConclusionTo" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Кому выдано</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KindRelocation" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Вид перемещения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Product" type="tns:ProductType">
+				<xs:annotation>
+					<xs:documentation>Информация по товару</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProductPosition" type="tns:ProductPositionType" minOccurs="0" maxOccurs="15">
+				<xs:annotation>
+					<xs:documentation>Информация по позициям подтовара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ForeignPartner" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Иностранный парнтер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountryDeparture" type="tns:string-100">
+				<xs:annotation>
+					<xs:documentation>Страна отправления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountryDestination" type="tns:string-100">
+				<xs:annotation>
+					<xs:documentation>Страна назначения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Purpose" type="tns:string-5000">
+				<xs:annotation>
+					<xs:documentation>Цель ввоза/вывоза</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Base" type="tns:string-5000">
+				<xs:annotation>
+					<xs:documentation>Основание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="tns:string-5000" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateEnd" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Заключение действительно по</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlacemanFIO" type="tns:string-100">
+				<xs:annotation>
+					<xs:documentation>ФИО должностного лица, подписавшего заключение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlacemanPost" type="tns:string-100">
+				<xs:annotation>
+					<xs:documentation>Должность должностного лица, подписавшего заключение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateSigning" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Дата подписания заключения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:group ref="tns:stat"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResOperatingLicenseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений по лицензии на деятельность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LicenseNumber" type="tns:string-200">
+				<xs:annotation>
+					<xs:documentation>Номер лицензии (из запроса)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата лицензии (из запроса)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseOwner" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Владелец лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateStart" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Дата начала действия лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateEnd" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Дата окончания действия лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusLic">
+				<xs:annotation>
+					<xs:documentation>Статус действия лицензии</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="tns:string-100">
+						<xs:enumeration value="Действует"/>
+						<xs:enumeration value="Срок действия закончен"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LicensingAuthority" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Лицензирующий орган</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Activities" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Виды деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PermittedWorkServices" type="tns:string-5000">
+				<xs:annotation>
+					<xs:documentation>Перечень разрешенных видов работ и услуг</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResCryptographicMeansType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений по нотификации шифровальных средств</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NotificationNumber" type="tns:string-200">
+				<xs:annotation>
+					<xs:documentation>Номер нотификации (из запроса)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProductName" type="tns:string-1000">
+				<xs:annotation>
+					<xs:documentation>Наименование товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Manufacturer" type="tns:string-500">
+				<xs:annotation>
+					<xs:documentation>Изготовитель товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ValidDate" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Дата публикации нотификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateEnd" type="tns:Date">
+				<xs:annotation>
+					<xs:documentation>Срок действия до</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identifier" type="tns:string-200">
+				<xs:annotation>
+					<xs:documentation>Идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:group ref="tns:stat"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

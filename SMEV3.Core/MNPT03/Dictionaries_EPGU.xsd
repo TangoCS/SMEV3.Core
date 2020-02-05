@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.minprom.gov.ru/schemas/gosuslugi/Dictionaries/1.0.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:d="http://www.minprom.gov.ru/schemas/gosuslugi/Dictionaries/1.0.0">
+
+	<xs:element name="DictionaryRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element type="d:dictionaryName" name="DictionaryName"/>
+				<xs:element type="xs:integer" name="Offset" minOccurs="0" />
+				<xs:element type="xs:integer" name="Limit" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="dictionaryName">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CommodityNomenclature"/>
+			<xs:enumeration value="CNCategory"/>
+			<xs:enumeration value="Document"/>
+			<xs:enumeration value="Quota"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="DictionaryResponse">
+		<xs:complexType>
+			<xs:choice>
+
+				<xs:element name="CommodityNomenclatureList">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CommodityNomenclature" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:string" name="Code" />
+										<xs:element type="xs:string" name="Title" />
+										<xs:element type="xs:string" name="MeasureCode1" />
+										<xs:element type="xs:string" name="MeasureCode2" minOccurs="0" />
+										<xs:element type="xs:string" name="MeasureCode3" minOccurs="0" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="CNCategoryList">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CNCategory" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:string" name="Code" />
+										<xs:element type="xs:string" name="Title" />
+										<xs:element type="xs:string" name="Operations" />
+										<xs:element type="xs:string" name="LicenseTypes" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="DocumentList">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Document" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:string" name="CNCategoryCode" />
+										<xs:element type="xs:string" name="DocumentCode" />
+										<xs:element type="xs:string" name="FullTitle" />
+										<xs:element type="xs:string" name="Title" />
+										<xs:element type="xs:string" name="IssuedBy" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="QuotaList">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Quota" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:string" name="CNCategoryCode" />
+										<xs:element type="xs:string" name="Operation" />
+										<xs:element type="xs:string" name="CountryGroupCode" />
+										<xs:element type="xs:string" name="CountryGroupTitle" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

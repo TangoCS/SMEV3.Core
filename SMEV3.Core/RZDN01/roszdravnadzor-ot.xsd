@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://smev-roszdravnadzor-ru/OT/root/1.0.2" targetNamespace="urn://smev-roszdravnadzor-ru/OT/root/1.0.2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<element name="ConclusionRequest" type="tns:RequestType"/>
+	<element name="ConclusionResponse" type="tns:ResponseType"/>
+	
+	<simpleType name="InnType">
+		<restriction base="string">
+			<pattern value="\d{10,12}"/>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string64">
+		<restriction base="string">
+			<maxLength value="64"/>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string256">
+		<restriction base="string">
+			<maxLength value="256"/>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string512">
+		<restriction base="string">
+			<maxLength value="512"/>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string1024">
+		<restriction base="string">
+			<maxLength value="1024"/>
+		</restriction>
+	</simpleType>
+	
+	<complexType name="OwnerType">
+		<annotation>
+			<documentation>Кому выдано заключение</documentation>
+		</annotation>
+		<choice>
+			<sequence>
+				<element name="Organization" type="tns:string256">
+					<annotation>
+						<documentation>Название организации</documentation>
+					</annotation>
+				</element>
+				<element name="INN" type="tns:InnType" minOccurs="0">
+					<annotation>
+						<documentation>ИНН</documentation>
+					</annotation>
+				</element>
+				<element name="Address" type="tns:string1024" minOccurs="0">
+					<annotation>
+						<documentation>Юридический адрес</documentation>
+					</annotation>
+				</element>
+				<element name="Country" type="tns:string256" minOccurs="0">
+					<annotation>
+						<documentation>Страна</documentation>
+					</annotation>
+				</element>
+			</sequence>
+			<element name="Person" type="tns:string256">
+				<annotation>
+					<documentation>Ф.И.О. (для физических лиц)</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	
+	<complexType name="ActorType">
+		<annotation>
+			<documentation>Получатель/отправитель</documentation>
+		</annotation>
+		<sequence>
+			<element name="Organization" type="tns:string256">
+				<annotation>
+					<documentation>Название организации</documentation>
+				</annotation>
+			</element>
+			<element name="Address" type="tns:string1024">
+				<annotation>
+					<documentation>Юридический адрес</documentation>
+				</annotation>
+			</element>
+			<element name="Country" type="tns:string256">
+				<annotation>
+					<documentation>Страна</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<simpleType name="StatusType">
+		<annotation>
+			<documentation>Статус заключения</documentation>
+		</annotation>
+		<restriction base="int">
+			<enumeration value="0">
+				<annotation>
+					<documentation>Действующее</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="1">
+				<annotation>
+					<documentation>Аннулированное</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>Приостановленное</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	
+	<complexType name="ObjectType">
+		<annotation>
+			<documentation>Объект поставки</documentation>
+		</annotation>
+		<sequence>
+			<element name="TNCode" type="tns:string64">
+				<annotation>
+					<documentation>Код ТН ВЭД ЕАЭС</documentation>
+				</annotation>
+			</element>
+			<element name="Title" type="tns:string256">
+				<annotation>
+					<documentation>Наименование товара</documentation>
+				</annotation>
+			</element>
+			<element name="Quantity" type="tns:string64" minOccurs="0">
+				<annotation>
+					<documentation>Количество</documentation>
+				</annotation>
+			</element>
+			<element name="Unit" type="tns:string256" minOccurs="0">
+				<annotation>
+					<documentation>Единица измерения</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="ConclusionType">
+		<annotation>
+			<documentation>Информация о заключении</documentation>
+		</annotation>
+		<sequence>
+			<element name="Number" type="tns:string64">
+				<annotation>
+					<documentation>Номер заключения</documentation>
+				</annotation>
+			</element>
+			<element name="Date" type="date">
+				<annotation>
+					<documentation>Дата выдачи заключения</documentation>
+				</annotation>
+			</element>
+			<element name="Owner" type="tns:OwnerType">
+				<annotation>
+					<documentation>Кому выдано заключение</documentation>
+				</annotation>
+			</element>
+			<element name="Direction" type="tns:string256">
+				<annotation>
+					<documentation>Вид перемещения (ввоз/вывоз)</documentation>
+				</annotation>
+			</element>
+			<element name="Object" type="tns:ObjectType" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Объект поставки</documentation>
+				</annotation>
+			</element>
+			<element name="Actor" type="tns:ActorType" minOccurs="0">
+				<annotation>
+					<documentation>Получатель/отправитель</documentation>
+				</annotation>
+			</element>
+			<element name="DestinationCountry" type="tns:string256" minOccurs="0">
+				<annotation>
+					<documentation>Страна назначения/отправления</documentation>
+				</annotation>
+			</element>
+			<element name="Reason" type="string">
+				<annotation>
+					<documentation>Цель ввоза (вывоза)</documentation>
+				</annotation>
+			</element>
+			<element name="TransitionCountry" type="tns:string256" minOccurs="0">
+				<annotation>
+					<documentation>Страна транзита</documentation>
+				</annotation>
+			</element>
+			<element name="DateTo" type="date">
+				<annotation>
+					<documentation>Заключение действительно по</documentation>
+				</annotation>
+			</element>
+			<element name="Status" type="tns:StatusType">
+				<annotation>
+					<documentation>Статус документа</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="ResponseType">
+		<annotation>
+			<documentation>Ответ на запрос</documentation>
+		</annotation>
+		<sequence>
+			<element name="Conclusion" type="tns:ConclusionType" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="RequestType">
+		<annotation>
+			<documentation>Запрос заключения на ввоз/вывоз органов и тканей человека, крови и её компонентов, образцов биологических материалов человека</documentation>
+		</annotation>
+		<sequence>
+			<element name="Number" type="tns:string64">
+				<annotation>
+					<documentation>Номер заключения</documentation>
+				</annotation>
+			</element>
+			<element name="Date" type="date">
+				<annotation>
+					<documentation>Дата заключения</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+</schema>

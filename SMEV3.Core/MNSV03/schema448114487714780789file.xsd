@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:e="http://epgu.gosuslugi.ru/lk/order/event/DEV/3.1.0"
+            targetNamespace="http://epgu.gosuslugi.ru/lk/order/event/DEV/3.1.0"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:complexType name="OrderStatusEvent">
+        <xsd:annotation>
+            <xsd:documentation>
+                Изменения статуса заявки в ЛК
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="statusCode">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Новый статус завки
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="orgCode" type="xsd:string">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Код статуса в ведомстве
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="techCode" type="xsd:long">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Код статуса на ЕПГУ
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="cancelAllowed" type="xsd:boolean" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Возможность отмены
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="sendMessageAllowed" type="xsd:boolean" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Возможность посылки текстовых сообщений в ведомство
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="PaymentStatusEvent">
+        <xsd:annotation>
+            <xsd:documentation>
+                Изменения статуса оплаты заявки в ЛК
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="status" type="e:PaymentStatus">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Cтатус оплаты заявки
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="payment" minOccurs="0" maxOccurs="unbounded" type="e:Payment">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Cтатус оплаты заявки
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Payment">
+        <xsd:annotation>
+            <xsd:documentation>
+                Информация о платеже
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="source" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Источник начисления
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="uin" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        УИН (уникальный идентификатор начисления)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="description" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Наименование (за что оплата)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+
+            <xsd:element name="paymentId" type="xsd:long" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ID платежа
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="isPaid" type="xsd:boolean" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Не оплачено/оплачено
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="date" type="xsd:dateTime" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Дата платежа
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="InfoEvent">
+        <xsd:annotation>
+            <xsd:documentation>
+                Информационное сообщение по заявки в ЛК
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="code" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Код сообщения
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TextMessageEvent">
+        <xsd:annotation>
+            <xsd:documentation>
+                Текстовое сообщение по заявки в ЛК
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:complexType>
+
+    <xsd:complexType name="InvitationEvent">
+        <xsd:annotation>
+            <xsd:documentation>
+                Приглашение
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="code" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Код приглашения
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="action" type="e:InvitationEventAction">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Тип действия
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="orgName" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Наименование ОИВ
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="address" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Адрес
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="startDate" type="xsd:dateTime" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Дата и время начала
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="endDate" type="xsd:dateTime" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Дата и время окончания
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:simpleType name="PaymentStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="W"/>
+            <xsd:enumeration value="P"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="InvitationEventAction">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ADD"/>
+            <xsd:enumeration value="UPDATE"/>
+            <xsd:enumeration value="CANCEL"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="EventObject">
+        <xsd:sequence>
+            <xsd:element name="orderId" type="xsd:long">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Id заявки на портале
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="eventDate" type="xsd:dateTime" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Дата события
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="eventComment" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Комментарий к событию
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="eventAuthor" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Автор события
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="event">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Параметры события
+                    </xsd:documentation>
+                </xsd:annotation>
+
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="orderStatusEvent" type="e:OrderStatusEvent">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Код статуса в ведомстве
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+
+                        <xsd:element name="paymentStatusEvent" type="e:PaymentStatusEvent">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Изменения статуса оплаты заявки в ЛК
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+
+                        <xsd:element name="infoEvent" type="e:InfoEvent">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Информационное сообщение по заявки в ЛК
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+
+                        <xsd:element name="textMessageEvent" type="e:TextMessageEvent">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Текстовое сообщение по заявки в ЛК
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+
+                        <xsd:element name="invitationEvent" type="e:InvitationEvent">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Приглашение
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+
+
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Response">
+        <xsd:sequence>
+            <xsd:element name="code" type="xsd:long">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Код возврата
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="message" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Сообщение
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="eventServiceRequest" type="e:EventObject"/>
+
+    <xsd:element name="eventServiceResponse" type="e:Response"/>
+
+</xsd:schema>

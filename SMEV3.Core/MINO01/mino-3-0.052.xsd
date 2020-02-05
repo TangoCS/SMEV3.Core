@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://x-artefacts-mino/minorebrazrvvoz/1.0.2" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xz52="urn://x-artefacts-mino/minorebrazrvvoz/1.0.2" xmlns:xz3="urn://x-artefacts-mino/mino/1.0.2" xmlns:xz="urn://x-artefacts-mino/commons/1.0.2">
+    <xs:import namespace="urn://x-artefacts-mino/commons/1.0.2" schemaLocation="mino-3-0-domains.xsd"/>
+    <xs:import namespace="urn://x-artefacts-mino/mino/1.0.2" schemaLocation="mino-3-0.003.xsd"/>
+    <xs:element xmlns:xz52="urn://x-artefacts-mino/minorebrazrvvoz/1.0.2" type="xz52:MinoConclusionNumReqType" name="MinoConclusionNumReq"/>
+    <xs:complexType name="MinoConclusionNumReqType">
+        <xs:annotation>
+            <xs:documentation>Запрос сведений о выданном разрешении на право ввоза в Российскую Федерацию радиоэлектронных средств и высокочастотных устройств</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DVarchar300Type" name="conclusionNumber" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Номер разрешения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DDateType" name="conclusionDate" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Дата выдачи разрешения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element xmlns:xz52="urn://x-artefacts-mino/minorebrazrvvoz/1.0.2" type="xz52:MinoConclusionNumRespType" name="MinoConclusionNumResp"/>
+    <xs:complexType name="MinoConclusionNumRespType">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос сведений о выданном разрешении на право ввоза в Российскую Федерацию радиоэлектронных средств и высокочастотных устройств</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension xmlns:xz3="urn://x-artefacts-mino/mino/1.0.2" base="xz3:ORMinoType">
+                <xs:sequence>
+                    <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DVarchar300Type" name="conclusionNumber" minOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>Номер разрешения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DDateType" name="conclusionDate" minOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>Дата разрешения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DVarchar300Type" name="resolutionAgencyName" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Кому разрешено осуществить ввоз</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DVarchar3000Type" name="resType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Описание оборудования</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DVarchar300Type" name="resNum" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Количество и единица измерения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DVarchar1000Type" name="contractsNumber" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Реквизиты внешнеторгового контракта (Договора)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DVarchar300Type" name="conclusionDuration" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Срок действия разрешения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" type="xz:DVarchar1000Type" name="postFio" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Уполномоченное лицо подписавшее разрешение</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

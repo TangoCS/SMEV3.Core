@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.minprom.gov.ru/schemas/gosuslugi/Request/1.0.3"
+	xmlns:r="http://www.minprom.gov.ru/schemas/gosuslugi/Request/1.0.3" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="guid">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})|(\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RequestData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ApplicantProfile">
+					<xs:complexType>
+						<xs:sequence>
+							<!-- Электронная почта заявителя -->
+							<xs:element type="xs:string" name="Email"/>
+							<!-- СНИЛС заявителя -->
+							<xs:element type="xs:string" name="SNILS" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Request">
+					<xs:complexType>
+						<xs:sequence>
+							<!-- Ид заявления ЕПГУ -->
+							<xs:element type="xs:long" name="OrderId"/>
+							<!-- Категория товара -->
+							<xs:element type="xs:string" name="CNCategoryCode"/>
+							<xs:element type="xs:string" name="CNCategoryName"/>
+
+							<!-- 1. Дата создания заявления -->
+							<xs:element type="xs:date" name="CreateDate"/>
+							<!-- 2. Период действия лицензии -->
+							<!-- Начальная дата -->
+							<xs:element type="xs:date" name="DateFrom" minOccurs="0"/>
+							<!-- Конечная дата -->
+							<xs:element type="xs:date" name="DateTo" minOccurs="0"/>
+							<!-- 3. Тип лицензии -->
+							<!-- Тип лицензии (разовая, генеральная, исключительная) -->
+							<xs:element name="LicType">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Разовая"/>
+										<xs:enumeration value="Генеральная"/>
+										<xs:enumeration value="Исключительная"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<!-- Тип операции (импорт, экспорт) -->
+							<xs:element name="LicOperation">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Импорт"/>
+										<xs:enumeration value="Экспорт"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<!-- 4. Контракт -->
+							<!-- Номер контракта -->
+							<xs:element type="xs:string" name="ContractNo" minOccurs="0"/>
+							<!-- Дата подписания контракта -->
+							<xs:element type="xs:date" name="ContractDate" minOccurs="0"/>	
+							<!-- 5. Заявитель -->
+							<!-- Полное официальное наименование владельца лицензии -->
+							<xs:element type="xs:string" name="HolderFullName" minOccurs="0" />
+							<!-- ИНН владельца лицензии -->
+							<xs:element name="HolderINN">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="(\d{10}|\d{12})"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<!-- Фамилия -->
+							<xs:element type="xs:string" name="HolderSurname" />
+							<!-- Имя -->
+							<xs:element type="xs:string" name="HolderFirstname" />
+							<!-- Отчество -->
+							<xs:element type="xs:string" name="HolderPatronymic" minOccurs="0" />
+							<!-- Паспортные данные ИП -->
+							<xs:element type="xs:string" name="HolderPasportSerial" minOccurs="0" />
+							<xs:element type="xs:string" name="HolderPasportNumber" minOccurs="0" />
+							<xs:element type="xs:string" name="HolderPasportAuthority" minOccurs="0" />
+							<xs:element type="xs:date" name="HolderPasportIssueDate" minOccurs="0" />
+							<!-- Юридический адрес владельца лицензии -->
+							<xs:element type="xs:string" name="HolderAddress" minOccurs="0"/>
+							<!-- Должность уполномоченного лица -->
+							<xs:element type="xs:string" name="HolderPost" minOccurs="0"/>
+							<!-- Телелфон уполномоченного лица -->
+							<xs:element type="xs:string" name="HolderPhone" minOccurs="0"/>
+							<!-- 6. Покупатель/продавец -->
+							<!-- Наименование Покупателя/продавца -->
+							<xs:element type="xs:string" name="DealerName" minOccurs="0"/>
+							<!-- Адрес Покупателя/Продавца -->
+							<xs:element type="xs:string" name="DealerAddress" minOccurs="0"/>
+							<!-- 7. Страна назначения/отправления -->
+							<!-- Название страны назначения/отправления -->
+							<xs:element type="xs:string" name="CountryName7" minOccurs="0"/>
+							<!-- Код альфа-2 страны назначения/отправления -->
+							<xs:element type="xs:string" name="CountryAlpha27" minOccurs="0"/>
+							<!-- 8. Страна покупателя/продавца -->
+							<!-- Название страны покупателя/продавца -->
+							<xs:element type="xs:string" name="DealerCountryName" minOccurs="0"/>
+							<!-- Код альфа-2 страны покупателя/продавца -->
+							<xs:element type="xs:string" name="DealerCountryAlpha2" minOccurs="0"/>
+							<!-- 9. Валюта контракта -->
+							<!-- Код валюты -->
+							<xs:element type="xs:string" name="ContractCurrencyCode" minOccurs="0"/>
+							<xs:element type="xs:string" name="ContractCurrencyName" minOccurs="0"/>
+							<!-- 10. Cтоимость -->
+							<xs:element type="xs:float" name="CurrencyCost" minOccurs="0"/>
+							<!-- 11. Статистическая стоимость товара (USD) -->
+							<xs:element type="xs:float" name="StatCost"/>
+							<!-- 12. Страна происхождения -->
+							<!-- Название страны происхождения  -->
+							<xs:element type="xs:string" name="OriginCountryName" minOccurs="0"/>
+							<!-- Код альфа-2 страны происхождения -->
+							<xs:element type="xs:string" name="OriginCountryAlpha2" minOccurs="0"/>
+							<!-- 13. Количество -->
+							<xs:element type="xs:float" name="Quantity" minOccurs="0"/>
+							<!-- 14. Единица измерения -->
+							<xs:element type="xs:string" name="MeasureName" minOccurs="0"/>
+							<xs:element type="xs:string" name="MeasureCode" minOccurs="0"/>
+							<!-- 13. Количество в дополнительной единице измерения -->
+							<xs:element type="xs:float" name="AddQuantity" minOccurs="0"/>
+							<!-- 14. Дополнительная единица измерения -->
+							<xs:element type="xs:string" name="AddMeasureName" minOccurs="0"/>
+							<xs:element type="xs:string" name="AddMeasureCode" minOccurs="0"/>
+							<!-- 15. Код ТН ВЭД -->
+							<!-- Код -->
+							<xs:element type="xs:string" name="CNCode"/>
+							<!-- Пользовательское описание -->
+							<xs:element type="xs:string" name="CNDescription"/>
+							<!-- 16. Дополнительная информация -->
+							<xs:element type="xs:string" name="AddInfo" minOccurs="0"/>
+
+							<!-- 17. Основание для выдачи лицензии -->
+							<xs:element name="Reason" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<!-- Документы -->
+										<xs:element name="Document" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<!-- Тип документа -->
+													<xs:element type="xs:string" name="DocCode"/>
+													<!-- Организация, выдавшая документ -->
+													<xs:element type="xs:string" name="Authority"/>
+													<!-- Наименование документа -->
+													<xs:element type="xs:string" name="DocName"/>
+													<!-- Номер документа -->
+													<xs:element type="xs:string" name="DocNo" minOccurs="0"/>
+													<!-- Дата документа -->
+													<xs:element type="xs:date" name="DocDate" minOccurs="0"/>
+													<!-- Дата начала действия документа -->
+													<xs:element type="xs:date" name="BeginDate" minOccurs="0"/>
+													<!-- Дата окончания действия документа -->
+													<xs:element type="xs:date" name="EndDate" minOccurs="0"/>
+													<!-- Разрешенное количество -->
+													<xs:element type="xs:float" name="ResolvedQuantity" minOccurs="0"/>
+													<!-- Единица измерения -->
+													<xs:element type="xs:string" name="MeasureName" minOccurs="0"/>
+													<xs:element type="xs:string" name="MeasureCode" minOccurs="0"/>
+													<!-- Ссылка файл на вложения -->
+													<xs:element name="AttachmentRef" type="r:AttachmentRefType" minOccurs="0"/>													
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<!-- Код подразделения -->
+							<xs:element type="xs:string" name="DepartmentCode"/>
+							<!-- Краткое наименование подразделения -->
+							<xs:element type="xs:string" name="DepartmentShortName" minOccurs="0"/>
+							<!-- Приложение к лицензии -->
+							<xs:element name="Addendum" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<!-- Строка приложения к лицензии  -->
+										<xs:element name="Item" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<!-- Описание товара -->
+													<xs:element type="xs:string" name="CommodityName"/>
+													<!-- Стоимость товара в валюте контракта-->
+													<xs:element type="xs:float" name="Cost"/>
+													<!-- Количество товара в основной единице измерения -->
+													<xs:element type="xs:float" name="Quantity"/>
+													<!-- Количество товара в дополнительной единице измерения -->
+													<xs:element type="xs:float" name="AddQuantity" minOccurs="0"/>
+													<!-- Дополнительная единица измерения -->
+													<xs:element type="xs:string" name="AddMeasureName" minOccurs="0"/>
+													<xs:element type="xs:string" name="AddMeasureCode" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+
+							<!-- Используется квота, для которой установлена возможность импорта товаров в счет квоты любого другого государства (союза государств) -->
+							<!-- поле должно быть отмечено, если страна происхождения товара не принадлежит той группе стран, на которую квота была распределена первоначально -->
+							<xs:element type="xs:boolean" name="CanReissurance" minOccurs="0"/>
+							<!-- Код государства (союза государств) в счет квоты которого оформляется лицензия -->
+							<xs:element type="xs:string" name="QuotaCountryGroup" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RequestDataResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- Ид заявления ЕПГУ -->
+				<xs:element type="xs:long" name="OrderId"/>
+				<!-- Результат обработки -->
+				<xs:element name="Result">
+					<xs:complexType>
+						<xs:choice>
+							<!-- Сведения об отказе в выдаче лицезии -->
+							<xs:element name="Refusal">
+								<xs:complexType>
+									<xs:sequence>
+										<!-- Основание отказа -->
+										<xs:element type="xs:string" name="Reason" />
+										<!-- Ссылка на файл уведомления об отказе (передается в блоке вложений) -->
+										<xs:element type="r:AttachmentRefType" name="NotificationFile" minOccurs="0" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<!-- Сведения о выданной лицензии -->
+							<xs:element name="License">
+								<xs:complexType>
+									<xs:sequence>
+										<!-- Ссылка на файл лицензии (передается в блоке вложений) -->
+										<xs:element type="r:AttachmentRefType" name="LicenseFile" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<!-- Код ЕПГУ результата обработки -->
+				<xs:element name="ResultCode">
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:enumeration value="3">
+								<xs:annotation>
+									<xs:documentation>Лицензия выдана</xs:documentation>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:enumeration value="4">
+								<xs:annotation>
+									<xs:documentation>Отказ в выдаче лицензии</xs:documentation>
+								</xs:annotation>
+							</xs:enumeration>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="AttachmentRefType">
+		<xs:annotation>
+			<xs:documentation>
+					Идентификатор вложения, на которое ссылаемся. Должен быть равен значению
+					//{urn://x-artefacts-smev-gov-ru/smev-core/client-interaction/basic/1.0}AttachedFile[n]/Id/text()
+					того вложения, на которое нужно сослаться.
+				</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+</xs:schema>

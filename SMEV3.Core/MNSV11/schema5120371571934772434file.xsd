@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="smev2sts"
+    targetNamespace="signedtimestamp:smev:interaction:v3.0/2.3"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/smev2sts.xsd"
+    xmlns:mstns="http://tempuri.org/smev2sts.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:sts="signedtimestamp:smev:interaction:v3.0/2.3"
+>
+	<xs:element name="StsRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на получение подписанного штампа доверенного времени.
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Digest" nillable="false" type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="OID" nillable="false" type="xs:string" minOccurs="0" maxOccurs="1"/>
+ 			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="StsResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Ответ на запрос на получение подписанного штампа доверенного времени.
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TimeStampToken" nillable="true" type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

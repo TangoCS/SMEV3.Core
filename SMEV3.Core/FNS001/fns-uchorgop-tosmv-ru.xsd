@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 U (http://www.altova.com) by Company (GNIVC FNS RF) -->
+<!-- edited with<?xml version="1.0" encoding="UTF-8"?>
+ XMLSpy v2006 rel. 3 U (http://www.altova.com) by 1 (GNIVC FNS RF) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn://x-artefacts-fns-uchorgop-tosmv-ru/370_68/4.0.1" xmlns:fns="urn://x-artefacts-fns/commons/4.0.1" targetNamespace="urn://x-artefacts-fns-uchorgop-tosmv-ru/370_68/4.0.1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="urn://x-artefacts-fns/commons/4.0.1" schemaLocation="./commons/fns-common-types.xsd"/>
+	<xs:element name="FNSUchOrgOPRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений об учете организации в налоговом органе по месту нахождения ее обособленного подразделения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="СвЮЛ">
+					<xs:annotation>
+						<xs:documentation>Сведения о юридическом лице (органе государственной власти, ином государственном органе, суде, органе государственных внебюджетных фондов, органе местного самоуправления), осуществляющем запрос</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="НаимЮЛ" type="fns:string-1000" use="required">
+							<xs:annotation>
+								<xs:documentation>Наименование юридического лица</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ИННЮЛ" type="fns:LegalPersonINNType" use="required">
+							<xs:annotation>
+								<xs:documentation>ИНН юридического лица</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ОГРН" type="fns:OGRNCompanyType" use="required">
+							<xs:annotation>
+								<xs:documentation>Основной государственный регистрационный номер юридического лица</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ЗапросЮЛ">
+					<xs:annotation>
+						<xs:documentation>Сведения об организации, в отношении которой осуществляется запрос</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="ОГРН" type="fns:OGRNCompanyType" use="optional">
+							<xs:annotation>
+								<xs:documentation>Основной государственный регистрационный номер организации</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ИННЮЛ" type="fns:LegalPersonINNType" use="required">
+							<xs:annotation>
+								<xs:documentation>ИНН организации</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="КППОП" type="fns:KPPType" use="required">
+							<xs:annotation>
+								<xs:documentation>Код причины постановки на учет организации в НО по месту нахождения ее обособленного подразделения</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ИдДок" use="required">
+				<xs:annotation>
+					<xs:documentation>Идентификатор запроса</xs:documentation>
+					<xs:documentation>GUID</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="36"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ТипИнф" use="required">
+				<xs:annotation>
+					<xs:documentation>Тип информации</xs:documentation>
+					<xs:documentation>ЗапрПостУч – запрос о постановке на учет организации в налоговом органе по месту нахождения ее обособленного подразделения; 
+ЗапрСнУч – запрос о снятии с учета организации в налоговом органе по месту нахождения ее обособленного подразделения; 
+ЗапрРегИО – запрос об органе, зарегистрировавшем иностранную организацию, регистрационном номере и месте регистрации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="fns:string-50">
+						<xs:enumeration value="ЗапрПостУч"/>
+						<xs:enumeration value="ЗапрСнУч"/>
+						<xs:enumeration value="ЗапрРегИО"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FNSUchOrgOPResponse">
+		<xs:annotation>
+			<xs:documentation>Сведения об учете организации в налоговом органе по месту нахождения ее обособленного подразделения </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="СвОрг">
+					<xs:annotation>
+						<xs:documentation>Сведения об организации и обособленном подразделении</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="СвРегИО" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Сведения о регистрации иностранной организации</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="КодСтрИО" type="fns:OKCMType" use="required">
+										<xs:annotation>
+											<xs:documentation>Код страны регистрации (инкорпорации) иностранной организации</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="НаимРОИО" type="fns:string-1000" use="required">
+										<xs:annotation>
+											<xs:documentation>Наименование регистрирующего органа иностранной организации</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="РегНомИО" type="fns:string-50" use="required">
+										<xs:annotation>
+											<xs:documentation>Регистрационный номер иностранной организации </xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ИННЮЛ" type="fns:LegalPersonINNType" use="required">
+							<xs:annotation>
+								<xs:documentation>ИНН организации</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="КППОП" type="fns:KPPType" use="required">
+							<xs:annotation>
+								<xs:documentation>Код причины постановки на учет организации в НО по месту нахождения ее обособленного подразделения</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="КодНООП" type="fns:SONOType" use="optional">
+							<xs:annotation>
+								<xs:documentation>Код налогового органа постановки на учет организации по месту нахождения ее обособленного подразделения </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="АдресНООП" type="fns:string-255" use="optional">
+							<xs:annotation>
+								<xs:documentation>Адрес налогового органа постановки на учет организации по месту нахождения ее обособленного подразделения организации</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ДатаУчОП" type="fns:DatType" use="optional">
+							<xs:annotation>
+								<xs:documentation>Дата постановки на учет организации в НО по месту нахождения обособленного подразделения</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="НаимОП" type="fns:string-1000" use="optional">
+							<xs:annotation>
+								<xs:documentation>Полное наименование обособленного подразделения</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="АдресМНОП" type="fns:string-255" use="optional">
+							<xs:annotation>
+								<xs:documentation>Адрес места нахождения обособленного подразделения</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ДатаСнУчОП" type="fns:DatType" use="optional">
+							<xs:annotation>
+								<xs:documentation>Дата снятия с учета организации в НО по месту нахождения обособленного подразделения</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="СтОрг">
+					<xs:annotation>
+						<xs:documentation>Сведения о постановке на учет\ снятии с учета организации в НО, в том числе по месту нахождения ее обособленного подразделения</xs:documentation>
+						<xs:documentation>Перечень возможных значений данного элемента приведен в Руководстве пользователя сервиса (в разделе 4.2 Описание полей ответа на запрос)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="fns:string-2"/>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="ИдДок" use="required">
+				<xs:annotation>
+					<xs:documentation>Идентификатор запроса</xs:documentation>
+					<xs:documentation>Указывается GUID запроса</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="36"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

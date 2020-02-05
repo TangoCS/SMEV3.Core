@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMEV3Test", "SMEV3Test\SMEV3Test.csproj", "{FEABF93C-9360-4D0C-8BB4-F3233D26C0E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMEV3.Core", "SMEV3.Core\SMEV3.Core.csproj", "{56C54A55-6646-4BCA-A362-BF3814DDB6E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GostCryptography", "..\GostCryptography\Source\GostCryptography\GostCryptography.csproj", "{1520A79F-03EB-4290-AA4A-027806890A9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tango.ServiceModel", "..\TangoCS\Tango.ServiceModel\Tango.ServiceModel.csproj", "{7935F22A-6D38-4D68-9079-1A3F5002E6C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmevTest", "SmevTest\SmevTest.csproj", "{DF58482E-9C2D-4CE5-9F83-F66CDF4B8A79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEABF93C-9360-4D0C-8BB4-F3233D26C0E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEABF93C-9360-4D0C-8BB4-F3233D26C0E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEABF93C-9360-4D0C-8BB4-F3233D26C0E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEABF93C-9360-4D0C-8BB4-F3233D26C0E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C54A55-6646-4BCA-A362-BF3814DDB6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C54A55-6646-4BCA-A362-BF3814DDB6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C54A55-6646-4BCA-A362-BF3814DDB6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C54A55-6646-4BCA-A362-BF3814DDB6E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1520A79F-03EB-4290-AA4A-027806890A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1520A79F-03EB-4290-AA4A-027806890A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1520A79F-03EB-4290-AA4A-027806890A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1520A79F-03EB-4290-AA4A-027806890A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7935F22A-6D38-4D68-9079-1A3F5002E6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7935F22A-6D38-4D68-9079-1A3F5002E6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7935F22A-6D38-4D68-9079-1A3F5002E6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7935F22A-6D38-4D68-9079-1A3F5002E6C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF58482E-9C2D-4CE5-9F83-F66CDF4B8A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF58482E-9C2D-4CE5-9F83-F66CDF4B8A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF58482E-9C2D-4CE5-9F83-F66CDF4B8A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF58482E-9C2D-4CE5-9F83-F66CDF4B8A79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B23BDEC-45A3-4494-BD47-56CBC2CE269B}
+	EndGlobalSection
+EndGlobal

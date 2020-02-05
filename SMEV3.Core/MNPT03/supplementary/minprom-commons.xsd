@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.minprom.gov.ru/schemas/commons/1.0.0"
+           xmlns:tns="http://www.minprom.gov.ru/schemas/commons/1.0.0"
+           xmlns:sup="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" elementFormDefault="qualified"
+           attributeFormDefault="qualified">
+
+    <xs:import namespace="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1"
+               schemaLocation="smev-supplementary-commons.xsd"/>
+
+    <xs:complexType name="AttachedDocumentType">
+        <xs:sequence>
+            <xs:element ref="sup:AttachmentRef"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

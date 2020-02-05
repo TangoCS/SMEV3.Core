@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.minprom.gov.ru/schemas/licensing/Request/1.0.1"
+	xmlns:r="http://www.minprom.gov.ru/schemas/licensing/Request/1.0.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:com="http://www.minprom.gov.ru/schemas/commons/1.0.0">
+  <xs:import namespace="http://www.minprom.gov.ru/schemas/commons/1.0.0"
+             schemaLocation="supplementary/minprom-commons.xsd"/>
+  <xs:element name="LicenseRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- Формат ответа (xml, pdf) -->
+        <xs:element name="Format">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="pdf"/>
+              <xs:enumeration value="xml"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <!-- ИНН владельца лицензии -->
+        <xs:element name="HolderINN" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="(\d{10}|\d{12})"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:choice>
+          <!-- Номер лицензии -->
+          <xs:element name="LicenseNumber" type="xs:string" />
+          <xs:sequence>
+            <!-- Начальная дата периода, за который запрашиваются лицензии -->
+            <xs:element type="xs:date" name="StartDate" />
+            <!-- Конечная дата периода, за который запрашиваются лицензии -->
+            <xs:element type="xs:date" name="EndDate" />
+          </xs:sequence>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LicenseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="License" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- Номер лицензии -->
+              <xs:element name="LicenseNumber" type="xs:string" />
+              <!-- Статус лицензии -->
+              <xs:element name="LicenseStatus">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Оформлена"/>
+                    <xs:enumeration value="Снята с контроля"/>
+                    <xs:enumeration value="Действие прекращено"/>
+                    <xs:enumeration value="Приостановлена"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <!-- Дата последнего изменения статуса лицензии -->
+              <xs:element type="xs:date" name="StatusDate" />
+              <!-- Ссылка на файл лицензии -->
+              <xs:element name="LicenseFile" type="com:AttachedDocumentType" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

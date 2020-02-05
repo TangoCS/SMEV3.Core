@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="urn://ru/mvd/sovm/commons/1.0.0" elementFormDefault="qualified"
+    xmlns="urn://ru/mvd/sovm/commons/1.0.0" xmlns:smev="urn://x-artefacts-smev-gov-ru/commons/1.2"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>Общие типы данных</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="urn://x-artefacts-smev-gov-ru/commons/1.2"
+        schemaLocation="smev-supplementary-commons-1.2.xsd"/>
+    <xs:complexType name="PassportRFType">
+        <xs:annotation>
+            <xs:documentation>Паспорт гражданина РФ</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="series" type="smev:digits-4">
+                <xs:annotation>
+                    <xs:documentation>Серия паспорта гражданина РФ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="number" type="smev:digits-6">
+                <xs:annotation>
+                    <xs:documentation>Номер паспорта гражданина РФ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="issueDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата выдачи паспорта гражданина РФ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="issuerCode" type="smev:digits-6">
+                <xs:annotation>
+                    <xs:documentation>Код выдавшего подразделения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PassportRFRequisiteSetType">
+        <xs:annotation>
+            <xs:documentation>Реквизиты паспорта РФ: серия, номер, дата выдачи</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="series" type="smev:digits-4">
+                <xs:annotation>
+                    <xs:documentation>Серия</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="number" type="smev:digits-6">
+                <xs:annotation>
+                    <xs:documentation>Номер</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="issueDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата выдачи</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SovietPassportRequisiteSetType">
+        <xs:annotation>
+            <xs:documentation>Реквизиты паспорта СССР и свидетельства о рождении РФ: серия, номер, дата выдачи</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="series" type="smev:SovietStyleDocumentSeriesType">
+                <xs:annotation>
+                    <xs:documentation>Серия</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="number" type="smev:digits-6">
+                <xs:annotation>
+                    <xs:documentation>Номер</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="issueDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата выдачи</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PhysicalPersonQualifiedNameType">
+        <xs:annotation>
+            <xs:documentation>ФИО физического лица</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="familyName" type="smev:rus-100">
+                <xs:annotation>
+                    <xs:documentation>Фамилия</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="firstName" type="smev:rus-100">
+                <xs:annotation>
+                    <xs:documentation>Имя</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="patronymic" type="smev:rus-100" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Отчество</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PhysicalPersonIdentificationInformationType">
+        <xs:annotation>
+            <xs:documentation>Установочные данные: фамилия, имя, отчество, дата и место рождения</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="familyName" type="smev:rus-100">
+                <xs:annotation>
+                    <xs:documentation>Фамилия</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="firstName" type="smev:rus-100">
+                <xs:annotation>
+                    <xs:documentation>Имя</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="patronymic" type="smev:rus-100">
+                <xs:annotation>
+                    <xs:documentation>Отчество</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="birthDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата рождения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="birthPlace" type="smev:rus-and-num-500" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Место рождения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

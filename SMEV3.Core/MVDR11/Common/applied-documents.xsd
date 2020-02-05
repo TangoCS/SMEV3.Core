@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:appdoc="urn://x-artefacts-mvd-gov-ru/gunk/dob/drug-transportation-permission/applied-documents/1.0.0" targetNamespace="urn://x-artefacts-mvd-gov-ru/gunk/dob/drug-transportation-permission/applied-documents/1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:element name="CodeDocument" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Код документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Name" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Имя файла документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Number" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Номер документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="URL" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Относительный путь к файлу внутри архива
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Type" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>MIME-тип контента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AppliedDocumentsType">
+		<xs:sequence>
+			<xs:element name="AppliedDocument" type="appdoc:AppliedDocumentType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AppliedDocumentType">
+		<xs:sequence>
+			<xs:element ref="appdoc:CodeDocument" minOccurs="1"/>
+			<xs:element ref="appdoc:Name"/>
+			<xs:element ref="appdoc:Number" minOccurs="1"/>
+			<xs:element ref="appdoc:URL"/>
+			<xs:element ref="appdoc:Type"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

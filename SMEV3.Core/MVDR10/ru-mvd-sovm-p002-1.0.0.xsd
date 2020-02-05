@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="urn://ru/mvd/sovm/p002/1.0.0" elementFormDefault="qualified"
+    xmlns="urn://ru/mvd/sovm/p002/1.0.0" xmlns:smev="urn://x-artefacts-smev-gov-ru/commons/1.2"
+    xmlns:sovm="urn://ru/mvd/sovm/commons/1.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>P002: Проверка действительности паспорта (расширенная)</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="urn://x-artefacts-smev-gov-ru/commons/1.2"
+        schemaLocation="./commons/smev-supplementary-commons-1.2.xsd"/>
+    <xs:import namespace="urn://ru/mvd/sovm/commons/1.0.0"
+        schemaLocation="./commons/sovm-commons-1.0.0.xsd"/>
+    <xs:element name="request" type="RequestType">
+        <xs:annotation>
+            <xs:documentation>Запрос</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="response" type="ResponseType">
+        <xs:annotation>
+            <xs:documentation>Ответ</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="RequestType">
+        <xs:annotation>
+            <xs:documentation>Информация о запросе</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="requestInfo" type="RequestInfoType">
+                <xs:annotation>
+                    <xs:documentation>Реквизитный состав ЗАПРОСА</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ResponseType">
+        <xs:annotation>
+            <xs:documentation>Информация об ответе</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="requestInfo" type="RequestInfoType">
+                <xs:annotation>
+                    <xs:documentation>Реквизитный состав ЗАПРОСА</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="responseInfo" type="ResponseInfoType">
+                <xs:annotation>
+                    <xs:documentation>Реквизитный состав Ответа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RequestInfoType">
+        <xs:annotation>
+            <xs:documentation>Реквизитный состав ЗАПРОСА</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="physicalPersonQualifiedNameType"
+                type="sovm:PhysicalPersonQualifiedNameType">
+                <xs:annotation>
+                    <xs:documentation>ФИО физического лица</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="birthDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Дата рождения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="passportRF" type="sovm:PassportRFType">
+                <xs:annotation>
+                    <xs:documentation>Паспорт гражданина РФ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="regionCode" type="smev:digits-4" minOccurs="0" >
+                <xs:annotation>
+                    <xs:documentation>Код региона</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ResponseInfoType">
+        <xs:annotation>
+            <xs:documentation>Реквизитный состав Ответа</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="docStatus" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Статус паспорта</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="invalidityReason" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Причина недействительности. Элемент присутствует в ответе, если паспорт недействителен (docStatus = 301).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="invaliditySince" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Недействительно с. Элемент присутствует в ответе, если паспорт недействителен  (docStatus = 301).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Comment" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Текстовый комментарий к ответу</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

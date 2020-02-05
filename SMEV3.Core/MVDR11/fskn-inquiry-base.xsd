@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:appdoc="urn://x-artefacts-mvd-gov-ru/gunk/dob/drug-transportation-permission/applied-documents/1.0.0" xmlns:tns="urn://x-artefacts-mvd-gov-ru/gunk/inquiry/drug-transportation-permission/1.0.0" targetNamespace="urn://x-artefacts-mvd-gov-ru/gunk/inquiry/drug-transportation-permission/1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="urn://x-artefacts-mvd-gov-ru/gunk/dob/drug-transportation-permission/applied-documents/1.0.0" schemaLocation="common/applied-documents.xsd"/>
+	<xsd:element name="InquiryResponse" type="tns:_AttachmentsBlockType"/>
+	<xsd:element name="InquiryRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="GUNKPermitionNumber" type="tns:string-20"/>
+			</xsd:sequence>
+			<xsd:attribute name="OKTMO" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- Блок описания вложений внутри бизнес-блока сообщения СМЭВ3
+    Может быть включен также в реестровую запись.-->
+	<xsd:complexType name="_AttachmentsBlockType">
+		<xsd:sequence>
+			<xsd:element name="AttachmentsBlock" type="tns:_AttachmentDescriptionType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="_AttachmentDescriptionType">
+		<xsd:sequence>
+			<!-- Указание способа передачи вложения: через ФХ или методом MTOM-передачи -->
+			<xsd:choice>
+				<!-- Ссылка на папку ФХ, в котором содержится передаваемое вложение-->
+				<xsd:element name="AttachmentFSLink" type="xsd:string"/>
+				<!-- Признак передачи вложения методом MTOM-->
+				<xsd:element name="IsMTOMAttachmentContent" type="xsd:boolean"/>
+			</xsd:choice>
+			<!-- Описание возможных форматов вложения -->
+			<xsd:sequence>
+				<!-- Обязательное и явное указание: является ли формат структурированным или не является -->
+				<xsd:element name="IsUnstructuredFormat" type="xsd:boolean"/>
+				<!-- Обязательное и явное указание: будет ли содержимое вложения упаковываться Zip-алгоритмом -->
+				<xsd:element name="IsZippedPacket" type="xsd:boolean"/>
+				<!-- Если формат структурированный, то описываем его структуру -->
+				<xsd:element name="AppliedDocuments" type="appdoc:AppliedDocumentsType"/>
+			</xsd:sequence>
+			<!-- Блок передачи файла отсоединенной электронной подписи вложения -->
+			<xsd:element name="AttachmentSignatureFSLink" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="string-20">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

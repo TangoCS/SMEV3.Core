@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://x-artefacts-mino/commons/1.0.2" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xz="urn://x-artefacts-mino/commons/1.0.2">
+    <xs:simpleType name="DIntegerType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:maxInclusive value="2147483647"/>
+            <xs:minInclusive value="-2147483648"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar25Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="25"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar1000Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="1000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar300Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="300"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DDateType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar3000Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="3000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DIdType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DInnType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DCustomsCodeType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="8"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar250Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="250"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar100Type">
+        <xs:annotation>
+            <xs:documentation>Строка длиной не более 100 символов</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DHaveDebtsType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="1"/>
+            <xs:enumeration value="0">
+                <xs:annotation>
+                    <xs:documentation>Задолженность отсутствует</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Задолженность имеется</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar255Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar50Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar6Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DSmallintType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:maxInclusive value="32767"/>
+            <xs:minInclusive value="-32768"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DEmailType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="320"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar80Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="80"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DSnilsType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="11"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar10Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DBooleanType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction xmlns="" base="xs:boolean"/>
+    </xs:simpleType>
+    <xs:simpleType name="DMoneyType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="15"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar30Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DOgrnType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="15"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar200Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar40Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="40"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DDescriptionType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="1000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DVarchar20Type">
+        <xs:annotation>
+            <xs:documentation>Строка длиной не более 20 символов</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

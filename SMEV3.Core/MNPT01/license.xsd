@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2016 (x64) (http://www.altova.com) by Evgeny Markelov (The Federal Service for Regulation of the Alcohol Market) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tp="http://minpromtorg.smev.ru/medicines/licenseinfo/types/1.0.0" xmlns:tns="http://minpromtorg.smev.ru/medicines/licenseinfo/1.0.0" targetNamespace="http://minpromtorg.smev.ru/medicines/licenseinfo/1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://minpromtorg.smev.ru/medicines/licenseinfo/types/1.0.0" schemaLocation="Types\types.xsd"/>
+	<xs:element name="Request">
+		<xs:annotation>
+			<xs:documentation>Запрос</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LegalPersonINN" type="tp:LegalPersonINNType">
+					<xs:annotation>
+						<xs:documentation>ИНН владельца лицензии</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OGRN" type="tp:OGRNCompanyType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>ОГРН владельца лицензии</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="LicenseNumber" type="tp:s100" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Номер лицензии</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AdvancedRequest" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>Признак запроса расширенной выписки из реестра лицензий</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос</xs:documentation>
+			<xs:documentation>Сведения во вложении</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Licenses">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice>
+								<xs:element name="LicenseInfoAdvanced" type="tns:LicenseInfoAdvancedType" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Расширенные сведения</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="LicenseInfo" type="tns:LicenseInfoType" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Красткие сведения</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="LicenseInfoAdvancedType">
+		<xs:annotation>
+			<xs:documentation>Расширенные сведения лицензии</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LegalPersonINN" type="tp:LegalPersonINNType">
+				<xs:annotation>
+					<xs:documentation>ИНН владельца лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OGRN" type="tp:OGRNCompanyType">
+				<xs:annotation>
+					<xs:documentation>ОГРН владельца лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullName" type="tp:s1000">
+				<xs:annotation>
+					<xs:documentation>Полное название владельца лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseNumber" type="tp:s100">
+				<xs:annotation>
+					<xs:documentation>Номер лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateBegin" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseStatus" type="tp:d1">
+				<xs:annotation>
+					<xs:documentation>Текущее состояние действия лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseStatusChangeDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата изменения статуса действия лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Addresses">
+				<xs:annotation>
+					<xs:documentation>Адреса мест осуществления деятельности</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Address" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FIASCode" type="tp:s32" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Код адреса в справочнике ФИАС</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="AddressValue" type="tp:s4000" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Адрес</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="LicenseActivities">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="LicenseActivity" maxOccurs="unbounded">
+													<xs:annotation>
+														<xs:documentation>Виды деятельности из лицензии</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="LicenseActivityValue" type="tp:s1000">
+																<xs:annotation>
+																	<xs:documentation>Вид деятельности из лицензии</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="DosageForms">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="DosageForm" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Лекарственные формы </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="DosageFormValue" type="tp:s1000">
+																						<xs:annotation>
+																							<xs:documentation>Лекарственная форма согласно лицензии</xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="AdditionalDescription" type="tp:s4000" minOccurs="0">
+																						<xs:annotation>
+																							<xs:documentation>Дополнительное описание лекарственной формы</xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LicenseInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения лицензии</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LegalPersonINN" type="tp:LegalPersonINNType">
+				<xs:annotation>
+					<xs:documentation>ИНН владельца лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OGRN" type="tp:OGRNCompanyType">
+				<xs:annotation>
+					<xs:documentation>ОГРН владельца лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullName" type="tp:s1000">
+				<xs:annotation>
+					<xs:documentation>Полное название владельца лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseNumber" type="tp:s100">
+				<xs:annotation>
+					<xs:documentation>Номер лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateBegin" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseStatus" type="tp:s100">
+				<xs:annotation>
+					<xs:documentation>Текущее состояние действия лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuerRegion" type="tp:d2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регион выдачи лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuerName" type="tp:s1000" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование лицензирующего органа, выдавшего лицензию</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

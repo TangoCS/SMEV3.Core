@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes/1.0.3"
+           xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes/1.0.3" xmlns:RUSclt_ru="urn:customs.ru:RUSCommonLeafTypes/1.0.3"
+           xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes/1.0.3" targetNamespace="urn:customs.ru:RUSCommonAggregateTypes/1.0.3"
+           elementFormDefault="qualified" version="5.12.1.0">
+    <xs:import namespace="urn:customs.ru:CommonLeafTypes/1.0.3" schemaLocation="CommonLeafTypesCust.xsd"/>
+    <xs:import namespace="urn:customs.ru:CommonAggregateTypes/1.0.3" schemaLocation="CommonAggregateTypesCust.xsd"/>
+    <xs:import namespace="urn:customs.ru:RUSCommonLeafTypes/1.0.3" schemaLocation="RUSCommonLeafTypes.xsd"/>
+    <xs:annotation>
+        <xs:documentation>Общие сложные прикладные типы РФ</xs:documentation>
+    </xs:annotation>
+    <xs:complexType name="AEORegistryIdDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие сведения о номере свидетельства о включении юридического лица в реестр уполномоченных
+                экономических операторов
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="RegistryOwnerCode" type="clt_ru:LetterIndicatorType">
+                <xs:annotation>
+                    <xs:documentation>Код типа реестра уполномоченных экономических операторов</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountryA2Code" type="clt_ru:CountryA2CodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Кодовое обозначение страны</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DocId" type="clt_ru:DocumentNumberType">
+                <xs:annotation>
+                    <xs:documentation>Номер свидетельства, присвоенный уполномоченным органом государства-члена</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AEORegistryKindCode" type="clt_ru:LetterIndicatorType">
+                <xs:annotation>
+                    <xs:documentation>Код типа свидетельства уполномоченного экономического оператора</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AmountType">
+        <xs:annotation>
+            <xs:documentation>Денежная сумма и код валюты</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Amount" type="clt_ru:AmountType">
+                <xs:annotation>
+                    <xs:documentation>Сумма</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+                <xs:annotation>
+                    <xs:documentation>Буквенный код валюты в соответствии с Классификатором валют</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BusinessEntityId20Type">
+        <xs:annotation>
+            <xs:documentation>Строка символов, идентифицирующая хозяйствующего субъекта</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="BusinessEntityId" type="clt_ru:CodeVariable20Type">
+                <xs:annotation>
+                    <xs:documentation>Идентификатор хозяйствующего субъекта. Строка не более 20 символов</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="KindId" type="clt_ru:CodeVariable20Type">
+                <xs:annotation>
+                    <xs:documentation>Метод идентификации хозяйствующих субъектов. Строка не более 20 символов</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CountryDetailsType">
+        <xs:annotation>
+            <xs:documentation>Сведения о стране</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType">
+                <xs:annotation>
+                    <xs:documentation>Код страны</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountryName" type="clt_ru:CountryNameType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование страны</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CustomsPersonDetails">
+        <xs:annotation>
+            <xs:documentation>Сведения о должностном лице таможенного органа</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:PersonBaseType">
+                <xs:sequence>
+                    <xs:element name="LNP" type="clt_ru:LNPIDType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>ЛНП должностного лица таможенного органа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CustomsCode" type="clt_ru:CustomsCodeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Код таможенного органа, указанный на оттиске ЛНП</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DocBaseType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие сведения о базовых реквизитах документа</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:DocumentBaseType">
+                <xs:sequence>
+                    <xs:element name="DocStartDate" type="clt_ru:DateCustType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата начала срока, в течение которого документ имеет силу</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DocValidityDate" type="clt_ru:DateCustType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата окончания срока, в течение которого документ имеет силу</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Код страны</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="EECCustomsType">
+        <xs:annotation>
+            <xs:documentation>Таможенный орган ЕАЭС</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:CustomsType">
+                <xs:sequence>
+                    <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType">
+                        <xs:annotation>
+                            <xs:documentation>Код страны</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="EECDTGoodsBaseDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие базовые сведения о товаре в таможенной декларации</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:EECGoodsBaseType">
+                <xs:sequence>
+                    <xs:element name="UnifiedGrossMassMeasure" type="clt_ru:QuantityBasisType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Вес товара, брутто</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="UnifiedNetMassMeasure" type="clt_ru:QuantityBasisType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Вес товара, нетто</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="GoodsMeasureDetails" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Количество товара с указанием дополнительной единицы измерения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="EECEDocHeaderAddInfoType">
+        <xs:annotation>
+            <xs:documentation>Дополнительные технологические реквизиты электронного документа (сведений)</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="InfEnvelopeCode" type="RUSclt_ru:InfEnvelopeCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Кодовое обозначение сообщения общего процесса</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EDocCode" type="RUSclt_ru:EDocCodeType">
+                <xs:annotation>
+                    <xs:documentation>Кодовое обозначение электронного документа (сведений) в соответствии с реестром структур электронных документов
+                        и сведений
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EDocDateTime" type="clt_ru:DateTimeCustType">
+                <xs:annotation>
+                    <xs:documentation>Дата и время создания электронного документа (сведений)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LanguageCode" type="clt_ru:LanguageCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Кодовое обозначение языка</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="EECGoodsBaseType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие базовые сведения о товаре</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="GoodsNumeric" type="clt_ru:Count3Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Порядковый номер товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="GoodsTNVEDCode" type="clt_ru:GoodsNomenclatureCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="4">
+                <xs:annotation>
+                    <xs:documentation>Описание товара, включая торговое, коммерческое или иное традиционное наименование товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="EECGoodsManufacturerDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие сведения о производителе товара</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ManufacturerName" type="clt_ru:FreeText250Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Сведения о производителе товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TradeMarkName" type="clt_ru:FreeText250Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование товарного знака, объекта авторского права, смежных прав, патента</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ProductionPlaceName" type="clt_ru:FreeText250Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование места происхождения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ExchangeRateWithCurrencyA3Type">
+        <xs:annotation>
+            <xs:documentation>Курс валюты</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CurrencyRate" type="RUSclt_ru:RUCurrencyRateType">
+                <xs:annotation>
+                    <xs:documentation>Курс валюты. Число. Всего 20 цифр из них до 4 знаков после запятой</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CurrencyA3Code" type="clt_ru:CurrencyA3CodeType">
+                <xs:annotation>
+                    <xs:documentation>Буквенный код валюты в соответствии с Классификатором валют</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ScaleNumber" type="clt_ru:Quantity2Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Масштаб денежной суммы в десятичной системе счисления, представленный в виде показателя степени числа 10
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GoodLocationTransportMeansDetailsType">
+        <xs:annotation>
+            <xs:documentation>Сведения о транспортном средстве в/на котором находятся товары</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UnifiedTransportModeCode" type="clt_ru:TransportModeCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Кодовое обозначение вида транспорта</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TransportMeansRegId" type="RUScat_ru:TransportMeansRegIdType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Индивидуальное буквенно-цифровое обозначение, присвоенное регистрирующим органом транспортному средству
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="InvoiceValueBaseDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие базовые сведения о стоимости товара по контракту</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ValueAmount" type="clt_ru:AmountType">
+                <xs:annotation>
+                    <xs:documentation>Общая стоимость товаров в валюте платежа (оценки)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ExchangeRate" type="RUScat_ru:ExchangeRateWithCurrencyA3Type">
+                <xs:annotation>
+                    <xs:documentation>Курс валюты цены договора или валюты платежа (оценки)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OrganizationType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие сведения о юридическом лице</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:SubjectBaseDetailsType">
+                <xs:sequence>
+                    <xs:element name="SubjectAddressDetails" type="RUScat_ru:RUAddressType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Адрес</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CommunicationDetails" type="cat_ru:ContactType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Контактный реквизит субъекта</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="PeriodDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие промежуток времени с указанием начальной и конечной дат и времени</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="StartDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата и время начала действия</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EndDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата и время окончания действия</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RegisterOrganizationDetailsType">
+        <xs:annotation>
+            <xs:documentation>Сведения о реквизитах юридического лица, включенного в реестр</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:SubjectBaseDetailsType">
+                <xs:sequence>
+                    <xs:element name="AddressDetails" type="RUScat_ru:RUAddressType">
+                        <xs:annotation>
+                            <xs:documentation>Адрес регистрации юридического лица</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CommunicationDetails" type="cat_ru:ContactType" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Контактный реквизит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="PostalAddressDetails" type="RUScat_ru:RUAddressType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Информация о почтовом адресе юридического лица</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="BranchFlagCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Признак филиала организации: 0 - головная организация (основное подразделение); 1 - филиал организации
+                                (структурное подразделение)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ResourceItemStatusDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие детализированную информацию о состоянии записи общего ресурса</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ValidityPeriodDetails" type="RUScat_ru:PeriodDetailsType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Период действия записи общего ресурса (реестра, перечня, базы данных)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="UpdateDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата и время обновления записи общего ресурса (реестра, перечня, базы данных)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RUAddressType">
+        <xs:annotation>
+            <xs:documentation>Адрес организации / физического лица</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="AddressKindCode" type="clt_ru:CodeVariable20Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Кодовое обозначение вида адреса</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PostalCode" type="clt_ru:PostalCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Почтовый индекс</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Буквенный код страны в соответствии с классификатором стран мира</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CounryName" type="clt_ru:CountryNameType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Краткое название страны в соответствии с классификатором стран мира</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Region" type="RUSclt_ru:RegionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Регион (Наименование единицы административно-территориального деления первого уровня)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="District" type="RUSclt_ru:DistrictType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Район (Наименование единицы административно-территориального деления второго уровня)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Town" type="RUSclt_ru:TownNameType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Город</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="City" type="RUSclt_ru:CityNameType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Населенный пункт</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="StreetHouse" type="RUSclt_ru:StreetHouseType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Улица (Наименование элемента улично-дорожной сети городской инфраструктуры)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="House" type="RUSclt_ru:HouseType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обозначение дома, корпуса, строения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Room" type="RUSclt_ru:RoomType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обозначение офиса или квартиры</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AddressText" type="RUSclt_ru:AddressTextType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Набор элементов адреса, представленных в свободной форме в виде текста.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OKTMO" type="clt_ru:CodeVariable11Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код ОКТМО (Общероссийский классификатор территорий муниципальных образований)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OKATO" type="clt_ru:OKATOCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код ОКАТО (Общероссийский классификатор объектов административно-территориального деления)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="KLADR" type="clt_ru:CodeVariable20Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код КЛАДР</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AOGUID" type="clt_ru:DocumentIDType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Глобальный идентификатор адресного объекта по ФИАС</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AOID" type="clt_ru:DocumentIDType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Уникальный идентификатор адресного объекта по ФИАС</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TerritoryCode" type="RUSclt_ru:TerritoryCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код единицы административно-территориального деления</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PostOfficeBoxId" type="clt_ru:CodeVariable20Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер абонентского ящика на предприятии почтовой связи</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RUIdentityCardType">
+        <xs:annotation>
+            <xs:documentation>Сведения о документе, удостоверяющем личность физического лица</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:IdentityCardType">
+                <xs:sequence>
+                    <xs:element name="IssuerCode" type="clt_ru:CodeVariable7Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Код подразделения органа, выдавшего документ, удостоверяющий личность</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="FullIdentityCardName" type="clt_ru:FreeText500Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Наименование вида документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="AuthorityId" type="clt_ru:CodeVariable20Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Строка, идентифицирующая орган государственной власти государства-члена либо уполномоченную им
+                                организацию, выдавшую документ
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Кодовое обозначение страны</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RUOrganizationBaseType">
+        <xs:annotation>
+            <xs:documentation>Реквизиты организации. Базовый класс</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="OrganizationName" type="clt_ru:FreeText500Type" minOccurs="0" maxOccurs="2">
+                <xs:annotation>
+                    <xs:documentation>Наименование организации / ФИО физического лица</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ShortName" type="clt_ru:ShortNameType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Краткое наименование организации</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OrganizationLanguage" type="clt_ru:LanguageCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Код языка для заполнения наименования</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0">
+                <xs:element name="RFOrganizationFeatures" type="cat_ru:RFOrganizationFeaturesType">
+                    <xs:annotation>
+                        <xs:documentation>Сведения об организации. Особенности Российской Федерации</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="RKOrganizationFeatures" type="cat_ru:RKOrganizationFeaturesType">
+                    <xs:annotation>
+                        <xs:documentation>Сведения об организации. Особенности Республики Казахстан</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="RBOrganizationFeatures" type="cat_ru:RBOrganizationFeaturesType">
+                    <xs:annotation>
+                        <xs:documentation>Сведения об организации. Особенности Республики Беларусь</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="RAOrganizationFeatures" type="cat_ru:RAOrganizationFeaturesType">
+                    <xs:annotation>
+                        <xs:documentation>Сведения об организации. Особенности Республики Армения</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="KGOrganizationFeatures" type="cat_ru:KGOrganizationFeaturesType">
+                    <xs:annotation>
+                        <xs:documentation>Сведения об организации. Особенности Кыргызской Республики</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RUOrganizationNameAddrType">
+        <xs:annotation>
+            <xs:documentation>Реквизиты организации и адрес одной строкой</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:RUOrganizationBaseType">
+                <xs:sequence>
+                    <xs:element name="Address" type="clt_ru:FreeText500Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Юридический адрес</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RUOrganizationType">
+        <xs:annotation>
+            <xs:documentation>Сведения об организации</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:RUOrganizationBaseType">
+                <xs:sequence>
+                    <xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Адрес организации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Contact" type="cat_ru:ContactType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Контактная информация</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="OrganizationFullDatas" type="clt_ru:FreeText500Type" minOccurs="0" maxOccurs="2">
+                        <xs:annotation>
+                            <xs:documentation>Полные данные по организации одной строкой (при отсутствии детализации)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SigningDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие детализированную информацию о подписании документа</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:PersonBaseType">
+                <xs:sequence>
+                    <xs:element name="CommunicationDetails" type="cat_ru:ContactType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о контактных реквизитах</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SigningDate" type="clt_ru:DateCustType">
+                        <xs:annotation>
+                            <xs:documentation>Дата подписания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SubjectBaseDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие базовый набор сведений о субъекте</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:OrganizationBaseType">
+                <xs:sequence>
+                    <xs:element name="CountryA2Code" type="clt_ru:CountryA2CodeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Кодовое обозначение страны</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="BusinessEntityTypeCode" type="RUScat_ru:UnifiedCode20Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Кодовое обозначение организационно-правовой формы, в которой зарегистрирован хозяйствующий субъект
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="BusinessEntityTypeName" type="RUSclt_ru:Name300Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Наименование организационно-правовой формы, в которой зарегистрирован хозяйствующий субъект
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="UITN" type="RUScat_ru:UITN40Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Уникальный идентификационный таможенный номер, присвоенный юридическому или физическому лицу
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SubjectBranchDetailsType">
+        <xs:annotation>
+            <xs:documentation>Сведения о субъекте</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:SubjectDetailsType">
+                <xs:sequence>
+                    <xs:element name="SubjectBranch" type="RUScat_ru:OrganizationType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Сведения об обособленном подразделении</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SubjectDetailsType">
+        <xs:annotation>
+            <xs:documentation>Компоненты, представляющие детализированную информацию о субъекте</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:SubjectBaseDetailsType">
+                <xs:sequence>
+                    <xs:element name="PersonId" type="RUSclt_ru:PersonIdType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Уникальный идентификатор физического лица</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о документе, удостоверяющем личность физического лица</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SubjectAddressDetails" type="RUScat_ru:RUAddressType" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Адрес</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CommunicationDetails" type="cat_ru:ContactType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Контактный реквизит субъекта</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SubjectDetailsBankType">
+        <xs:annotation>
+            <xs:documentation>Сведения об организации, включая банковские счета</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:SubjectDetailsType">
+                <xs:sequence>
+                    <xs:element name="BankInformation" type="cat_ru:BankInformationType" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Информация о банковских счетах</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TransportMeansRegIdType">
+        <xs:annotation>
+            <xs:documentation>Индивидуальное буквенно-цифровое обозначение, присвоенное регистрирующим органом транспортному средству
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="TransportMeansRegIdNumber" type="RUSclt_ru:TransportMeansRegIdNumberType">
+                <xs:annotation>
+                    <xs:documentation>Строка символов, идентифицирующая транспортное средство</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Кодовое обозначение страны, по правилам которой сформирован указанный код</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UITN40Type">
+        <xs:annotation>
+            <xs:documentation>Сведения об идентификационном (уникальном идентификационном) таможенном номере</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UITNCode" type="RUSclt_ru:UITNCode40Type">
+                <xs:annotation>
+                    <xs:documentation>Код. Универсальный идентификационный таможенный номер. Строка не более 40 символов</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Кодовое обозначение страны, по правилам которой сформирован указанный идентификатор</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UnifiedCode20Type">
+        <xs:annotation>
+            <xs:documentation>Строка символов, представляющая краткое условное обозначение объекта в соответствии со справочником (классификатором),
+                заданным с помощью контекстной характеристики, содержащая не более 20 символов
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UnifiedCode" type="clt_ru:CodeVariable20Type">
+                <xs:annotation>
+                    <xs:documentation>Код объекта в соответсвии со справочником (классификатором)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CodeListId" type="clt_ru:CodeVariable20Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Обозначение справочника (классификатора), в соответствии с которым указан код</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="WarehouseDetailsType">
+        <xs:annotation>
+            <xs:documentation>Сведения о складе</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="AddressDetails" type="RUScat_ru:RUAddressType">
+                <xs:annotation>
+                    <xs:documentation>Адрес регистрации</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="WarehouseKindCode" type="clt_ru:LetterIndicatorType">
+                <xs:annotation>
+                    <xs:documentation>Назначение склада: 1 – склад временного хранения; 2 – таможенный склад; 3 – свободный склад</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TypeWarehouseIndicator" type="clt_ru:IndicatorType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Тип склада: 0 – открытый; 1 – закрытый</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TotalAreaMeasure" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Общая площадь (кв. м)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CubageMeasure" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Объем помещения (куб. м)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TransportModeCode" type="clt_ru:TransportModeCodeType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Код вида транспортного средства в соответствии с классификатором видов транспорта и транспортировки товаров
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="WarehouseActivityDescriptionText" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Сведения о виде деятельности, осуществляемой на территории склада</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AdditionalInfoText" type="RUSclt_ru:FreeText4000Type" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Дополнительная информация</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://x-artefacts-ftsRegistratedListOfGoods/commons/1.0.3"
+           xmlns:tns="urn://x-artefacts-ftsRegistratedListOfGoods/commons/1.0.3"
+           xmlns:clt_ru="urn:customs.ru:CommonLeafTypes/1.0.3"
+           xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes/1.0.3"
+           xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes/1.0.3"
+           elementFormDefault="qualified" attributeFormDefault="qualified">
+    <xs:import namespace="urn:customs.ru:CommonLeafTypes/1.0.3" schemaLocation="CommonLeafTypesCust.xsd"/>
+    <xs:import namespace="urn:customs.ru:CommonAggregateTypes/1.0.3" schemaLocation="CommonAggregateTypesCust.xsd"/>
+    <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes/1.0.3" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+
+    <xs:complexType name="RegistratedListOfGoods">
+        <xs:annotation>
+            <xs:documentation>Сведения о зарегистрированных перечнях и списках кооперации</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:BaseDocType">
+                <xs:sequence>
+                    <xs:element name="DocumentType" type="clt_ru:Numeric1Type">
+                        <xs:annotation>
+                            <xs:documentation>Наименование документа: 1 - зарегистрированный перечень кооперации; 2 - зарегистрированный список
+                                кооперации
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="FTSRegNumber" type="clt_ru:DocumentNumberType">
+                        <xs:annotation>
+                            <xs:documentation>Регистрационный номер ФТС</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="MinpromtorgRegNumber" type="clt_ru:DocumentNumberType">
+                        <xs:annotation>
+                            <xs:documentation>Внутренний номер Минпромторга</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Date" type="clt_ru:DateCustType">
+                        <xs:annotation>
+                            <xs:documentation>Дата формирования</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DateBegin" type="clt_ru:DateCustType">
+                        <xs:annotation>
+                            <xs:documentation>Дата начала действия</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DateEnd" type="clt_ru:DateCustType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата окончания действия</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="MovingDirection" type="clt_ru:TransitDirectionCodeType">
+                        <xs:annotation>
+                            <xs:documentation>Направление перемещения товаров</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agreement" type="tns:AgreementType">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о международном соглашении(договоре)</xs:documentation>
+                            <xs:documentation>в рамках которго ввозятся товары</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CustomsOffice" type="cat_ru:CustomsType">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о таможенном органе, уполномоченном на совершение операций</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Sender" type="tns:OrganizationWithOtherInfo">
+                        <xs:annotation>
+                            <xs:documentation>Отправитель</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Receiver" type="tns:OrganizationWithOtherInfo">
+                        <xs:annotation>
+                            <xs:documentation>Получатель</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="GoodsInfo" type="tns:GoodsInfoType" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Сведения о товаре</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="MinpromtorgAuthorizedPerson" type="cat_ru:PersonBaseType">
+                        <xs:annotation>
+                            <xs:documentation>Уполномоченное лицо со стороны Минпромторга</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="FTSAuthorizedPerson" type="cat_ru:PersonBaseType">
+                        <xs:annotation>
+                            <xs:documentation>Уполномоченное лицо со стороны ФТС</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Status" type="clt_ru:Numeric1Type">
+                        <xs:annotation>
+                            <xs:documentation>Статус подтверждения: 1 - подтверждение действует; 2 - подтверждение аннулировано</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="StatusInfo" type="clt_ru:FreeText250Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дополнительная информация о статусе</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="AnnulmentDate" type="clt_ru:DateCustType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Дата аннулирования подтверждения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="LastChangeDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Информация о дате и времени последнего изменения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1009199E">
+                    <xs:annotation>
+                        <xs:documentation>Идентификатор вида документа</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:annotation>
+        <xs:documentation>Локальные прикладные типы</xs:documentation>
+    </xs:annotation>
+    <xs:complexType name="AgreementType">
+        <xs:annotation>
+            <xs:documentation>Сведения о международном соглашении(договоре)</xs:documentation>
+            <xs:documentation>в рамках которго ввозятся товары</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="cat_ru:DocumentBaseType">
+                <xs:sequence>
+                    <xs:element name="CountryName" type="clt_ru:CountryNameType">
+                        <xs:annotation>
+                            <xs:documentation>Наименование страны</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CountryCode" type="clt_ru:CountryA3CodeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Код страны</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="OrganizationWithOtherInfo">
+        <xs:annotation>
+            <xs:documentation>Сведения об организации</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RUScat_ru:RUOrganizationNameAddrType">
+                <xs:sequence>
+                    <xs:element name="OtherInfo" type="clt_ru:FreeText500Type" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Иные сведения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GoodsInfoType">
+        <xs:annotation>
+            <xs:documentation>Сведения о товаре</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Number" type="clt_ru:CodeVariable3Type">
+                <xs:annotation>
+                    <xs:documentation>Номер позиции товара в перечне (списке)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="GoodName" type="clt_ru:FreeText250Type">
+                <xs:annotation>
+                    <xs:documentation>Краткое наименование товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TNVEDCode" type="clt_ru:GoodsNomenclatureCodeType">
+                <xs:annotation>
+                    <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Quantity" type="cat_ru:SupplementaryQuantityType">
+                <xs:annotation>
+                    <xs:documentation>Количество товара в основной единице измерения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SupplementaryQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Количество товара в дополнительной единице измерения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="string1-50">
+        <xs:annotation>
+            <xs:documentation>Текст, длиной до 50 символов</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

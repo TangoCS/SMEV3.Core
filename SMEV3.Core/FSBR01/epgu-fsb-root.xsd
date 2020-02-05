@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:com="urn://fsb-epgu-root/1.0.3" xmlns:tns="urn://fsb/commons/1.0.3" targetNamespace="urn://fsb-epgu-root/1.0.3" elementFormDefault="qualified">
+	<xs:import namespace="urn://fsb/commons/1.0.3" schemaLocation="commons/Commons.xsd"/>
+	<xs:element name="Request" type="tns:RequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос на предоставление сведений</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Response" type="tns:ResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на предоставление сведений</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://smev-roszdravnadzor-ru/Licenses/root/1.0.1" targetNamespace="urn://smev-roszdravnadzor-ru/Licenses/root/1.0.1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<element name="Request" type="tns:RequestType"/>
+	<element name="Response" type="tns:ResponseType"/>
+
+	<complexType name="RequestType">
+		<annotation>
+			<documentation>Запрос</documentation>
+		</annotation>
+		<choice>
+			<sequence>
+				<element name="INN" type="tns:InnType"/>
+				<element name="OGRN" type="tns:OgrnType"/>
+				<element name="ActivityCode" type="int" minOccurs="0"/>
+			</sequence>
+			<element name="LicenseNumber" type="tns:string-255" />
+		</choice>
+	</complexType>
+
+	<complexType name="ResponseType">
+		<annotation>
+			<documentation>Ответ</documentation>
+		</annotation>
+		<sequence>
+			<element name="Organization" type="tns:OrganizationType" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OrganizationType">
+		<annotation>
+			<documentation>Сведения о лицензиате</documentation>
+		</annotation>
+		<sequence>
+			<element name="License" type="tns:LicenseType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Лицензии выданные организации</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute name="OGRN" type="tns:OgrnType">
+			<annotation>
+				<documentation>Основной государственный регистрационный номер юридического лица</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="INN" type="tns:InnType">
+			<annotation>
+				<documentation>ИНН юридического лица</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="KPP" type="tns:string-255">
+			<annotation>
+				<documentation>Код причины постановки на учет</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Label" type="tns:string-1000">
+			<annotation>
+				<documentation>Полное наименование юридического лица/ФИО ИП</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="LicenseType">
+		<annotation>
+			<documentation>Сведения о лицензии</documentation>
+		</annotation>
+		<sequence>
+			<element name="Status" type="tns:StatusType">
+				<annotation>
+					<documentation>Статус лицензии</documentation>
+				</annotation>
+			</element>
+			<element name="Activity" type="tns:ActivityType">
+				<annotation>
+					<documentation>Сведения о лицензируемом виде деятельности</documentation>
+				</annotation>
+			</element>
+			<element name="OldLicense" type="tns:OldLicenseType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Сведения о ранее выданной лицензии, при переоформлении которой изменились ее реквизиты</documentation>
+				</annotation>
+			</element>
+			<element name="Application" type="tns:ApplicationType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Приложения к лицензии</documentation>
+				</annotation>
+			</element>
+			<element name="Licenser" type="tns:LicenserType" minOccurs="0">
+				<annotation>
+					<documentation>Сведения о лицензирующем органе, принявшем данное решение в отношении лицензии</documentation>
+				</annotation>
+			</element>
+			<element name="Decision" type="tns:DecisionType" minOccurs="0">
+				<annotation>
+					<documentation>Сведения о решении, принятом в отношении лицензии</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute name="Series" type="tns:string-255" use="optional">
+			<annotation>
+				<documentation>Серия лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="No" type="tns:string-255">
+			<annotation>
+				<documentation>Номер лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Dt" type="date">
+			<annotation>
+				<documentation>Дата лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="DtBegin" type="date">
+			<annotation>
+				<documentation>Дата начала действия лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="DtEnd" type="date" use="optional">
+			<annotation>
+				<documentation>Дата окончания действия лицензии</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="DecisionType">
+		<annotation>
+			<documentation>Сведения о решении, принятом в отношении лицензии</documentation>
+		</annotation>
+		<attribute name="Type" type="tns:string-255">
+			<annotation>
+				<documentation>Вид принятого решения в отношении лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="DtBegin" type="date">
+			<annotation>
+				<documentation>Дата вступления принятого решения в силу</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="DtEnd" type="date" use="optional">
+			<annotation>
+				<documentation>Дата окончания действия принятого решения</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="ActivityType">
+		<annotation>
+			<documentation>Сведения о лицензируемом виде деятельности</documentation>
+		</annotation>
+		<attribute name="Code" type="int"/>
+		<attribute name="Label" type="tns:string-500" use="optional"/>
+	</complexType>
+	
+	<complexType name="ObjectType">
+		<annotation>
+			<documentation>Тип объекта</documentation>
+		</annotation>
+		<sequence>
+			<element name="Activity" type="tns:ActivityType" minOccurs="0">
+				<annotation>
+					<documentation>Вид лицензируемой деятельности к которому относится тип объекта</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute name="Id" type="int"/>
+		<attribute name="Label" type="tns:string-500"/>
+	</complexType>
+	
+	<simpleType name="StatusType">
+		<restriction base="int">
+			<enumeration value="1">
+				<annotation>
+					<documentation>Действует</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>Приостановлена</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<documentation>Возобновлена</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<documentation>Аннулирована</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<documentation>Прекращена</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="7">
+				<annotation>
+					<documentation>Переоформлена</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="8">
+				<annotation>
+					<documentation>Досрочное прекращение</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="9">
+				<annotation>
+					<documentation>Cрок действия истек</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="OldLicenseType">
+		<annotation>
+			<documentation>Сведения о ранее выданной юридическому лицу лицензии, при переоформлении которой изменились ее реквизиты</documentation>
+		</annotation>
+		<attribute name="Series" type="tns:string-255" use="optional">
+			<annotation>
+				<documentation>Серия лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="No" type="tns:string-255">
+			<annotation>
+				<documentation>Номер лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Dt" type="date">
+			<annotation>
+				<documentation>Дата лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="DtBegin" type="date">
+			<annotation>
+				<documentation>Дата начала действия лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="DtEnd" type="date" use="optional">
+			<annotation>
+				<documentation>Дата окончания действия лицензии</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="ApplicationType">
+		<annotation>
+			<documentation>Сведения о приложении</documentation>
+		</annotation>
+		<sequence>
+			<element name="Status" type="tns:StatusType">
+				<annotation>
+					<documentation>Статус приложения</documentation>
+				</annotation>
+			</element>
+			<element name="AppObject" type="tns:AppObjectType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Объекты приложения к лицензии</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute name="No" type="tns:string-255">
+			<annotation>
+				<documentation>Номер приложения к лицензии</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Dt" type="date">
+			<annotation>
+				<documentation>Дата приложения</documentation>
+				<documentation/>
+			</annotation>
+		</attribute>
+		
+	</complexType>
+
+	<complexType name="AppObjectType">
+		<annotation>
+			<documentation>Объекты приложения</documentation>
+		</annotation>
+		<sequence>
+			<element name="Status" type="tns:StatusType">
+				<annotation>
+					<documentation>Статус</documentation>
+				</annotation>
+			</element>
+			<element name="Address" type="tns:AddressType" minOccurs="0">
+				<annotation>
+					<documentation>Адрес объекта</documentation>
+				</annotation>
+			</element>
+			<element name="Type" type="tns:ObjectType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Тип объекта</documentation>
+				</annotation>
+			</element>
+			<element name="Service" type="tns:ServiceType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AddressType">
+		<annotation>
+			<documentation>Адрес объекта</documentation>
+		</annotation>
+		<attribute name="ZIP" type="tns:string-255">
+			<annotation>
+				<documentation>Индекс</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Region" type="tns:string-255">
+			<annotation>
+				<documentation>Регион</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="District" type="tns:string-255">
+			<annotation>
+				<documentation>Район</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Settlement" type="tns:string-255">
+			<annotation>
+				<documentation>Поселение</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="City" type="tns:string-255">
+			<annotation>
+				<documentation>Населенный пункт</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="CityType" type="tns:string-255">
+			<annotation>
+				<documentation>Тип населенного пункта</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Street" type="tns:string-255">
+			<annotation>
+				<documentation>Улица</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="House" type="tns:string-255">
+			<annotation>
+				<documentation>Дом</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Building" type="tns:string-255">
+			<annotation>
+				<documentation>Корпус/строение</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Appartment" type="tns:string-255">
+			<annotation>
+				<documentation>Квартира</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Full" type="tns:string-10000">
+			<annotation>
+				<documentation>Весь адрес в одну строку (актуально для старых лицензий)</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+	
+	<complexType name="ServiceType">
+		<annotation>
+			<documentation>Виды работ и услуг</documentation>
+		</annotation>
+		<sequence>
+			<element name="Service" type="tns:ServiceType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Работ и услуг</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute name="Id" type="int" use="required">
+			<annotation>
+				<documentation>ID работы/услуги в справочнике</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="No" type="tns:string-255">
+			<annotation>
+				<documentation>Номер работы/услуги</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Label" type="tns:string-1000" use="required">
+			<annotation>
+				<documentation>Наименование работы/услуги</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="LicenserType">
+		<annotation>
+			<documentation>Сведения о лицензирующем органе</documentation>
+		</annotation>
+		<attribute name="OKOGU" type="tns:OkoguType">
+			<annotation>
+				<documentation>Код органа государственной власти по  общероссийскому классификатору ОКОГУ, к которому принадлежит лицензирующий орган</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Label" type="tns:string-500">
+			<annotation>
+				<documentation>Полное наименование лицензирующего органа</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="INN" type="tns:InnType">
+			<annotation>
+				<documentation>ИНН лицензирующего органа</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="OGRN" type="tns:OgrnType">
+			<annotation>
+				<documentation>ОГРН лицензирующего органа</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<simpleType name="string-15">
+		<restriction base="string">
+			<maxLength value="15"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string-255">
+		<restriction base="string">
+			<maxLength value="255"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string-500">
+		<restriction base="string">
+			<maxLength value="500"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string-1000">
+		<restriction base="string">
+			<maxLength value="1000"/>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string-10000">
+		<restriction base="string">
+			<maxLength value="10000"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="OkoguType">
+		<annotation>
+			<documentation>ОКОГУ</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="5"/>
+			<pattern value="[0-9]{5}"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="InnType">
+		<annotation>
+			<documentation>ИНН</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="12"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="OgrnType">
+		<annotation>
+			<documentation>ОГРН</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15"/>
+		</restriction>
+	</simpleType>
+</schema>

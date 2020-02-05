@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="smev2esv"
+    targetNamespace="esv:smev:interaction:v1.0/2.2"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/smev2esv.xsd"
+    xmlns:mstns="http://tempuri.org/smev2esv.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:esv="esv:smev:interaction:v1.0/2.2"
+>
+	<xs:simpleType name="EsvResponseType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Simple"/>
+			<xs:enumeration value="WithReport"/>
+			<xs:enumeration value="WithSignedReport"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="VerifyAttachment">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию набора документов в виде zip-архива.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AttachmentFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyCAdES">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию СAdES.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CAdESFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyCertificate">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию сертификата.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Certificate" nillable="false" minOccurs="1" maxOccurs="1" type="xs:base64Binary"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyCMSSignature">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию присоединенной подписи CMS.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CMSFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyCMSSignatureByHash">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию отсоединенной подписи CMS по хэшу.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MessageFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+			<xs:element name="Hash" nillable="false" minOccurs="1" maxOccurs="1" type="xs:base64Binary"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyCMSSignatureDetached">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию отсоединенной подписи CMS.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CMSDetachedSignatureFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+			<xs:element name="OriginalMessageFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyPAdES">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию PAdES.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PAdESFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyTimeStamp">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию штампа времени.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Stamp" nillable="false" minOccurs="1" maxOccurs="1" type="xs:base64Binary"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyWSSSignature">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию подписи WSS.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="WssSignatureFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyXAdES">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию XAdES.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="XAdESFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VerifyXMLSignature">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию подписи XML.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="XmlSignatureFileId" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="EsvRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Запрос на верификацию.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ExpectedResponseType" nillable="false" minOccurs="1" maxOccurs="1" type="esv:EsvResponseType"/>
+				<xs:choice minOccurs="1" maxOccurs="1">
+					<xs:element name="VerifyAttachment" type="esv:VerifyAttachment"/>
+					<xs:element name="VerifyCAdES" type="esv:VerifyCAdES"/>
+					<xs:element name="VerifyCertificate" type="esv:VerifyCertificate"/>
+					<xs:element name="VerifyCMSSignature" type="esv:VerifyCMSSignature"/>
+					<xs:element name="VerifyCMSSignatureByHash" type="esv:VerifyCMSSignatureByHash"/>
+					<xs:element name="VerifyCMSSignatureDetached" type="esv:VerifyCMSSignatureDetached"/>
+					<xs:element name="VerifyPAdES" type="esv:VerifyPAdES"/>
+					<xs:element name="VerifyTimeStamp" type="esv:VerifyTimeStamp"/>
+					<xs:element name="VerifyWSSSignature" type="esv:VerifyWSSSignature"/>
+					<xs:element name="VerifyXAdES" type="esv:VerifyXAdES"/>
+					<xs:element name="VerifyXMLSignature" type="esv:VerifyXMLSignature"/>
+				</xs:choice>
+				<xs:element name="VerifySignatureOnly" minOccurs="1" maxOccurs="1" nillable="false" type="xs:boolean"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="EsvResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Ответ от ESV сервиса.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ResponseType" nillable="false" minOccurs="1" maxOccurs="1" type="esv:EsvResponseType"/>
+				<xs:element name ="ResponseCode" nillable="false" minOccurs="1" maxOccurs="1">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="OK"/>
+							<!--xs:enumeration value="InternalError"/-->
+							<!--xs:enumeration value="ParsingError"/-->
+							<xs:enumeration value="InvalidSignature"/>
+							<xs:enumeration value="NoSignCert"/>
+							<xs:enumeration value="CertExpired"/>
+							<xs:enumeration value="MoreThanOneCert"/>
+							<xs:enumeration value="CertIsRevoked"/>
+							<xs:enumeration value="NoSignatures"/>
+							<xs:enumeration value="UnsignedMessage"/>
+							<!--xs:enumeration value="InvalidConfiguration"/-->
+							<xs:enumeration value="CertificateNoChain"/>
+							<xs:enumeration value="SignCertNotValid"/>
+							<xs:enumeration value="CertRevokationCheckFailed"/>
+							<xs:enumeration value="CertificateNotInTSL"/>
+							<xs:enumeration value="CertificateNotQualified"/>
+							<xs:enumeration value="InvalidAccreditationPeriod"/>
+							<!--xs:enumeration value="BadInputData"/-->
+							<!--xs:enumeration value="UnexpectedError"/-->
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Description" nillable="false" minOccurs="1" maxOccurs="1" type="xs:string"/>
+				<xs:element name="ReportFileId" nillable="true" minOccurs="0" maxOccurs="1" type="xs:string"/>
+				<xs:element name="Signature" nillable="true" minOccurs="0" maxOccurs="1" type="xs:base64Binary"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

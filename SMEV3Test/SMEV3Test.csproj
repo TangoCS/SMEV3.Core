@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
+    <DebugType>portable</DebugType>
+    <AssemblyName>SMEV3Test</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>SMEV3Test</PackageId>
+    <RuntimeIdentifiers>win7-x64;centos.7-x64</RuntimeIdentifiers>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GostCryptography\Source\GostCryptography\GostCryptography.csproj" />
+    <ProjectReference Include="..\SMEV3.Core\SMEV3.Core.csproj" />
+  </ItemGroup>
+
+</Project>

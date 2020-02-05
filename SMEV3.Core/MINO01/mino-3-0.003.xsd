@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://x-artefacts-mino/mino/1.0.2" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xz="urn://x-artefacts-mino/commons/1.0.2" xmlns:xz3="urn://x-artefacts-mino/mino/1.0.2">
+    <xs:import namespace="urn://x-artefacts-mino/commons/1.0.2" schemaLocation="mino-3-0-domains.xsd"/>
+    <xs:element xmlns:xz3="urn://x-artefacts-mino/mino/1.0.2" type="xz3:ORMinoType" name="ORMino"/>
+    <xs:complexType name="ORMinoType">
+        <xs:annotation>
+            <xs:documentation>Ответы на услуги для Минобороны</xs:documentation>
+        </xs:annotation>
+        <xs:sequence/>
+    </xs:complexType>
+</xs:schema>
