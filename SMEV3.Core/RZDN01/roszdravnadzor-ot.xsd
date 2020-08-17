@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://smev-roszdravnadzor-ru/OT/root/1.0.2" targetNamespace="urn://smev-roszdravnadzor-ru/OT/root/1.0.2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://smev-roszdravnadzor-ru/OT/root/1.0.3" targetNamespace="urn://smev-roszdravnadzor-ru/OT/root/1.0.3" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<element name="ConclusionRequest" type="tns:RequestType"/>
 	<element name="ConclusionResponse" type="tns:ResponseType"/>
 	
@@ -39,7 +39,7 @@
 		</annotation>
 		<choice>
 			<sequence>
-				<element name="Organization" type="tns:string256">
+				<element name="Organization" type="tns:string512">
 					<annotation>
 						<documentation>Название организации</documentation>
 					</annotation>
@@ -73,7 +73,7 @@
 			<documentation>Получатель/отправитель</documentation>
 		</annotation>
 		<sequence>
-			<element name="Organization" type="tns:string256">
+			<element name="Organization" type="tns:string512">
 				<annotation>
 					<documentation>Название организации</documentation>
 				</annotation>
@@ -124,7 +124,12 @@
 					<documentation>Код ТН ВЭД ЕАЭС</documentation>
 				</annotation>
 			</element>
-			<element name="Title" type="tns:string256">
+			<element name="TNCodeTitle" type="tns:string1024">
+				<annotation>
+					<documentation>Наименование группы товара</documentation>
+				</annotation>
+			</element>
+			<element name="Title" type="tns:string1024">
 				<annotation>
 					<documentation>Наименование товара</documentation>
 				</annotation>

@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:appdoc="urn://x-artefacts-mvd-gov-ru/gunk/dob/drug-transportation-permission/applied-documents/1.0.0" xmlns:tns="urn://x-artefacts-mvd-gov-ru/gunk/inquiry/drug-transportation-permission/1.0.0" targetNamespace="urn://x-artefacts-mvd-gov-ru/gunk/inquiry/drug-transportation-permission/1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:appdoc="urn://x-artefacts-mvd-gov-ru/gunk/dob/drug-transportation-permission/applied-documents/1.0.0" xmlns:tns="urn://x-artefacts-mvd-gov-ru/gunk/inquiry/drug-transportation-permission/1.0.1" targetNamespace="urn://x-artefacts-mvd-gov-ru/gunk/inquiry/drug-transportation-permission/1.0.1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="urn://x-artefacts-mvd-gov-ru/gunk/dob/drug-transportation-permission/applied-documents/1.0.0" schemaLocation="common/applied-documents.xsd"/>
-	<xsd:element name="InquiryResponse" type="tns:_AttachmentsBlockType"/>
+	<xsd:element name="InquiryResponse">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="tns:_AttachmentsBlockType">
+					<xsd:attribute name="sysVersion" type="xsd:string" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Версия приложения при формировании ответа</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
 	<xsd:element name="InquiryRequest">
 		<xsd:complexType>
 			<xsd:sequence>

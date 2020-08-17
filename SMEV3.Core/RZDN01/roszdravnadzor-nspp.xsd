@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://smev-roszdravnadzor-ru/NSPP/root/1.0.1" targetNamespace="urn://smev-roszdravnadzor-ru/NSPP/root/1.0.1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://smev-roszdravnadzor-ru/NSPP/root/1.0.2" targetNamespace="urn://smev-roszdravnadzor-ru/NSPP/root/1.0.2" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<element name="CertificateRequest" type="tns:RequestType"/>
 	<element name="CertificateResponse" type="tns:ResponseType"/>
 
@@ -8,7 +8,7 @@
 			<documentation>Ответ на запрос</documentation>
 		</annotation>
 		<sequence>
-			<element name="Certificate" type="tns:CertificateType" maxOccurs="unbounded"/>
+			<element name="Certificate" type="tns:CertificateType" />
 		</sequence>
 	</complexType>
 
@@ -32,7 +32,7 @@
 
 	<complexType name="CertificateType">
 		<annotation>
-			<documentation>Информация о заключении</documentation>
+			<documentation>Информация о сертификате</documentation>
 		</annotation>
 		<sequence>
 			<element name="Number" type="tns:string-256">
@@ -90,19 +90,19 @@
 					<documentation>Грузополучатель</documentation>
 				</annotation>
 			</element>
-			<element name="License" type="tns:string-256" minOccurs="0">
+			<element name="License" type="tns:string-256" minOccurs="1">
 				<annotation>
 					<documentation>Лицензия на вид деятельности</documentation>
 				</annotation>
 			</element>
-			<element name="TNVED" type="tns:string-256" minOccurs="0">
+			<element name="TNVED" type="tns:string-256" minOccurs="1">
 				<annotation>
 					<documentation>Код ТН ВЭД ЕАЭС</documentation>
 				</annotation>
 			</element>
-			<element name="Object" type="tns:ObjectType" minOccurs="0" maxOccurs="unbounded">
+			<element name="Objects" type="tns:ObjectCollectionType" minOccurs="1">
 				<annotation>
-					<documentation>Объект поставки</documentation>
+					<documentation>Объекты поставки</documentation>
 				</annotation>
 			</element>
 			<element name="Status" type="tns:StatusType">
@@ -112,28 +112,41 @@
 			</element>
 		</sequence>
 	</complexType>
-	
-	<complexType name="ObjectType">
+
+	<complexType name="ObjectCollectionType">
 		<annotation>
 			<documentation>Объекты поставки</documentation>
 		</annotation>
 		<sequence>
-			<element name="TradeName" type="tns:string-1024">
+			<element name="Object" type="tns:ObjectType" minOccurs="1" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Объект поставки</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="ObjectType">
+		<annotation>
+			<documentation>Объект поставки</documentation>
+		</annotation>
+		<sequence>
+			<element name="TradeName" type="tns:string-1024" minOccurs="1">
 				<annotation>
 					<documentation>Торговое наименование</documentation>
 				</annotation>
 			</element>
-			<element name="DrugForm" type="tns:string-1024">
+			<element name="DrugForm" type="tns:string-1024" minOccurs="1">
 				<annotation>
 					<documentation>Лекарственная форма</documentation>
 				</annotation>
 			</element>
-			<element name="Unit" type="tns:string-1024">
+			<element name="Unit" type="tns:string-1024" minOccurs="1">
 				<annotation>
 					<documentation>Единица измерения</documentation>
 				</annotation>
 			</element>
-			<element name="Quantity" type="tns:string-1024">
+			<element name="Quantity" type="tns:string-1024" minOccurs="1">
 				<annotation>
 					<documentation>Количество</documentation>
 				</annotation>
@@ -197,7 +210,7 @@
 					<documentation>Полное наименование</documentation>
 				</annotation>
 			</element>
-			<element name="INN" type="tns:InnType" minOccurs="0">
+			<element name="INN" type="tns:InnType" minOccurs="1">
 				<annotation>
 					<documentation>ИНН</documentation>
 				</annotation>

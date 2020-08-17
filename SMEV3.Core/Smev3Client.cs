@@ -191,11 +191,16 @@ namespace SMEV3
 			catch (Exception e)
 			{
 				result.Status = SMEV3ResultStatus.Error;
-				result.ErrorText = e.Message;
-				result.ErrorText += "\n" + e.StackTrace;
-			}
+                result.ErrorText = "";
+                while (e != null)
+                {
+                    result.ErrorText += e.Message + "\n";
+                    result.ErrorText += e.StackTrace + "\n\n";
+                    e = e.InnerException;
+                }
+            }
 
-			return result;
+            return result;
 		}
 
         /// <summary>
