@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    xmlns:com="http://roskazna.ru/gisgmp/xsd/Common/2.1.1"
+    xmlns:pmnt="http://roskazna.ru/gisgmp/xsd/Payment/2.1.1"
+    xmlns:sc="http://roskazna.ru/gisgmp/xsd/SearchConditions/2.1.1"
+    targetNamespace="urn://roskazna.ru/gisgmp/xsd/services/export-payments/2.1.1"
+    xmlns="urn://roskazna.ru/gisgmp/xsd/services/export-payments/2.1.1">
+    <xs:import namespace="http://roskazna.ru/gisgmp/xsd/Common/2.1.1"
+        schemaLocation="commons/Common.xsd"/>
+    <xs:import namespace="http://roskazna.ru/gisgmp/xsd/Payment/2.1.1"
+        schemaLocation="commons/Payment.xsd"/>
+    <xs:import namespace="http://roskazna.ru/gisgmp/xsd/SearchConditions/2.1.1"
+        schemaLocation="commons/SearchConditions.xsd"/>
+    <xs:element name="ExportPaymentsRequest">
+        <xs:annotation>
+            <xs:documentation>Запрос на предоставление информации об уплате</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="com:ExportRequestType">
+                    <xs:sequence>
+                        <xs:element ref="sc:PaymentsExportConditions">
+                            <xs:annotation>
+                                <xs:documentation>Условия для предоставления информации об уплате</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ExportPaymentsResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос предоставления информации об уплате</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="com:ResponseType">
+                    <xs:sequence minOccurs="0">
+                        <xs:element name="PaymentInfo" maxOccurs="100">
+                            <xs:annotation>
+                                <xs:documentation>Извещение о приеме к исполнению распоряжения (платеж)</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:extension base="pmnt:PaymentType">
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" name="AcknowledgmentInfo">
+                                                <xs:annotation>
+                                                  <xs:documentation>Обозначение факта квитирования платежа с начисление либо
+                                                        признака у платежа "Услуга предоставлена"
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                                <xs:complexType>
+                                                  <xs:choice>
+                                                  <xs:element name="SupplierBillID"
+                                                  type="com:SupplierBillIDType">
+                                                  <xs:annotation>
+                                                  <xs:documentation>УИН, с которым сквитирован платеж
+                                                                </xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element fixed="true" name="ServiceProvided"
+                                                  type="xs:string">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Обозначение у платежа статуса "Услуга
+                                                                    предоставлена"
+                                                                </xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  </xs:choice>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="RefundInfo"
+                                                maxOccurs="20">
+                                                <xs:annotation>
+                                                  <xs:documentation>Сведения о возвратах денежных средств.
+Присутствует в ответе на запрос предоставления информации об уплате в случае осуществления возврата денежных средств
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                                <xs:complexType>
+                                                  <xs:attribute name="refundId"
+                                                  type="com:RefundIdType" use="required">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Уникальный идентификатор извещения о возврате (УИВ)
+                                                            </xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="amount" type="xs:unsignedLong"
+                                                  use="required">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Сумма возврата</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:attribute>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element ref="com:ChangeStatusInfo">
+                                                <xs:annotation>
+                                                  <xs:documentation>Сведения о статусе платежа и основаниях его изменения</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:extension>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="hasMore" type="xs:boolean" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Признак конца выборки:
+                                false - достигнут конец выборки;
+                                true - после последнего предоставленного элемента в выборке имеются другие.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

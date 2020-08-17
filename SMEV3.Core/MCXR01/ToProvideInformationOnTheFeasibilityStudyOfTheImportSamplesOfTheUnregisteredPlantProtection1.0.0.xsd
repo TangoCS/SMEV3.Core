@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:custom="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" xmlns="http://mcx.ru/ToProvideInformationOnTheFeasibilityStudyOfTheImportSamplesOfTheUnregisteredPlantProtectionProductsForRegistrationAndProductionTrials/1.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://mcx.ru/ToProvideInformationOnTheFeasibilityStudyOfTheImportSamplesOfTheUnregisteredPlantProtectionProductsForRegistrationAndProductionTrials/1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:import namespace="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" schemaLocation="other_schemes/smev-supplementary-commons-1.0.1.xsd"/>
+	<xs:element name="InputData" type="InputDataType">
+		<xs:annotation>
+			<xs:documentation>Входные данные</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OutputData" type="OutputDataType">
+		<xs:annotation>
+			<xs:documentation>Выходные данные</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="InputDataType">
+		<xs:choice>
+			<xs:element name="Legal" type="InputDataLegalType">
+				<xs:annotation>
+					<xs:documentation>Юридическое лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Individual" type="InputDataIndividualType">
+				<xs:annotation>
+					<xs:documentation>Физическое лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="Id" type="xs:ID"/>
+	</xs:complexType>
+	<xs:complexType name="OutputDataType">
+		<xs:choice>
+			<xs:element name="Legal" type="OutputDataLegalType">
+				<xs:annotation>
+					<xs:documentation>Юридическое лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Individual" type="OutputDataIndividualType">
+				<xs:annotation>
+					<xs:documentation>Физическое лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="Id" type="xs:ID"/>
+	</xs:complexType>
+	<xs:complexType name="InputDataLegalType">
+		<xs:sequence>
+			<xs:element name="Number_conclusion_document" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Date_issue" type="xs:date" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutputDataLegalType">
+		<xs:sequence>
+			<xs:element name="Number_conclusion" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Name_applicant" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Date_issue_conclusion" type="xs:date" minOccurs="1"/>
+			<xs:element name="Product_name" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Quantity_goods" type="custom:string-100" minOccurs="1"/>
+			<xs:element name="Unit_measurement" type="custom:string-100" minOccurs="1"/>
+			<xs:element name="Recipient_sender" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Country_origin_destination" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Section_list_goods" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Code_TN_VED_TS" type="custom:string-100" minOccurs="1"/>
+			<xs:element name="Authorized_officer" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Validity_conclusion" type="custom:string-100" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InputDataIndividualType">
+		<xs:sequence>
+			<xs:element name="Number_conclusion_document" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Date_issue" type="xs:date" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutputDataIndividualType">
+		<xs:sequence>
+			<xs:element name="Number_conclusion" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Name_applicant" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Date_issue_conclusion" type="xs:date" minOccurs="1"/>
+			<xs:element name="Product_name" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Quantity_goods" type="custom:string-100" minOccurs="1"/>
+			<xs:element name="Unit_measurement" type="custom:string-100" minOccurs="1"/>
+			<xs:element name="Recipient_sender" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Country_origin_destination" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Section_list_goods" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Code_TN_VED_TS" type="custom:string-100" minOccurs="1"/>
+			<xs:element name="Authorized_officer" type="custom:string-500" minOccurs="1"/>
+			<xs:element name="Validity_conclusion" type="custom:string-100" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

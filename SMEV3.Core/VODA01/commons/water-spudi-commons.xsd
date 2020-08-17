@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://x-artefacts-water-spudi-ru/commons/1.0.0"
+           xmlns:tns="urn://x-artefacts-water-spudi-ru/commons/1.0.0"
+           elementFormDefault="qualified" attributeFormDefault="qualified">
+
+    <xs:complexType name="PermissibleDischargeStandardType">
+        <xs:annotation>
+            <xs:documentation>Запрос на получение нормативов допустимых сбросов веществ и микроорганизмов в водные
+                объекты для водопользователей
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="tns:BVUName" minOccurs="0"/>
+            <xs:element ref="tns:NDSNumber"/>
+            <xs:element ref="tns:ObjectName"/>
+            <xs:element ref="tns:PlaceName"/>
+            <xs:element ref="tns:OIVName" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="WaterObjectUsageType">
+        <xs:annotation>
+            <xs:documentation>Выдача разрешений на создание, эксплуатацию и использование искусственных островов,
+                сооружений и установок, проведение буровых работ, а также прокладку кабелей и трубопроводов во
+                внутренних морских водах, территориальном море Российской Федерации и на континентальном шельфе
+                Российской Федерации или Выдача разрешений на выбросы и сбросы загрязняющих веществ в окружающую среду
+                (за исключением радиоактивных веществ), вредные физические воздействия на атмосферный воздух
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="tns:BVUName" minOccurs="0"/>
+            <xs:element ref="tns:SolutionNumber"/>
+            <xs:element ref="tns:ObjectName"/>
+            <xs:element ref="tns:PlaceName"/>
+            <xs:element ref="tns:OIVName" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="BVUName" type="tns:stringMaxLength-200">
+        <xs:annotation>
+            <xs:documentation>Код субъекта РФ
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="NDSNumber" type="tns:stringMaxLength-20">
+        <xs:annotation>
+            <xs:documentation>Регистрационный номер НДС
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="SolutionNumber" type="tns:stringMaxLength-20">
+        <xs:annotation>
+            <xs:documentation>Регистрационный номер решения
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="ObjectName" type="tns:stringMaxLength-500">
+        <xs:annotation>
+            <xs:documentation>Сведения о водопользователе
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="PlaceName" type="tns:stringMaxLength-500">
+        <xs:annotation>
+            <xs:documentation>Сведения о месте сброса сточных вод и (или) дренажных вод
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="OIVName" type="tns:stringMaxLength-300">
+        <xs:annotation>
+            <xs:documentation>Территориальный орган службы, запросивший информацию
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+
+    <xs:element name="responseType" type="tns:responseTypeType">
+        <xs:annotation>
+            <xs:documentation>Тип ответа. Определяет принадлежность ответа к запросу и тип запрашиваемого документа
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:simpleType name="responseTypeType" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PermissibleDischargeStandard"/>
+            <xs:enumeration value="WaterObjectUsage"/>
+            <xs:enumeration value="PermissibleDischarge"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stringMaxLength-1000">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="1000"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stringMaxLength-500">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="500"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stringMaxLength-300">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="300"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stringMaxLength-200">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="200"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stringMaxLength-20">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

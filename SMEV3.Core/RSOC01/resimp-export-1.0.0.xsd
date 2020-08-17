@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="urn://x-artefacts-rkn-gov-ru/smev-interaction/resimp-export/1.0.0"
+           targetNamespace="urn://x-artefacts-rkn-gov-ru/smev-interaction/resimp-export/1.0.0"
+           elementFormDefault="qualified">
+
+	<!-- request -->
+	<xs:element name="ResimpExportRequest" type="tns:ResimpExportRequestType">
+		<xs:annotation>
+			<xs:documentation>запрос</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ResimpExportRequestType">
+		<xs:annotation>
+			<xs:documentation>тип: запрос</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="ExportListRequest">
+					<xs:annotation>
+						<xs:documentation>запрос на получение перечня доступных выгрузок</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DateFrom" type="xs:dateTime" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>дата создания выгрузки, от</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="DateTo" type="xs:dateTime" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>дата создания выгрузки, до</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="IdFrom" type="xs:long" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>идентификатор выгрузки, от</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="IdTo" type="xs:long" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>идентификатор выгрузки, до</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ExportDataRequest">
+					<xs:annotation>
+						<xs:documentation>запрос на получение данных, содержащихся в конкретной выгрузке</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" type="xs:long" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>идентификатор выгрузки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- response -->
+	<xs:element name="ResimpExportResponse" type="tns:ResimpExportResponseType">
+		<xs:annotation>
+			<xs:documentation>ответ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="ResimpExportResponseType">
+		<xs:annotation>
+			<xs:documentation>тип: ответ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="ExportListResponse">
+					<xs:annotation>
+						<xs:documentation>ответ на запрос на получение перечня доступных выгрузок</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="UnloadEntry" type="tns:UnloadEntryType" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>информация о выгрузке</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ExportDataResponse">
+					<xs:annotation>
+						<xs:documentation>ответ на запрос на получение данных, содержащихся в конкретной выгрузке</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ImportDocumentTypes" type="tns:ImportDocumentTypes">
+								<xs:annotation>
+									<xs:documentation>Список разрешительных документов</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+
+						<xs:attribute name="UnloadId" type="xs:long">
+							<xs:annotation>
+								<xs:documentation>Идентификатор выгрузки</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="CreationDate" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Дата создания выгрузки</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="UnloadType" type="tns:UnloadType">
+							<xs:annotation>
+								<xs:documentation>Тип выгрузки</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnloadEntryType">
+		<xs:attribute name="UnloadId" type="xs:long">
+			<xs:annotation>
+				<xs:documentation>Идентификатор выгрузки</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CreationDate" type="xs:dateTime">
+			<xs:annotation>
+				<xs:documentation>Дата создания выгрузки</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="UnloadType" type="tns:UnloadType">
+			<xs:annotation>
+				<xs:documentation>Тип выгрузки</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:simpleType name="UnloadType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FULL">
+				<xs:annotation>
+					<xs:documentation>Полная выгрузка</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CHANGES">
+				<xs:annotation>
+					<xs:documentation>Изменения</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ImportDocumentTypes">
+		<xs:annotation>
+			<xs:documentation>Информация по ввозу РЭС</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ImportDocumentType" type="tns:ImportDocumentType"  minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ImportDocumentType">
+		<xs:annotation>
+			<xs:documentation>Информация об одном разрешительном документе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocId" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocType" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип документа. 1 -  Временный ввоз РЭС; 2 - Ввоз РЭС для личного использования;</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocNum" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocEndDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Срок действия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OutDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата вывоза оборудования</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Owner" type="tns:OwnerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Параметры владельца</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RESList" type="tns:RESListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список  оборудования</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImportObjective" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Цель вывоза</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Signer" type="tns:SignerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подписант</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OwnerType">
+		<xs:sequence>
+			<xs:element name="OwnerId" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор владельца в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnerVersionId" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор версии владельца в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnerName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование организации, ФИО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnerINN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnerOGRN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОГРН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RESListType">
+		<xs:sequence>
+			<xs:element name="RES" type="tns:RESType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация об оборудовании</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RESType">
+		<xs:sequence>
+			<xs:element name="RESType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип РЭС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Model" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Модель, платформа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Manufacturer" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Производитель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountryList" type="tns:CountryListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список стран производителей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Unit" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Единица измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CountryListType">
+		<xs:sequence>
+			<xs:element name="Country" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Название страны</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SignerType">
+		<xs:sequence>
+			<xs:element name="SignerFIO" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ФИО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignerPost" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Должность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>	
+</xs:schema>

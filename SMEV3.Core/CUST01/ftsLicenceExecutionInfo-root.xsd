@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://x-artefacts-ftsLicenceExecutionInfo/root/1.0.0"
+           xmlns:commons="urn://x-artefacts-ftsLicenceExecutionInfo/commons/1.0.0" elementFormDefault="qualified">
+    <xs:import namespace="urn://x-artefacts-ftsLicenceExecutionInfo/commons/1.0.0" schemaLocation="commons/ftsLicenceExecutionInfo-commons.xsd"/>
+
+    <xs:element name="FtsLicenceExecutionInfoRequest">
+        <xs:annotation>
+            <xs:documentation>Запрос информации об исполнении лицензии / разрешений</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="LicenseNumber" type="commons:FreeText250Type">
+                    <xs:annotation>
+                        <xs:documentation>Номер лицензии / разрешения</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="FtsLicenceExecutionInfoResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос информации об исполнении лицензии / разрешений</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="LicenseNumber" type="commons:FreeText250Type">
+                    <xs:annotation>
+                        <xs:documentation>Номер лицензии / разрешения</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="DocumentTypeCode" type="commons:CustomsDocumentCodeType">
+                    <xs:annotation>
+                        <xs:documentation>Код вида документа</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Shipment" type="commons:ShipmentType" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Отгрузка</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="QuotaInfo" type="commons:InfoType" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Остаток квоты</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

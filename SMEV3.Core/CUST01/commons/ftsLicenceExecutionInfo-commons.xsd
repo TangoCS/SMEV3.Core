@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://x-artefacts-ftsLicenceExecutionInfo/commons/1.0.0"
+           xmlns:tns="urn://x-artefacts-ftsLicenceExecutionInfo/commons/1.0.0"
+           elementFormDefault="qualified">
+
+     <xs:complexType name="ShipmentType">
+        <xs:sequence>
+            <xs:element name="UseDateTime" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>Дата использования</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DeclarationNumber" type="tns:GTDIDType">
+                <xs:annotation>
+                    <xs:documentation>№ декларации на товары (ДТ), по которой произведено списание</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ItemNumberDT" type="tns:Count3Type">
+                <xs:annotation>
+                    <xs:documentation>Номер товара в ДТ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ItemNumberLicense" type="tns:Count6Type">
+                <xs:annotation>
+                    <xs:documentation>Номер товара в лицензии / разрешении</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ProductInfo" type="tns:InfoType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Информация по отгрузке</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InfoType">
+        <xs:sequence>
+            <xs:element name="Quantity" type="tns:QuantityBasisType">
+                <xs:annotation>
+                    <xs:documentation>Количество товара</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="QuantityUnitName" type="tns:MeasureUnitQualifierNameType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Условное обозначение единицы измерения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="QuantityUnitCode" type="tns:MeasureUnitQualifierCodeType">
+                <xs:annotation>
+                    <xs:documentation>Код единицы измерения</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="FreeText250Type">
+        <xs:annotation>
+            <xs:documentation>Текстовая строка. До 250 символов</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CustomsDocumentCodeType">
+        <xs:annotation>
+            <xs:documentation>Код вида представляемого документа. 5 символов. Текстовый</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:length value="5"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GTDIDType">
+        <xs:annotation>
+            <xs:documentation>Идентификатор. Номер ДТ. От 1 до 7 символов</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="7"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Count3Type">
+        <xs:annotation>
+            <xs:documentation>Число. Порядковый номер. От 1 до 3 цифр </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:totalDigits value="3"/>
+            <xs:minInclusive value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Count6Type">
+        <xs:annotation>
+            <xs:documentation>Число. Порядковый номер. От 1 до 6 цифр </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:totalDigits value="6"/>
+            <xs:minInclusive value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="QuantityBasisType">
+        <xs:annotation>
+            <xs:documentation>Количество в единицах измерения. Всего до 24 цифр. 6 знаков после запятой</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:fractionDigits value="6"/>
+            <xs:totalDigits value="24"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MeasureUnitQualifierNameType">
+        <xs:annotation>
+            <xs:documentation>Наименование единицы измерения. От 1 до 13 символов. Текстовый</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="13"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MeasureUnitQualifierCodeType">
+        <xs:annotation>
+            <xs:documentation>Код единицы измерения. 3 символа. Текстовый</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:length value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

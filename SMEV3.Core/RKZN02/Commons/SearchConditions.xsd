@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:com="http://roskazna.ru/gisgmp/xsd/Common/2.1.1"
+    xmlns:sc="http://roskazna.ru/gisgmp/xsd/SearchConditions/2.1.1"
+    targetNamespace="http://roskazna.ru/gisgmp/xsd/SearchConditions/2.1.1"
+    elementFormDefault="qualified">
+    <xs:import namespace="http://roskazna.ru/gisgmp/xsd/Common/2.1.1" schemaLocation="Common.xsd"/>
+    <xs:complexType name="ChargesConditionsType">
+        <xs:sequence>
+            <xs:element maxOccurs="100" name="SupplierBillID" type="com:SupplierBillIDType">
+                <xs:annotation>
+                    <xs:documentation>УИН</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" ref="com:TimeInterval">
+                <xs:annotation>
+                    <xs:documentation>Временной интервал, за который запрашивается информация из ГИС ГМП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PayersConditionsType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element maxOccurs="100" name="PayerInn" type="com:INNType">
+                    <xs:annotation>
+                        <xs:documentation>ИНН юридического лица</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element maxOccurs="100" name="PayerIdentifier" type="com:PayerIdentifierType">
+                    <xs:annotation>
+                        <xs:documentation>Идентификатор плательщика</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:element minOccurs="0" ref="com:TimeInterval">
+                <xs:annotation>
+                    <xs:documentation>Временной интервал, за который запрашивается информация из ГИС ГМП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" ref="com:KBKlist">
+                <xs:annotation>
+                    <xs:documentation>Перечень КБК</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PaymentsConditionsType">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:documentation/>
+            </xs:annotation>
+            <xs:element maxOccurs="100" name="PaymentId">
+                <xs:annotation>
+                    <xs:documentation>УИП</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="com:PaymentIdType"/>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TimeConditionsType">
+        <xs:sequence>
+            <xs:element ref="com:TimeInterval"/>
+            <xs:element maxOccurs="10" minOccurs="0" name="Beneficiary">
+                <xs:annotation>
+                    <xs:documentation>Идентификация получателя средств</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:attribute name="inn" type="com:INNType" use="required">
+                        <xs:annotation>
+                            <xs:documentation>ИНН получателя средств, указанный в возвращаемом элементе</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="kpp" type="com:KPPType">
+                        <xs:annotation>
+                            <xs:documentation>КПП получателя средств, указанный в возвращаемом элементе</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" ref="com:KBKlist">
+                <xs:annotation>
+                    <xs:documentation>Перечень КБК</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RefundsConditionsType">
+        <xs:sequence>
+            <xs:element maxOccurs="100" name="RefundId" type="com:RefundIdType">
+                <xs:annotation>
+                    <xs:documentation>УИВ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Conditions" abstract="true">
+        <xs:choice>
+            <xs:element name="ChargesConditions" type="sc:ChargesConditionsType">
+                <xs:annotation>
+                    <xs:documentation>Условия для получения информации по УИН с указанием дополнительных параметров (при
+                        необходимости)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PayersConditions" type="sc:PayersConditionsType">
+                <xs:annotation>
+                    <xs:documentation>Условия для получения информации по идентификатору плательщика с указанием дополнительных
+                        параметров (при необходимости)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PaymentsConditions" type="sc:PaymentsConditionsType">
+                <xs:annotation>
+                    <xs:documentation>Условия для получения информации по УИП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TimeConditions" type="sc:TimeConditionsType">
+                <xs:annotation>
+                    <xs:documentation>Условия для получения информации за временной интервал с указанием дополнительных параметров
+                        (при необходимости)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RefundsConditions" type="sc:RefundsConditionsType">
+                <xs:annotation>
+                    <xs:documentation>Условия для получения информации по уникальному идентификатору возврата (УИВ)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+        <xs:attribute name="kind" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Тип запроса на предоставление информации</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:simpleType name="ExportPaymentsKindType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PAYMENT"/>
+            <xs:enumeration value="PAYMENTMODIFIED"/>
+            <xs:enumeration value="PAYMENTUNMATCHED"/>
+            <xs:enumeration value="PAYMENTCANCELLED"/>
+            <xs:enumeration value="PAYMENTMAINCHARGE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ExportChargesKindType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CHARGE"/>
+            <xs:enumeration value="CHARGENOTFULLMATCHED"/>
+            <xs:enumeration value="CHARGESTATUS"/>
+            <xs:enumeration value="CHARGE-PRIOR"/>
+            <xs:enumeration value="CHARGE-PRIOR-NOTFULLMATCHED"/>
+            <xs:enumeration value="CHARGE-PRIOR-STATUS"/>
+            <xs:enumeration value="TEMP-CHARGING"/>
+            <xs:enumeration value="TEMP-CHARGING-NOTFULLMATCHED"/>
+            <xs:enumeration value="TEMP-CHARGING-STATUS"/>
+            <xs:enumeration value="MAINCHARGE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ExportQuittancesKindType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="QUITTANCE"/>
+            <xs:enumeration value="ALLQUITTANCE"/>
+            <xs:enumeration value="QUITTANCEMAINCHARGE"/>
+            <xs:enumeration value="ALLPOSSIBLE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ExportRefundsKindType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="REFUND"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="PaymentsExportConditions">
+        <xs:annotation>
+            <xs:documentation>Условия для предоставления информации об уплате</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:restriction base="sc:Conditions">
+                    <xs:choice>
+                        <xs:element name="ChargesConditions" type="sc:ChargesConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения извещений о приеме к исполнению распоряжений по УИН с
+                                    указанием дополнительных параметров (при необходимости)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="PayersConditions">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения извещений о приеме к исполнению распоряжений по
+                                    идентификатору плательщика с указанием дополнительных параметров (при необходимости)
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:restriction base="sc:PayersConditionsType">
+                                        <xs:sequence>
+                                            <xs:sequence>
+                                                <xs:element maxOccurs="100" name="PayerIdentifier"
+                                                  type="com:PayerIdentifierType">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Идентификатор плательщика</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                            <xs:element minOccurs="0" ref="com:TimeInterval">
+                                                <xs:annotation>
+                                                  <xs:documentation>Временной интервал, за который запрашивается информация из ГИС
+                                                        ГМП
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" ref="com:KBKlist">
+                                                <xs:annotation>
+                                                  <xs:documentation>Перечень КБК</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:restriction>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PaymentsConditions" type="sc:PaymentsConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения извещений о приеме к исполнению распоряжений по УИП
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TimeConditions" type="sc:TimeConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения извещений о приеме к исполнению распоряжений за временной
+                                    интервал с указанием дополнительных параметров (при необходимости)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="kind" type="sc:ExportPaymentsKindType" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Тип запроса на предоставление информации об уплате</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:restriction>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ChargesExportConditions">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:restriction base="sc:Conditions">
+                    <xs:choice>
+                        <xs:element name="ChargesConditions">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения извещений о начислениях по УИН с указанием дополнительных
+                                    параметров (при необходимости)
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:restriction base="sc:ChargesConditionsType">
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="100" name="SupplierBillID"
+                                                type="com:SupplierBillIDType">
+                                                <xs:annotation>
+                                                  <xs:documentation>УИН</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:restriction>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PayersConditions" type="sc:PayersConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения извещений о начислениях по идентификатору плательщика с
+                                    указанием дополнительных параметров (при необходимости)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TimeConditions" type="sc:TimeConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения извещений о начислениях за временной интервал с указанием
+                                    дополнительных параметров (при необходимости)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="kind" type="sc:ExportChargesKindType" use="required"/>
+                </xs:restriction>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="QuittancesExportConditions">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:restriction base="sc:Conditions">
+                    <xs:choice>
+                        <xs:element name="ChargesConditions">
+                            <xs:annotation>
+                                <xs:documentation>Список УИН и дополнительные ограничения по которым запрашиваются
+                                    сущности
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:restriction base="sc:ChargesConditionsType">
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="100" name="SupplierBillID"
+                                                type="com:SupplierBillIDType">
+                                                <xs:annotation>
+                                                  <xs:documentation>УИН</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:restriction>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="TimeConditions" type="sc:TimeConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Временной интервал с дополнительными ограничениями по идентификаторам участников
+                                    косвенного взаимодействия и/или КБК
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="kind" type="sc:ExportQuittancesKindType" use="required"/>
+                </xs:restriction>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RefundsExportConditions">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:restriction base="sc:Conditions">
+                    <xs:choice>
+                        <xs:element name="PayersConditions">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения информации по идентификатору плательщика с указанием
+                                    дополнительных параметров (при необходимости)
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:restriction base="sc:PayersConditionsType">
+                                        <xs:sequence>
+                                            <xs:sequence>
+                                                <xs:element maxOccurs="100" name="PayerIdentifier"
+                                                  type="com:PayerIdentifierType">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Идентификатор плательщика</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                            <xs:element minOccurs="0" ref="com:TimeInterval">
+                                                <xs:annotation>
+                                                  <xs:documentation>Временной интервал, за который запрашивается информация из ГИС
+                                                        ГМП
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" ref="com:KBKlist">
+                                                <xs:annotation>
+                                                  <xs:documentation>Перечень КБК</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:restriction>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PaymentsConditions" type="sc:PaymentsConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения информации по УИП</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TimeConditions" type="sc:TimeConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения информации за временной интервал с указанием дополнительных
+                                    параметров (при необходимости)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RefundsConditions" type="sc:RefundsConditionsType">
+                            <xs:annotation>
+                                <xs:documentation>Условия для получения информации по уникальному идентификатору возврата (УИВ)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="kind" type="sc:ExportRefundsKindType" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Тип запроса на предоставление информации о возврате</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:restriction>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

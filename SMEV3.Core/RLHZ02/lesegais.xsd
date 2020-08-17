@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:com="urn://x-artefacts-lesegais-ru/smev3/getinfo/1.1.0" xmlns:tns="urn://x-artefacts-lesegais-ru/smev3/getinfo/commons/1.1.0" targetNamespace="urn://x-artefacts-lesegais-ru/smev3/getinfo/1.1.0" elementFormDefault="qualified">
+	<xs:import namespace="urn://x-artefacts-lesegais-ru/smev3/getinfo/commons/1.1.0" schemaLocation="commons/commons.xsd"/>
+	<xs:element name="Request">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент запроса</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RequestGUID" type="tns:GUIDType"/>
+				<xs:choice>
+					<xs:element ref="tns:ContractStatusRequest"/>
+					<xs:element ref="tns:DocListRequest"/>
+					<xs:element ref="tns:DocVidimusRequest"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент ответа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RequestGUID" type="tns:GUIDType"/>
+				<xs:choice>
+					<xs:element ref="tns:ContractStatusResponse"/>
+					<xs:element ref="tns:DocListResponse"/>
+					<xs:element ref="tns:DocVidimusResponse"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

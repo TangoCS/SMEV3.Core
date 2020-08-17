@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:lic="urn://smev-roszdravnadzor-ru/LicImport/root/1.0.0" targetNamespace="urn://smev-roszdravnadzor-ru/LicImport/root/1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:element name="RZNLicImportRequest">
+		<xs:annotation>
+			<xs:documentation>Сведения о лицензиях, выданных с помощью подсистемы ЛОД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="GuidReq" type="lic:string-36" use="required">
+				<xs:annotation>
+					<xs:documentation>Идентификатор запроса, сформированный запрашивающей стороной</xs:documentation>
+					<xs:documentation>Указывается GUID</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="RZNLicImportResponse" type="lic:RZNLicImportResponseType"/>
+	<xs:complexType name="RZNLicImportResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GuidReq" type="lic:string-36">
+				<xs:annotation>
+					<xs:documentation>Идентификатор документа запроса</xs:documentation>
+					<xs:documentation>Указывается GUID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Status" type="lic:string-2">
+				<xs:annotation>
+					<xs:documentation>Код обработки</xs:documentation>
+					<xs:documentation>Принимает значения:
+0 – загружено без ошибок;
+1 – ошибка ФЛК;
+2 – не пройдена аутентификация пользователя;
+99 - внутренняя ошибка
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Error" type="lic:string-500" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Текст сообщения об ошибке при обработке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="string-2">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-36">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string-500">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://x-artefacts-water-spudi-ru/root/1.0.0"
+           xmlns:commons="urn://x-artefacts-water-spudi-ru/commons/1.0.0" elementFormDefault="qualified">
+    <xs:import namespace="urn://x-artefacts-water-spudi-ru/commons/1.0.0"
+               schemaLocation="commons/water-spudi-commons.xsd"/>
+    <xs:element name="WaterSpuDIRequest">
+        <xs:annotation>
+            <xs:documentation>Запрос на предоставление электронных копий документов требуемых Росприроднадзором
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="PermissibleDischargeStandard" type="commons:PermissibleDischargeStandardType"/>
+                <xs:element name="WaterObjectUsage" type="commons:WaterObjectUsageType"/>
+                <xs:element name="PermissibleDischarge" type="commons:WaterObjectUsageType"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="WaterSpuDIResponse">
+        <xs:annotation>
+            <xs:documentation>Ответ на запрос на предоставление электронных копий документов требуемых Росприроднадзором
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="commons:responseType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

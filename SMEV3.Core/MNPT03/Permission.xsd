@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.minprom.gov.ru/schemas/permission/Request/1.0.0"
+	xmlns:r="http://www.minprom.gov.ru/schemas/permission/Request/1.0.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:com="http://www.minprom.gov.ru/schemas/commons/1.0.0">
+  <xs:import namespace="http://www.minprom.gov.ru/schemas/commons/1.0.0" schemaLocation="supplementary/minprom-commons.xsd"/>
+  <xs:element name="PermissionRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- Формат ответа (xml, pdf) -->
+        <xs:element name="Format">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="pdf"/>
+              <xs:enumeration value="xml"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+          <!-- Номер разрешения -->
+        <xs:element name="PermissionNumber" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PermissionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Permission">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- Номер разрешения -->
+              <xs:element name="PermissionNumber" type="xs:string" />
+              <!-- Статус разрешения -->
+              <xs:element name="PermissionStatus">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Оформлено"/>
+                    <xs:enumeration value="Действие прекращено"/>
+                    <xs:enumeration value="Приостановлено"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <!-- Дата последнего изменения статуса разрешения -->
+              <xs:element type="xs:date" name="StatusDate" />
+              <!-- Ссылка на файл разрешения -->
+              <xs:element name="PermissionFile" type="com:AttachedDocumentType" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

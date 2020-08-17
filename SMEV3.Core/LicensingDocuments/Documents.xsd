@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.minprom.gov.ru/schemas/licensing/Documents/1.0.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DocumentsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- Начальная дата периода -->
+        <xs:element type="xs:date" name="StartDate" />
+        <!-- Конечная дата периода -->
+        <xs:element type="xs:date" name="EndDate" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Document" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- 1. Регистрационный номер -->
+              <xs:element name="RegNumber" type="xs:string" />
+              <!-- 2. Дата формирования -->
+              <xs:element name="FormDate" type="xs:date" />
+              <!-- 3. Дата начала действия -->
+              <xs:element name="BeginDate" type="xs:date" />
+              <!-- 4. Дата окончания действия -->
+              <xs:element name="EndDate" type="xs:date" minOccurs="0" />
+              <!-- 5.	Направление перемещения товара -->
+              <xs:element name="Direction">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Импорт"/>
+                    <xs:enumeration value="Экспорт"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <!-- 6. Дата внешнеторгового контракта -->
+              <xs:element name="ContractDate" type="xs:date" minOccurs="0" />
+              <!-- 7. Номер внешнеторгового контракта -->
+              <xs:element name="ContractNumber" type="xs:string" minOccurs="0" />
+              <!-- 8. Код страны контрагента -->
+              <xs:element name="ContractorCountryCode" type="xs:string" minOccurs="0" />
+              <!-- 9. Наименование страны контрагента -->
+              <xs:element name="CountractorCountryNamr" type="xs:string" minOccurs="0" />
+              <!-- 10. Код соглашения -->
+              <xs:element name="AgreementCode" type="xs:string" minOccurs="0" />
+              <!-- 11. Код таможенного органа, уполномоченного на совершение операций -->
+              <xs:element name="CustomsCode" type="xs:string" minOccurs="0" />
+              <!-- 12. Наименование таможенного органа -->
+              <xs:element name="CustomsName" type="xs:string" minOccurs="0" />
+              <!-- 13. Наименование отправителя -->
+              <xs:element name="SenderName" type="xs:string" minOccurs="0" />
+              <!-- 14. Адрес отправителя -->
+              <xs:element name="SenderAddress" type="xs:string" minOccurs="0" />
+              <!-- 15. Дополнительные сведения об отправителе -->
+              <xs:element name="SenderInfo" type="xs:string" minOccurs="0" />
+              <!-- 16. Наименование получателя -->
+              <xs:element name="ReceiverName" type="xs:string" minOccurs="0" />
+              <!-- 17. Адрес получателя -->
+              <xs:element name="ReceiverAddress" type="xs:string" minOccurs="0" />
+              <!-- 18. Дополнительные сведения о получателе -->
+              <xs:element name="ReceiverInfo" type="xs:string" minOccurs="0" />
+              <!-- 19. Номер позиции товара в перечне (списке) -->
+              <xs:element name="CommodityPosition" type="xs:int" minOccurs="0" />
+              <!-- 20. Наименование товара -->
+              <xs:element name="CommodityName" type="xs:string" minOccurs="0" />
+              <!-- 21. Код ТН ВЭД ЕАЭС -->
+              <xs:element name="CommodityCode" type="xs:string" minOccurs="0" />
+              <!-- 22. Количество товара в основной ЕИ -->
+              <xs:element name="Quantity" type="xs:decimal" minOccurs="0" />
+              <!-- 23. Количество товара в дополнительной ЕИ -->
+              <xs:element name="AddQuantity" type="xs:decimal" minOccurs="0" />
+              <!-- 24. Код дополнительной ЕИ -->
+              <xs:element name="AddMeasureCode" type="xs:string" minOccurs="0" />
+              <!-- 25. ФИО уполномоченного лица Минпромторга -->
+              <xs:element name="ResponsibleFIO" type="xs:string" />
+              <!-- 26. Должность уполномоченного лица Минпромторга -->
+              <xs:element name="ResponsiblePost" type="xs:string" />
+              <!-- 27. Текущий статус подтверждения: 1 – подтверждение действует, 2 – подтверждение аннулировано -->
+              <xs:element name="ConfirmationStatus">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <!-- 28. Дата аннулирования подтверждения	-->
+              <xs:element name="ConfirmationAnnulDate" type="xs:date" minOccurs="0" />
+              <!-- 29. Дата и время последнего изменения -->
+              <xs:element name="LastModifiedDate" type="xs:dateTime" />
+              <!-- 30. Наименование документа: 1 – перечень кооперации 2 – Список кооперации -->
+              <xs:element name="DocumentType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
